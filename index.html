@@ -374,14 +374,19 @@
     }
     .pricing-card--featured .pricing-check { background: var(--accent-blue); color: #ffffff; }
 
-    /* 3. MODULO MULTI-STEP */
+    /* 3. MODULO MULTI-STEP CON BARRA DI PROGRESSO INTERATTIVA */
     .wizard-wrapper { max-width: 820px; margin: 0 auto; background: #fff; border: 1px solid var(--border-subtle); border-radius: 22px; box-shadow: var(--shadow-lg); overflow: hidden; }
     .wizard-header { background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); padding: 18px 24px; }
+    .wizard-progress-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); }
+    .wizard-progress-pct { color: var(--accent-blue); font-weight: 800; background: var(--accent-blue-soft); padding: 2px 9px; border-radius: 999px; }
+    .wizard-progress-track { width: 100%; height: 7px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
+    .wizard-progress-fill { height: 100%; width: 25%; background: linear-gradient(90deg, #0052ff 0%, #0ea5e9 100%); border-radius: 999px; transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 10px rgba(0, 82, 255, 0.45); }
     .wizard-steps-indicator { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .step-pill { display: flex; align-items: center; gap: 7px; padding: 8px 10px; border-radius: 10px; background: #fff; border: 1px solid var(--border-subtle); font-size: 0.76rem; font-weight: 700; color: var(--text-secondary); transition: all var(--transition-fast); }
-    .step-pill.is-active { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); }
-    .step-pill.is-completed { border-color: #bbf7d0; background: #f0fdf4; color: var(--status-success); }
-    .step-pill__num { width: 22px; height: 22px; border-radius: 50%; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; }
+    .step-pill { display: flex; align-items: center; gap: 7px; padding: 9px 11px; border-radius: 10px; background: #fff; border: 1.5px solid var(--border-subtle); font-size: 0.76rem; font-weight: 700; color: var(--text-secondary); cursor: pointer; text-align: left; transition: all var(--transition-fast); }
+    .step-pill:hover { border-color: var(--accent-blue); transform: translateY(-1px); }
+    .step-pill.is-active { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); box-shadow: 0 4px 12px rgba(0, 82, 255, 0.12); }
+    .step-pill.is-completed { border-color: #86efac; background: #f0fdf4; color: var(--status-success); }
+    .step-pill__num { width: 22px; height: 22px; border-radius: 50%; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; transition: all var(--transition-fast); }
     .step-pill.is-active .step-pill__num { background: var(--accent-blue); color: #fff; }
     .step-pill.is-completed .step-pill__num { background: var(--status-success); color: #fff; }
     .wizard-body { padding: 28px 24px; }
@@ -434,6 +439,93 @@
     .confirmation-title { font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; }
     .confirmation-text { font-size: 0.98rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 18px; }
 
+    /* 4. SEZIONE CHI SIAMO (MATTIA, GIOVANNI, DIEGO) */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 880px;
+      margin: 0 auto 24px;
+    }
+    .team-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-xs);
+      transition: all var(--transition-smooth);
+    }
+    .team-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-md);
+    }
+    .team-initial {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0a0f1d 0%, #0052ff 100%);
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      box-shadow: 0 8px 18px -4px rgba(0, 82, 255, 0.35);
+    }
+    .team-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+    .team-role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .team-note-box {
+      max-width: 880px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #0a0f1d 0%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 22px 26px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .team-note-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      max-width: 680px;
+      margin: 0 auto 14px;
+      line-height: 1.55;
+    }
+    .team-note-text strong { color: #ffffff; }
+    .team-note-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .team-note-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
     /* FOOTER */
     .site-footer { background: var(--text-primary); color: #fff; padding: 40px 0 26px; }
     .footer-link { color: #cbd5e1; font-size: 0.85rem; background: none; border: none; cursor: pointer; }
@@ -450,7 +542,7 @@
     .modal-content { padding: 20px; font-size: 0.88rem; color: var(--text-secondary); }
 
     @media (max-width: 900px) {
-      .hero__grid, .pricing-grid, .steps-strip__grid { grid-template-columns: 1fr; }
+      .hero__grid, .pricing-grid, .steps-strip__grid, .team-grid { grid-template-columns: 1fr; }
       .nav-links, .nav-actions .btn { display: none; }
       .mobile-menu-toggle { display: inline-flex; }
       .wizard-steps-indicator { grid-template-columns: 1fr 1fr; }
@@ -649,6 +741,7 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#pacchetti" class="nav-link">Pacchetti</a></li>
                 <li><a href="#richiedi-sito" class="nav-link">Modulo Richiesta</a></li>
+                <li><a href="#chi-siamo" class="nav-link">Chi Siamo</a></li>
                 <li><a href="#contatti" class="nav-link">Contatti</a></li>
               </ul>
             </nav>
@@ -662,6 +755,7 @@
               <li><a href="#home" class="mobile-drawer__link" data-close-drawer>Home</a></li>
               <li><a href="#pacchetti" class="mobile-drawer__link" data-close-drawer>Pacchetti e Prezzi</a></li>
               <li><a href="#richiedi-sito" class="mobile-drawer__link" data-close-drawer>Modulo Richiesta Sito</a></li>
+              <li><a href="#chi-siamo" class="mobile-drawer__link" data-close-drawer>Chi Siamo</a></li>
               <li><a href="#contatti" class="mobile-drawer__link" data-close-drawer>Contatti</a></li>
             </ul>
           </div>
@@ -788,11 +882,18 @@
 
               <div class="wizard-wrapper reveal">
                 <div class="wizard-header">
+                  <div class="wizard-progress-top">
+                    <span id="wizard-progress-label">Passaggio 1 di 4</span>
+                    <span class="wizard-progress-pct" id="wizard-progress-pct">25% completato</span>
+                  </div>
+                  <div class="wizard-progress-track">
+                    <div class="wizard-progress-fill" id="wizard-progress-fill"></div>
+                  </div>
                   <div class="wizard-steps-indicator">
-                    <div class="step-pill is-active" data-step-indicator="1"><span class="step-pill__num">1</span><span>Cliente</span></div>
-                    <div class="step-pill" data-step-indicator="2"><span class="step-pill__num">2</span><span>Pacchetto</span></div>
-                    <div class="step-pill" data-step-indicator="3"><span class="step-pill__num">3</span><span>Il tuo sito</span></div>
-                    <div class="step-pill" data-step-indicator="4"><span class="step-pill__num">4</span><span>Invio</span></div>
+                    <button type="button" class="step-pill is-active" data-step-indicator="1"><span class="step-pill__num">1</span><span>Cliente</span></button>
+                    <button type="button" class="step-pill" data-step-indicator="2"><span class="step-pill__num">2</span><span>Pacchetto</span></button>
+                    <button type="button" class="step-pill" data-step-indicator="3"><span class="step-pill__num">3</span><span>Il tuo sito</span></button>
+                    <button type="button" class="step-pill" data-step-indicator="4"><span class="step-pill__num">4</span><span>Invio</span></button>
                   </div>
                 </div>
 
@@ -1005,6 +1106,46 @@
               </div>
             </div>
           </section>
+
+          <!-- 4. SEZIONE CHI SIAMO (MATTIA, GIOVANNI, DIEGO) -->
+          <section class="section" id="chi-siamo">
+            <div class="container">
+              <div class="section-header--center reveal">
+                <span class="section-eyebrow">Il Team MGD Studio</span>
+                <h2 class="section-title">Chi Siamo</h2>
+                <p class="section-subtitle">Siamo tre giovani sviluppatori appassionati di tecnologia, design e sviluppo web.</p>
+              </div>
+
+              <div class="team-grid">
+                <div class="team-card reveal">
+                  <div class="team-initial">M</div>
+                  <h3 class="team-name">Mattia</h3>
+                  <span class="team-role">Co-Founder & Web Developer</span>
+                </div>
+                <div class="team-card reveal">
+                  <div class="team-initial">G</div>
+                  <h3 class="team-name">Giovanni</h3>
+                  <span class="team-role">Co-Founder & Web Developer</span>
+                </div>
+                <div class="team-card reveal">
+                  <div class="team-initial">D</div>
+                  <h3 class="team-name">Diego</h3>
+                  <span class="team-role">Co-Founder & Web Developer</span>
+                </div>
+              </div>
+
+              <div class="team-note-box reveal">
+                <p class="team-note-text">
+                  <strong>Perché scegliere noi?</strong> Parli direttamente con noi tre senza intermediari: curiamo ogni sito nei minimi dettagli e ti seguiamo passo dopo passo dall’idea alla pubblicazione online.
+                </p>
+                <div class="team-note-pills">
+                  <span class="team-note-pill">✓ Contatto diretto con noi</span>
+                  <span class="team-note-pill">✓ Tempi rapidi di consegna</span>
+                  <span class="team-note-pill">✓ Nessun canone mensile nascosto</span>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
 
         <!-- FOOTER COMPATTO CON CONTATTI PULITI -->
@@ -1174,11 +1315,18 @@
 
       function goToStep(step) {
         currentStep = step;
+        const pct = step * 25;
+        document.getElementById('wizard-progress-label').textContent = `Passaggio ${step} di 4`;
+        document.getElementById('wizard-progress-pct').textContent = `${pct}% completato`;
+        document.getElementById('wizard-progress-fill').style.width = `${pct}%`;
+
         document.querySelectorAll('[data-step-pane]').forEach(p => p.classList.toggle('is-active', Number(p.getAttribute('data-step-pane')) === step));
         document.querySelectorAll('[data-step-indicator]').forEach(ind => {
           const s = Number(ind.getAttribute('data-step-indicator'));
           ind.classList.toggle('is-active', s === step);
           ind.classList.toggle('is-completed', s < step);
+          const numEl = ind.querySelector('.step-pill__num');
+          if (numEl) numEl.textContent = s < step ? '✓' : String(s);
         });
         prevBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
         nextBtn.style.display = step < 4 ? 'inline-flex' : 'none';
@@ -1197,6 +1345,26 @@
           `;
         }
       }
+
+      document.querySelectorAll('[data-step-indicator]').forEach(ind => {
+        ind.addEventListener('click', () => {
+          const targetStep = Number(ind.getAttribute('data-step-indicator'));
+          if (targetStep === currentStep) return;
+          if (targetStep < currentStep) {
+            goToStep(targetStep);
+          } else {
+            let canAdvance = true;
+            for (let s = currentStep; s < targetStep; s++) {
+              if (!validateStep(s)) {
+                goToStep(s);
+                canAdvance = false;
+                break;
+              }
+            }
+            if (canAdvance) goToStep(targetStep);
+          }
+        });
+      });
 
       nextBtn.addEventListener('click', () => { if (validateStep(currentStep)) goToStep(currentStep + 1); });
       prevBtn.addEventListener('click', () => { if (currentStep > 1) goToStep(currentStep - 1); });

@@ -794,7 +794,7 @@
           <h1 class="hero__title">Diamo vita alla tua <span class="hero__title-accent">presenza online.</span></h1>
           <div class="hero__location">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Realtà locale di Piacenza e provincia</span>
+            <span>Sede a Piacenza · Operativi in tutta Italia</span>
           </div>
           <p class="hero__subtitle">Realizziamo siti web moderni, veloci e professionali per aiutare la tua attività a crescere online.</p>
           <div class="hero__cta-group">
@@ -1436,7 +1436,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 MGD Studio · Piacenza e provincia — Tutti i diritti riservati.</p>
+        <p>© 2026 MGD Studio · Piacenza, Italia — Tutti i diritti riservati.</p>
         <p>Prezzi una tantum · Dominio e hosting da concordare separatamente.</p>
       </div>
     </div>
@@ -1712,6 +1712,15 @@
       return ok;
     }
 
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function goToStep(step) {
       currentStep = step;
       const pct = step * 25;
@@ -1736,11 +1745,15 @@
         const pkg = siteConfig.packages.find(p => p.id === pkgId);
         const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
         const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
+        const safeFullName = escapeHtml(document.getElementById('input-full-name').value.trim());
+        const safeBusinessName = escapeHtml(document.getElementById('input-business-name').value.trim());
+        const safeEmail = escapeHtml(document.getElementById('input-email').value.trim());
+        const safePhone = escapeHtml(document.getElementById('input-phone').value.trim());
         document.getElementById('quote-summary-content').innerHTML = `
-          <div><span class="summary-item-label">Cliente</span><span class="summary-item-val">${document.getElementById('input-full-name').value} (${document.getElementById('input-business-name').value})</span></div>
-          <div><span class="summary-item-label">Contatti</span><span class="summary-item-val">${document.getElementById('input-email').value} · ${document.getElementById('input-phone').value}</span></div>
-          <div><span class="summary-item-label">Pacchetto</span><span class="summary-item-val" style="color:var(--accent-blue)">${pkg ? pkg.name + ' (' + pkg.price + ')' : pkgId}</span></div>
-          <div><span class="summary-item-label">Stile & Sezioni</span><span class="summary-item-val">${style} · ${secs}</span></div>
+          <div><span class="summary-item-label">Cliente</span><span class="summary-item-val">${safeFullName} (${safeBusinessName})</span></div>
+          <div><span class="summary-item-label">Contatti</span><span class="summary-item-val">${safeEmail} · ${safePhone}</span></div>
+          <div><span class="summary-item-label">Pacchetto</span><span class="summary-item-val" style="color:var(--accent-blue)">${escapeHtml(pkg ? pkg.name + ' (' + pkg.price + ')' : pkgId)}</span></div>
+          <div><span class="summary-item-label">Stile & Sezioni</span><span class="summary-item-val">${escapeHtml(style)} · ${escapeHtml(secs)}</span></div>
         `;
       }
     }

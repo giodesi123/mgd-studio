@@ -74,6 +74,11 @@
     ]
   }
   </script>
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -747,15 +752,735 @@
   </style>
 </head>
 <body>
-  <div id="app"></div>
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="#home" class="brand-logo" aria-label="MGD Studio">
+        <img src="data:image/webp;base64,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" alt="Logo MGD Studio" class="brand-logo__img" />
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#pacchetti" class="nav-link">Pacchetti</a></li>
+          <li><a href="#richiedi-sito" class="nav-link">Modulo Richiesta</a></li>
+          <li><a href="#chi-siamo" class="nav-link">Chi Siamo</a></li>
+          <li><a href="#contatti" class="nav-link">Contatti</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="#richiedi-sito" class="btn btn--primary btn--sm">Richiedi il tuo sito</a>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">☰</button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <ul class="mobile-drawer__list">
+        <li><a href="#home" class="mobile-drawer__link" data-close-drawer>Home</a></li>
+        <li><a href="#pacchetti" class="mobile-drawer__link" data-close-drawer>Pacchetti e Prezzi</a></li>
+        <li><a href="#richiedi-sito" class="mobile-drawer__link" data-close-drawer>Modulo Richiesta Sito</a></li>
+        <li><a href="#chi-siamo" class="mobile-drawer__link" data-close-drawer>Chi Siamo</a></li>
+        <li><a href="#contatti" class="mobile-drawer__link" data-close-drawer>Contatti</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. SCHERMATA HOME -->
+    <section class="hero" id="home">
+      <div class="container hero__grid">
+        <div class="reveal is-visible">
+          <span class="hero__tag">
+            <span class="hero__tag-dot"></span>
+            <span>MGD Studio · Siti Web per Aziende e Attività</span>
+          </span>
+          <h1 class="hero__title">Diamo vita alla tua <span class="hero__title-accent">presenza online.</span></h1>
+          <div class="hero__location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Realtà locale di Piacenza e provincia</span>
+          </div>
+          <p class="hero__subtitle">Realizziamo siti web moderni, veloci e professionali per aiutare la tua attività a crescere online.</p>
+          <div class="hero__cta-group">
+            <a href="#richiedi-sito" class="btn btn--primary btn--lg">Richiedi il tuo sito →</a>
+            <a href="#pacchetti" class="btn btn--secondary btn--lg">Scopri i pacchetti</a>
+          </div>
+          <div class="hero__highlights">
+            <div class="hero__highlight-item"><span class="hero__highlight-icon">✓</span><span>Design su misura</span></div>
+            <div class="hero__highlight-item"><span class="hero__highlight-icon">✓</span><span>Perfetti da Smartphone</span></div>
+            <div class="hero__highlight-item"><span class="hero__highlight-icon">✓</span><span>Prezzo unico una tantum</span></div>
+          </div>
+        </div>
+
+        <div class="showcase-panel reveal is-visible">
+          <div class="showcase-tabs">
+            <button type="button" class="showcase-tab is-active" data-showcase-tab="ristorante">🍸 Ristoranti &amp; Bar</button>
+            <button type="button" class="showcase-tab" data-showcase-tab="parrucchiere">✂️ Parrucchieri &amp; Saloni</button>
+            <button type="button" class="showcase-tab" data-showcase-tab="negozio">🏢 Negozi &amp; Aziende</button>
+          </div>
+          <div class="showcase-browser-bar">
+            <div class="browser-dots">
+              <span class="browser-dot browser-dot--red"></span>
+              <span class="browser-dot browser-dot--yellow"></span>
+              <span class="browser-dot browser-dot--green"></span>
+            </div>
+            <div class="browser-url" id="showcase-domain-url">🔒 https://loungebistrot.it</div>
+            <div class="showcase-device-toggle">
+              <button type="button" class="device-btn is-active" data-device-mode="desktop">💻 PC</button>
+              <button type="button" class="device-btn" data-device-mode="mobile">📱 Telefono</button>
+            </div>
+          </div>
+          <div class="showcase-viewport">
+            <div class="showcase-mockup" id="showcase-mockup-frame">
+              <div class="mockup-notch"></div>
+              <div class="mockup-nav">
+                <span class="mockup-brand">Lounge &amp; Bistrot Milano</span>
+                <span class="mockup-badge">Ristorante / Cocktail Bar</span>
+              </div>
+              <div class="mockup-visual-hero" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&amp;fit=crop&amp;w=900&amp;q=80');">
+                <div class="mockup-visual-content">
+                  <div class="mockup-status-pill">
+                    <span class="mockup-status-dot"></span>
+                    <span>Aperto oggi · 18:00 - 02:00</span>
+                  </div>
+                  <p class="mockup-headline">Sapori autentici &amp; Cocktail d’autore.</p>
+                  <p class="mockup-subline">Scopri il menu digitale da smartphone e prenota il tuo tavolo in un clic.</p>
+                  <div class="mockup-actions">
+                    <a href="#richiedi-sito" class="mockup-btn-primary">Prenota Tavolo</a>
+                    <a href="#pacchetti" class="mockup-btn-secondary">Menu Digitale QR</a>
+                  </div>
+                </div>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-cards-grid">
+                  <div class="mockup-mini-card">
+                    <div class="mockup-mini-card__top">
+                      <span class="mockup-mini-card__title">Signature Cocktail</span>
+                      <span class="mockup-mini-card__tag">10€</span>
+                    </div>
+                    <span class="mockup-mini-card__desc">Lista drink &amp; aperitivi</span>
+                  </div>
+                  <div class="mockup-mini-card">
+                    <div class="mockup-mini-card__top">
+                      <span class="mockup-mini-card__title">Menu Degustazione</span>
+                      <span class="mockup-mini-card__tag">35€</span>
+                    </div>
+                    <span class="mockup-mini-card__desc">Piatti del giorno &amp; vini</span>
+                  </div>
+                  <div class="mockup-mini-card">
+                    <div class="mockup-mini-card__top">
+                      <span class="mockup-mini-card__title">Prenotazione Rapida</span>
+                      <span class="mockup-mini-card__tag">Online</span>
+                    </div>
+                    <span class="mockup-mini-card__desc">Conferma immediata</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRISCIA COME FUNZIONA IN 3 PASSI -->
+    <section class="steps-strip">
+      <div class="container">
+        <div class="steps-strip__grid">
+          <div class="steps-strip__item reveal">
+            <div class="steps-strip__num">1</div>
+            <div>
+              <div class="steps-strip__title">Compila il modulo online</div>
+              <div class="steps-strip__desc">Scegli pacchetto, colori e stile del tuo locale in 1 minuto.</div>
+            </div>
+          </div>
+          <div class="steps-strip__item reveal">
+            <div class="steps-strip__num">2</div>
+            <div>
+              <div class="steps-strip__title">Realizziamo il tuo sito</div>
+              <div class="steps-strip__desc">Ti ricontattiamo subito e creiamo il sito su misura per te.</div>
+            </div>
+          </div>
+          <div class="steps-strip__item reveal">
+            <div class="steps-strip__num">3</div>
+            <div>
+              <div class="steps-strip__title">Vai subito online</div>
+              <div class="steps-strip__desc">Pubblichiamo il sito pronto per attirare nuovi clienti.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. I PACCHETTI -->
+    <section class="section" id="pacchetti">
+      <div class="container">
+        <div class="section-header--center reveal">
+          <span class="section-eyebrow">Prezzi chiari &amp; trasparenti</span>
+          <h2 class="section-title">I Nostri Pacchetti</h2>
+          <p class="section-subtitle">Pagamento unico <strong>una tantum</strong> senza abbonamenti nascosti. Tocca il pacchetto che preferisci per selezionarlo nel modulo.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card reveal">
+            <div>
+              <h3 class="pricing-name">PACCHETTO VETRINA</h3>
+              <div class="pricing-price-wrap">
+                <span class="pricing-price">359€</span>
+                <span class="pricing-billing">una tantum</span>
+              </div>
+              <ul class="pricing-features">
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Sito web professionale</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Design personalizzato</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Fino a 5 sezioni</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Ottimizzazione smartphone e tablet</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Modulo contatti</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Collegamento WhatsApp</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Pubblicazione online</span></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn--dark btn--full" data-select-package="vetrina">
+              Scegli questo pacchetto →
+            </button>
+          </article>
+
+          <article class="pricing-card pricing-card--featured reveal">
+            <span class="pricing-badge">★ Più scelto</span>
+            <div>
+              <h3 class="pricing-name">PACCHETTO PLUS</h3>
+              <div class="pricing-price-wrap">
+                <span class="pricing-price">459€</span>
+                <span class="pricing-billing">una tantum</span>
+              </div>
+              <ul class="pricing-features">
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Tutto quello incluso nel pacchetto Vetrina</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Design più personalizzato</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Fino a 8 sezioni</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Tre interventi di manutenzione inclusi su richiesta</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Supporto per piccoli aggiornamenti</span></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn--primary btn--full" data-select-package="plus">
+              Scegli questo pacchetto →
+            </button>
+          </article>
+
+          <article class="pricing-card reveal">
+            <div>
+              <h3 class="pricing-name">PACCHETTO COMPLETO</h3>
+              <div class="pricing-price-wrap">
+                <span class="pricing-price">600€</span>
+                <span class="pricing-billing">una tantum</span>
+              </div>
+              <ul class="pricing-features">
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Tutto quello incluso nel pacchetto Plus</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Sito web completamente personalizzato</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Fino a 12 sezioni</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Manutenzioni e aggiornamenti inclusi per 12 mesi*</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Supporto prioritario</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Aggiornamenti e modifiche ai contenuti</span></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn--dark btn--full" data-select-package="completo">
+              Scegli questo pacchetto →
+            </button>
+          </article>
+        </div>
+        <p style="text-align:center; font-size:0.78rem; color:var(--text-muted); max-width:740px; margin:0 auto;">
+          *Prezzi <strong>una tantum</strong> (dominio, hosting e servizi esterni da concordare separatamente). Per il Pacchetto Completo le manutenzioni sono soggette a una politica di utilizzo concordata e non comprendono nuove funzionalità o la ricostruzione del sito.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. IL MODULO DA COMPILARE -->
+    <section class="section section--alt" id="richiedi-sito">
+      <div class="container">
+        <div class="section-header--center reveal">
+          <span class="section-eyebrow">Preventivo &amp; Configurazione</span>
+          <h2 class="section-title">Richiedi il tuo sito personalizzato</h2>
+          <p class="section-subtitle">Compila i 4 brevi passaggi: la tua richiesta arriverà direttamente al team di <strong>MGD Studio</strong>.</p>
+        </div>
+
+        <div class="wizard-wrapper reveal">
+          <div class="wizard-header">
+            <div class="wizard-progress-top">
+              <span id="wizard-progress-label">Passaggio 1 di 4</span>
+              <span class="wizard-progress-pct" id="wizard-progress-pct">25% completato</span>
+            </div>
+            <div class="wizard-progress-track">
+              <div class="wizard-progress-fill" id="wizard-progress-fill"></div>
+            </div>
+            <div class="wizard-steps-indicator">
+              <button type="button" class="step-pill is-active" data-step-indicator="1"><span class="step-pill__num">1</span><span>Cliente</span></button>
+              <button type="button" class="step-pill" data-step-indicator="2"><span class="step-pill__num">2</span><span>Pacchetto</span></button>
+              <button type="button" class="step-pill" data-step-indicator="3"><span class="step-pill__num">3</span><span>Il tuo sito</span></button>
+              <button type="button" class="step-pill" data-step-indicator="4"><span class="step-pill__num">4</span><span>Invio</span></button>
+            </div>
+          </div>
+
+          <div class="wizard-body">
+            <div class="wizard-alert wizard-alert--info" id="wizard-package-banner"></div>
+            <div class="wizard-alert wizard-alert--error" id="wizard-error-banner"></div>
+
+            <form id="quote-multi-step-form" novalidate>
+              <div class="hp-field-wrap" aria-hidden="true">
+                <input type="text" id="input-website-hp" name="website_hp" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <!-- PASSAGGIO 1 -->
+              <div class="wizard-step-pane is-active" data-step-pane="1">
+                <h3 class="step-heading">1. Informazioni cliente</h3>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label" for="input-full-name">Nome e cognome <span class="form-required">*</span></label>
+                    <input type="text" id="input-full-name" class="form-input" placeholder="Es. Marco Rossi" required />
+                    <span class="field-error-msg" id="err-full-name"></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="input-business-name">Nome dell’attività <span class="form-required">*</span></label>
+                    <input type="text" id="input-business-name" class="form-input" placeholder="Es. Bar Centrale" required />
+                    <span class="field-error-msg" id="err-business-name"></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="input-email">Email <span class="form-required">*</span></label>
+                    <input type="email" id="input-email" class="form-input" placeholder="nome@email.it" required />
+                    <span class="field-error-msg" id="err-email"></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="input-phone">Telefono <span class="form-required">*</span></label>
+                    <input type="tel" id="input-phone" class="form-input" placeholder="Es. 333 123 4567" required />
+                    <span class="field-error-msg" id="err-phone"></span>
+                  </div>
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="select-business-type">Tipo di attività <span class="form-required">*</span></label>
+                    <select id="select-business-type" class="form-select" required>
+                      <option value="">Seleziona...</option>
+                      <option value="Ristorante">Ristorante</option>
+                      <option value="Bar">Bar</option>
+                      <option value="Negozio">Negozio</option>
+                      <option value="Azienda">Azienda</option>
+                      <option value="Parrucchiere">Parrucchiere</option>
+                      <option value="Altro">Altro</option>
+                    </select>
+                    <span class="field-error-msg" id="err-business-type"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSAGGIO 2 -->
+              <div class="wizard-step-pane" data-step-pane="2">
+                <h3 class="step-heading">2. Scegli il pacchetto</h3>
+                <div class="choice-cards-grid">
+                  <label class="choice-card" data-package-card="vetrina">
+                    <input type="radio" name="selectedPackage" value="vetrina" />
+                    <span class="choice-card__title">Vetrina</span>
+                    <span class="choice-card__price">359€</span>
+                    <span class="choice-card__meta">Una tantum</span>
+                  </label>
+                  <label class="choice-card is-selected" data-package-card="plus">
+                    <input type="radio" name="selectedPackage" value="plus" checked />
+                    <span class="choice-card__title">Plus</span>
+                    <span class="choice-card__price">459€</span>
+                    <span class="choice-card__meta">Una tantum</span>
+                  </label>
+                  <label class="choice-card" data-package-card="completo">
+                    <input type="radio" name="selectedPackage" value="completo" />
+                    <span class="choice-card__title">Completo</span>
+                    <span class="choice-card__price">600€</span>
+                    <span class="choice-card__meta">Una tantum</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- PASSAGGIO 3 -->
+              <div class="wizard-step-pane" data-step-pane="3">
+                <h3 class="step-heading">3. Come vuoi il tuo sito?</h3>
+                <div class="form-grid">
+                  <div class="form-group form-group--full">
+                    <span class="form-label">Stile desiderato <span class="form-required">*</span></span>
+                    <div class="choice-cards-grid choice-cards-grid--styles">
+                      <label class="choice-card is-selected" data-style-card="Moderno">
+                        <input type="radio" name="style" value="Moderno" checked />
+                        <span class="choice-card__title">Moderno</span>
+                      </label>
+                      <label class="choice-card" data-style-card="Elegante">
+                        <input type="radio" name="style" value="Elegante" />
+                        <span class="choice-card__title">Elegante</span>
+                      </label>
+                      <label class="choice-card" data-style-card="Minimal">
+                        <input type="radio" name="style" value="Minimal" />
+                        <span class="choice-card__title">Minimal</span>
+                      </label>
+                      <label class="choice-card" data-style-card="Creativo">
+                        <input type="radio" name="style" value="Creativo" />
+                        <span class="choice-card__title">Creativo</span>
+                      </label>
+                      <label class="choice-card" data-style-card="Classico">
+                        <input type="radio" name="style" value="Classico" />
+                        <span class="choice-card__title">Classico</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <span class="form-label">Colori principali (anche più di uno)</span>
+                    <div class="chips-grid">
+                      <label class="chip-option" data-color-chip="Blu Elettrico">
+                        <input type="checkbox" name="colors" value="Blu Elettrico" />
+                        <span class="color-swatch" style="background:#0052ff"></span>
+                        <span>Blu Elettrico</span>
+                      </label>
+                      <label class="chip-option" data-color-chip="Nero">
+                        <input type="checkbox" name="colors" value="Nero" />
+                        <span class="color-swatch" style="background:#0a0f1d"></span>
+                        <span>Nero</span>
+                      </label>
+                      <label class="chip-option" data-color-chip="Bianco / Grigio">
+                        <input type="checkbox" name="colors" value="Bianco / Grigio" />
+                        <span class="color-swatch" style="background:#e2e8f0"></span>
+                        <span>Bianco / Grigio</span>
+                      </label>
+                      <label class="chip-option" data-color-chip="Oro">
+                        <input type="checkbox" name="colors" value="Oro" />
+                        <span class="color-swatch" style="background:#d4af37"></span>
+                        <span>Oro</span>
+                      </label>
+                      <label class="chip-option" data-color-chip="Verde">
+                        <input type="checkbox" name="colors" value="Verde" />
+                        <span class="color-swatch" style="background:#15803d"></span>
+                        <span>Verde</span>
+                      </label>
+                      <label class="chip-option" data-color-chip="Rosso / Bordeaux">
+                        <input type="checkbox" name="colors" value="Rosso / Bordeaux" />
+                        <span class="color-swatch" style="background:#b91c1c"></span>
+                        <span>Rosso</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <span class="form-label">Hai già un logo?</span>
+                    <div class="yesno-group">
+                      <label class="yesno-btn is-selected" data-radio-btn="hasLogo"><input type="radio" name="hasLogo" value="Sì" checked /> Sì</label>
+                      <label class="yesno-btn" data-radio-btn="hasLogo"><input type="radio" name="hasLogo" value="No" /> No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <span class="form-label">Pulsante WhatsApp?</span>
+                    <div class="yesno-group">
+                      <label class="yesno-btn is-selected" data-radio-btn="wantsWhatsapp"><input type="radio" name="wantsWhatsapp" value="Sì" checked /> Sì</label>
+                      <label class="yesno-btn" data-radio-btn="wantsWhatsapp"><input type="radio" name="wantsWhatsapp" value="No" /> No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <span class="form-label">Sistema di prenotazione?</span>
+                    <div class="yesno-group">
+                      <label class="yesno-btn" data-radio-btn="wantsBooking"><input type="radio" name="wantsBooking" value="Sì" /> Sì</label>
+                      <label class="yesno-btn is-selected" data-radio-btn="wantsBooking"><input type="radio" name="wantsBooking" value="No" checked /> No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <span class="form-label">Mostrare prodotti o servizi?</span>
+                    <div class="yesno-group">
+                      <label class="yesno-btn is-selected" data-radio-btn="wantsCatalog"><input type="radio" name="wantsCatalog" value="Sì" checked /> Sì</label>
+                      <label class="yesno-btn" data-radio-btn="wantsCatalog"><input type="radio" name="wantsCatalog" value="No" /> No</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <span class="form-label">Sezioni da inserire <span class="form-required">*</span></span>
+                    <div class="chips-grid">
+                      <label class="chip-option is-selected" data-section-chip="Home"><input type="checkbox" name="sections" value="Home" checked /><span>Home</span></label>
+                      <label class="chip-option is-selected" data-section-chip="Chi siamo"><input type="checkbox" name="sections" value="Chi siamo" checked /><span>Chi siamo</span></label>
+                      <label class="chip-option is-selected" data-section-chip="Servizi"><input type="checkbox" name="sections" value="Servizi" checked /><span>Servizi</span></label>
+                      <label class="chip-option" data-section-chip="Menu"><input type="checkbox" name="sections" value="Menu" /><span>Menu</span></label>
+                      <label class="chip-option" data-section-chip="Prodotti"><input type="checkbox" name="sections" value="Prodotti" /><span>Prodotti</span></label>
+                      <label class="chip-option" data-section-chip="Galleria fotografica"><input type="checkbox" name="sections" value="Galleria fotografica" /><span>Galleria fotografica</span></label>
+                      <label class="chip-option is-selected" data-section-chip="Contatti"><input type="checkbox" name="sections" value="Contatti" checked /><span>Contatti</span></label>
+                      <label class="chip-option" data-section-chip="Recensioni"><input type="checkbox" name="sections" value="Recensioni" /><span>Recensioni</span></label>
+                      <label class="chip-option" data-section-chip="Prezzi"><input type="checkbox" name="sections" value="Prezzi" /><span>Prezzi</span></label>
+                      <label class="chip-option" data-section-chip="Altro"><input type="checkbox" name="sections" value="Altro" /><span>Altro</span></label>
+                    </div>
+                    <span class="field-error-msg" id="err-sections"></span>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="textarea-description">Descrivi brevemente come immagini il tuo sito <span class="form-required">*</span></label>
+                    <textarea id="textarea-description" class="form-textarea" placeholder="Raccontaci la tua idea..."></textarea>
+                    <span class="field-error-msg" id="err-description"></span>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="input-reference-links">Siti di riferimento che ti piacciono (opzionale)</label>
+                    <input type="text" id="input-reference-links" class="form-input" placeholder="Es. www.esempio.it" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSAGGIO 4 -->
+              <div class="wizard-step-pane" data-step-pane="4">
+                <h3 class="step-heading">4. Dettagli finali e invio</h3>
+                <div class="form-grid">
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="select-timeline">Quando vorresti avere il sito pronto? <span class="form-required">*</span></label>
+                    <select id="select-timeline" class="form-select" required>
+                      <option value="">Seleziona...</option>
+                      <option value="Il prima possibile (1-2 settimane)">Il prima possibile (1-2 settimane)</option>
+                      <option value="Entro 3-4 settimane">Entro 3-4 settimane</option>
+                      <option value="Entro 1-2 mesi">Entro 1-2 mesi</option>
+                      <option value="Non ho fretta">Non ho fretta</option>
+                    </select>
+                    <span class="field-error-msg" id="err-timeline"></span>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="textarea-additional-notes">Altre richieste o informazioni (opzionale)</label>
+                    <textarea id="textarea-additional-notes" class="form-textarea" style="min-height:68px;" placeholder="Eventuali note..."></textarea>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <div class="summary-box">
+                      <div class="summary-box__header">
+                        <span class="summary-box__title">Riepilogo richiesta</span>
+                        <button type="button" class="privacy-link-btn" id="btn-summary-edit-step1" style="font-size:0.78rem;">Modifica</button>
+                      </div>
+                      <div class="summary-grid" id="quote-summary-content"></div>
+                    </div>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <div class="privacy-consent-box">
+                      <input type="checkbox" id="checkbox-privacy" required />
+                      <label for="checkbox-privacy" style="font-size:0.84rem; color:var(--text-secondary);">
+                        Acconsento al trattamento dei dati personali secondo l’<button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button>. <span class="form-required">*</span>
+                      </label>
+                    </div>
+                    <span class="field-error-msg" id="err-privacy"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wizard-footer">
+                <button type="button" class="btn btn--secondary" id="btn-wizard-prev" style="visibility:hidden;">← Indietro</button>
+                <button type="button" class="btn btn--primary" id="btn-wizard-next">Avanti →</button>
+                <button type="submit" class="btn btn--primary btn--lg" id="btn-submit-quote" style="display:none;">Invia richiesta</button>
+              </div>
+            </form>
+
+            <div class="wizard-confirmation" id="wizard-confirmation-screen">
+              <div class="confirmation-icon">✓</div>
+              <h3 class="confirmation-title">Richiesta inviata!</h3>
+              <p class="confirmation-text">Grazie per averci contattato! Abbiamo ricevuto la tua richiesta e ti ricontatteremo al più presto.</p>
+              <button type="button" class="btn btn--secondary" id="btn-reset-wizard">Invia un’altra richiesta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SEZIONE CHI SIAMO (MATTIA, GIOVANNI, DIEGO) -->
+    <section class="section" id="chi-siamo">
+      <div class="container">
+        <div class="section-header--center reveal">
+          <span class="section-eyebrow">Il Team MGD Studio</span>
+          <h2 class="section-title">Chi Siamo</h2>
+          <p class="section-subtitle">Siamo tre giovani sviluppatori appassionati di tecnologia, design e sviluppo web.</p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-initial">M</div>
+            <h3 class="team-name">Mattia</h3>
+            <span class="team-role">Co-Founder &amp; Web Developer</span>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-initial">G</div>
+            <h3 class="team-name">Giovanni</h3>
+            <span class="team-role">Co-Founder &amp; Web Developer</span>
+          </div>
+          <div class="team-card reveal">
+            <div class="team-initial">D</div>
+            <h3 class="team-name">Diego</h3>
+            <span class="team-role">Co-Founder &amp; Web Developer</span>
+          </div>
+        </div>
+
+        <div class="team-note-box reveal">
+          <p class="team-note-text">
+            <strong>Perché scegliere noi?</strong> Parli direttamente con noi tre senza intermediari: curiamo ogni sito nei minimi dettagli e ti seguiamo passo dopo passo dall’idea alla pubblicazione online.
+          </p>
+          <div class="team-note-pills">
+            <span class="team-note-pill">✓ Contatto diretto con noi</span>
+            <span class="team-note-pill">✓ Tempi rapidi di consegna</span>
+            <span class="team-note-pill">✓ Nessun canone mensile nascosto</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SEZIONE FAQ -->
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <div class="section-header--center reveal">
+          <span class="section-eyebrow">Domande &amp; Risposte</span>
+          <h2 class="section-title">Domande frequenti</h2>
+          <p class="section-subtitle">Risposte chiare ai dubbi più comuni prima di iniziare il tuo progetto web.</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item reveal" data-faq-item>
+            <button
+              type="button"
+              class="faq-trigger"
+              id="faq-trigger-0"
+              aria-expanded="false"
+              aria-controls="faq-panel-0"
+              data-faq-trigger
+            >
+              <span>Quanto tempo serve per avere il sito online?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-0"
+              role="region"
+              aria-labelledby="faq-trigger-0"
+            >
+              <div class="faq-panel__inner">
+                <p class="faq-answer">In genere tra i 7 e i 10 giorni lavorativi dalla conferma della demo gratuita e dalla consegna dei materiali base (foto, orari e listino).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" data-faq-item>
+            <button
+              type="button"
+              class="faq-trigger"
+              id="faq-trigger-1"
+              aria-expanded="false"
+              aria-controls="faq-panel-1"
+              data-faq-trigger
+            >
+              <span>Devo scrivere io i testi o fare foto professionali?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-1"
+              role="region"
+              aria-labelledby="faq-trigger-1"
+            >
+              <div class="faq-panel__inner">
+                <p class="faq-answer">No: ci occupiamo noi di strutturare i testi in modo chiaro e persuasivo per i tuoi clienti. Se hai già delle foto del locale o dei piatti le ottimizziamo noi, altrimenti ti guidiamo passo passo su cosa scattare anche con lo smartphone.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal" data-faq-item>
+            <button
+              type="button"
+              class="faq-trigger"
+              id="faq-trigger-2"
+              aria-expanded="false"
+              aria-controls="faq-panel-2"
+              data-faq-trigger
+            >
+              <span>Ci sono costi nascosti ogni mese?</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </button>
+            <div
+              class="faq-panel"
+              id="faq-panel-2"
+              role="region"
+              aria-labelledby="faq-trigger-2"
+            >
+              <div class="faq-panel__inner">
+                <p class="faq-answer">Nessun costo a sorpresa. Il prezzo del pacchetto è trasparente e nel Pacchetto Completo sono inclusi 12 mesi di manutenzioni e aggiornamenti. Eventuali rinnovi di dominio o assistenza successiva vengono sempre concordati prima.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER COMPATTO CON CONTATTI PULITI -->
+  <footer class="site-footer" id="contatti">
+    <div class="container">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.12);">
+        <div>
+          <a href="#home" class="brand-logo" aria-label="MGD Studio">
+            <span class="brand-logo__footer-badge">
+              <img src="data:image/webp;base64,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" alt="Logo MGD Studio" style="height:32px; width:auto; display:block;" />
+            </span>
+          </a>
+          <p class="footer-location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Siti web per aziende e attività — Sede a Piacenza, operativi in tutta Italia</span>
+          </p>
+          <p style="color:#94a3b8; font-size:0.86rem; margin-top:6px;">
+            Contatto diretto: <a href="mailto:gdesimone092@gmail.com" style="color:#fff; font-weight:700; text-decoration:underline;">gdesimone092@gmail.com</a> · WhatsApp: <a href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20informazioni%20per%20realizzare%20un%20sito%20web" target="_blank" rel="noopener noreferrer" data-va-whatsapp="footer_text" style="color:#4ade80; font-weight:700; text-decoration:underline;">+39 392 650 0185</a>
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <a href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20informazioni%20per%20realizzare%20un%20sito%20web" target="_blank" rel="noopener noreferrer" class="btn btn--sm" data-va-whatsapp="footer" aria-label="Scrivici su WhatsApp al +39 392 650 0185" style="background:linear-gradient(135deg,#25d366 0%,#16a34a 100%); color:#ffffff; box-shadow:0 10px 24px -6px rgba(37,211,102,0.45);">
+            <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
+            WhatsApp · +39 392 650 0185
+          </a>
+          <a href="mailto:gdesimone092@gmail.com" class="btn btn--primary btn--sm">✉️ Scrivici via Email</a>
+          <button type="button" class="footer-link" data-open-modal="privacy-modal">Privacy Policy</button>
+          <button type="button" class="footer-link" data-open-modal="cookie-modal">Cookie Policy</button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MGD Studio · Piacenza e provincia — Tutti i diritti riservati.</p>
+        <p>Prezzi una tantum · Dominio e hosting da concordare separatamente.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a
+    href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20una%20demo%20gratuita%20per%20la%20mia%20attivit%C3%A0"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-float"
+    data-va-whatsapp="floating"
+    aria-label="Scrivici su WhatsApp per una demo gratuita"
+  >
+    <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <div class="modal-backdrop" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="privacy-modal-title">Informativa sulla Privacy (GDPR)</h3>
+        <button type="button" class="modal-close-btn" data-close-modal="privacy-modal">✕</button>
+      </div>
+      <div class="modal-content">
+        <p>I dati inseriti nel modulo vengono utilizzati da <strong>MGD Studio</strong> (gdesimone092@gmail.com) esclusivamente per rispondere alla richiesta di preventivo, ai sensi del GDPR (Reg. UE 2016/679).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="cookie-modal-title">Cookie Policy</h3>
+        <button type="button" class="modal-close-btn" data-close-modal="cookie-modal">✕</button>
+      </div>
+      <div class="modal-content">
+        <p>Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento e non impiega cookie di profilazione di terze parti.</p>
+      </div>
+    </div>
+  </div>
 
   <script>
     const siteConfig = {
       agencyName: 'MGD Studio',
-      logo: {
-        imageUrl: 'data:image/webp;base64,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',
-        altText: 'Logo MGD Studio'
-      },
       contact: {
         email: 'gdesimone092@gmail.com'
       },
@@ -820,84 +1545,22 @@
           id: 'vetrina',
           name: 'PACCHETTO VETRINA',
           shortName: 'Vetrina',
-          price: '359€',
-          featured: false,
-          features: [
-            'Sito web professionale',
-            'Design personalizzato',
-            'Fino a 5 sezioni',
-            'Ottimizzazione smartphone e tablet',
-            'Modulo contatti',
-            'Collegamento WhatsApp',
-            'Pubblicazione online'
-          ]
+          price: '359€'
         },
         {
           id: 'plus',
           name: 'PACCHETTO PLUS',
           shortName: 'Plus',
-          price: '459€',
-          badge: '★ Più scelto',
-          featured: true,
-          features: [
-            'Tutto quello incluso nel pacchetto Vetrina',
-            'Design più personalizzato',
-            'Fino a 8 sezioni',
-            'Tre interventi di manutenzione inclusi su richiesta',
-            'Supporto per piccoli aggiornamenti'
-          ]
+          price: '459€'
         },
         {
           id: 'completo',
           name: 'PACCHETTO COMPLETO',
           shortName: 'Completo',
-          price: '600€',
-          featured: false,
-          features: [
-            'Tutto quello incluso nel pacchetto Plus',
-            'Sito web completamente personalizzato',
-            'Fino a 12 sezioni',
-            'Manutenzioni e aggiornamenti inclusi per 12 mesi*',
-            'Supporto prioritario',
-            'Aggiornamenti e modifiche ai contenuti'
-          ]
+          price: '600€'
         }
       ]
     };
-
-    const STYLE_OPTIONS = [
-      { id: 'Moderno', label: 'Moderno' },
-      { id: 'Elegante', label: 'Elegante' },
-      { id: 'Minimal', label: 'Minimal' },
-      { id: 'Creativo', label: 'Creativo' },
-      { id: 'Classico', label: 'Classico' }
-    ];
-
-    const COLOR_OPTIONS = [
-      { id: 'Blu Elettrico', label: 'Blu Elettrico', hex: '#0052ff' },
-      { id: 'Nero', label: 'Nero', hex: '#0a0f1d' },
-      { id: 'Bianco / Grigio', label: 'Bianco / Grigio', hex: '#e2e8f0' },
-      { id: 'Oro', label: 'Oro', hex: '#d4af37' },
-      { id: 'Verde', label: 'Verde', hex: '#15803d' },
-      { id: 'Rosso / Bordeaux', label: 'Rosso', hex: '#b91c1c' }
-    ];
-
-    const SECTION_OPTIONS = ['Home', 'Chi siamo', 'Servizi', 'Menu', 'Prodotti', 'Galleria fotografica', 'Contatti', 'Recensioni', 'Prezzi', 'Altro'];
-
-    const FAQ_ITEMS = [
-      {
-        question: 'Quanto tempo serve per avere il sito online?',
-        answer: 'In genere tra i 7 e i 10 giorni lavorativi dalla conferma della demo gratuita e dalla consegna dei materiali base (foto, orari e listino).'
-      },
-      {
-        question: 'Devo scrivere io i testi o fare foto professionali?',
-        answer: 'No: ci occupiamo noi di strutturare i testi in modo chiaro e persuasivo per i tuoi clienti. Se hai già delle foto del locale o dei piatti le ottimizziamo noi, altrimenti ti guidiamo passo passo su cosa scattare anche con lo smartphone.'
-      },
-      {
-        question: 'Ci sono costi nascosti ogni mese?',
-        answer: 'Nessun costo a sorpresa. Il prezzo del pacchetto è trasparente e nel Pacchetto Completo sono inclusi 12 mesi di manutenzioni e aggiornamenti. Eventuali rinnovi di dominio o assistenza successiva vengono sempre concordati prima.'
-      }
-    ];
 
     function renderMockupInner(project) {
       return `
@@ -936,833 +1599,317 @@
       `;
     }
 
-    function renderApp() {
-      const defaultProj = siteConfig.showcaseProjects[0];
-      document.getElementById('app').innerHTML = `
-        <header class="site-header">
-          <div class="container navbar">
-            <a href="#home" class="brand-logo" aria-label="MGD Studio">
-              <img src="${siteConfig.logo.imageUrl}" alt="${siteConfig.logo.altText}" class="brand-logo__img" />
-            </a>
-            <nav>
-              <ul class="nav-links">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#pacchetti" class="nav-link">Pacchetti</a></li>
-                <li><a href="#richiedi-sito" class="nav-link">Modulo Richiesta</a></li>
-                <li><a href="#chi-siamo" class="nav-link">Chi Siamo</a></li>
-                <li><a href="#contatti" class="nav-link">Contatti</a></li>
-              </ul>
-            </nav>
-            <div class="nav-actions">
-              <a href="#richiedi-sito" class="btn btn--primary btn--sm">Richiedi il tuo sito</a>
-              <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">☰</button>
-            </div>
-          </div>
-          <div class="mobile-drawer" id="mobile-drawer">
-            <ul class="mobile-drawer__list">
-              <li><a href="#home" class="mobile-drawer__link" data-close-drawer>Home</a></li>
-              <li><a href="#pacchetti" class="mobile-drawer__link" data-close-drawer>Pacchetti e Prezzi</a></li>
-              <li><a href="#richiedi-sito" class="mobile-drawer__link" data-close-drawer>Modulo Richiesta Sito</a></li>
-              <li><a href="#chi-siamo" class="mobile-drawer__link" data-close-drawer>Chi Siamo</a></li>
-              <li><a href="#contatti" class="mobile-drawer__link" data-close-drawer>Contatti</a></li>
-            </ul>
-          </div>
-        </header>
-
-        <main>
-          <!-- 1. SCHERMATA HOME -->
-          <section class="hero" id="home">
-            <div class="container hero__grid">
-              <div class="reveal is-visible">
-                <span class="hero__tag">
-                  <span class="hero__tag-dot"></span>
-                  <span>MGD Studio · Siti Web per Aziende e Attività</span>
-                </span>
-                <h1 class="hero__title">Diamo vita alla tua <span class="hero__title-accent">presenza online.</span></h1>
-                <div class="hero__location">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <span>Realtà locale di Piacenza e provincia</span>
-                </div>
-                <p class="hero__subtitle">Realizziamo siti web moderni, veloci e professionali per aiutare la tua attività a crescere online.</p>
-                <div class="hero__cta-group">
-                  <a href="#richiedi-sito" class="btn btn--primary btn--lg">Richiedi il tuo sito →</a>
-                  <a href="#pacchetti" class="btn btn--secondary btn--lg">Scopri i pacchetti</a>
-                </div>
-                <div class="hero__highlights">
-                  <div class="hero__highlight-item"><span class="hero__highlight-icon">✓</span><span>Design su misura</span></div>
-                  <div class="hero__highlight-item"><span class="hero__highlight-icon">✓</span><span>Perfetti da Smartphone</span></div>
-                  <div class="hero__highlight-item"><span class="hero__highlight-icon">✓</span><span>Prezzo unico una tantum</span></div>
-                </div>
-              </div>
-
-              <div class="showcase-panel reveal is-visible">
-                <div class="showcase-tabs">
-                  ${siteConfig.showcaseProjects.map((p, i) => `<button type="button" class="showcase-tab ${i === 0 ? 'is-active' : ''}" data-showcase-tab="${p.id}">${p.category}</button>`).join('')}
-                </div>
-                <div class="showcase-browser-bar">
-                  <div class="browser-dots">
-                    <span class="browser-dot browser-dot--red"></span>
-                    <span class="browser-dot browser-dot--yellow"></span>
-                    <span class="browser-dot browser-dot--green"></span>
-                  </div>
-                  <div class="browser-url" id="showcase-domain-url">🔒 https://${defaultProj.domainPreview}</div>
-                  <div class="showcase-device-toggle">
-                    <button type="button" class="device-btn is-active" data-device-mode="desktop">💻 PC</button>
-                    <button type="button" class="device-btn" data-device-mode="mobile">📱 Telefono</button>
-                  </div>
-                </div>
-                <div class="showcase-viewport">
-                  <div class="showcase-mockup" id="showcase-mockup-frame">
-                    ${renderMockupInner(defaultProj)}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- STRISCIA COME FUNZIONA IN 3 PASSI -->
-          <section class="steps-strip">
-            <div class="container">
-              <div class="steps-strip__grid">
-                <div class="steps-strip__item reveal">
-                  <div class="steps-strip__num">1</div>
-                  <div>
-                    <div class="steps-strip__title">Compila il modulo online</div>
-                    <div class="steps-strip__desc">Scegli pacchetto, colori e stile del tuo locale in 1 minuto.</div>
-                  </div>
-                </div>
-                <div class="steps-strip__item reveal">
-                  <div class="steps-strip__num">2</div>
-                  <div>
-                    <div class="steps-strip__title">Realizziamo il tuo sito</div>
-                    <div class="steps-strip__desc">Ti ricontattiamo subito e creiamo il sito su misura per te.</div>
-                  </div>
-                </div>
-                <div class="steps-strip__item reveal">
-                  <div class="steps-strip__num">3</div>
-                  <div>
-                    <div class="steps-strip__title">Vai subito online</div>
-                    <div class="steps-strip__desc">Pubblichiamo il sito pronto per attirare nuovi clienti.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 2. I PACCHETTI -->
-          <section class="section" id="pacchetti">
-            <div class="container">
-              <div class="section-header--center reveal">
-                <span class="section-eyebrow">Prezzi chiari & trasparenti</span>
-                <h2 class="section-title">I Nostri Pacchetti</h2>
-                <p class="section-subtitle">Pagamento unico <strong>una tantum</strong> senza abbonamenti nascosti. Tocca il pacchetto che preferisci per selezionarlo nel modulo.</p>
-              </div>
-              <div class="pricing-grid">
-                ${siteConfig.packages.map(pkg => `
-                  <article class="pricing-card ${pkg.featured ? 'pricing-card--featured' : ''} reveal">
-                    ${pkg.badge ? `<span class="pricing-badge">${pkg.badge}</span>` : ''}
-                    <div>
-                      <h3 class="pricing-name">${pkg.name}</h3>
-                      <div class="pricing-price-wrap">
-                        <span class="pricing-price">${pkg.price}</span>
-                        <span class="pricing-billing">una tantum</span>
-                      </div>
-                      <ul class="pricing-features">
-                        ${pkg.features.map(f => `<li class="pricing-feature-item"><span class="pricing-check">✓</span><span>${f}</span></li>`).join('')}
-                      </ul>
-                    </div>
-                    <button type="button" class="btn ${pkg.featured ? 'btn--primary' : 'btn--dark'} btn--full" data-select-package="${pkg.id}">
-                      Scegli questo pacchetto →
-                    </button>
-                  </article>
-                `).join('')}
-              </div>
-              <p style="text-align:center; font-size:0.78rem; color:var(--text-muted); max-width:740px; margin:0 auto;">
-                *Prezzi <strong>una tantum</strong> (dominio, hosting e servizi esterni da concordare separatamente). Per il Pacchetto Completo le manutenzioni sono soggette a una politica di utilizzo concordata e non comprendono nuove funzionalità o la ricostruzione del sito.
-              </p>
-            </div>
-          </section>
-
-          <!-- 3. IL MODULO DA COMPILARE -->
-          <section class="section section--alt" id="richiedi-sito">
-            <div class="container">
-              <div class="section-header--center reveal">
-                <span class="section-eyebrow">Preventivo & Configurazione</span>
-                <h2 class="section-title">Richiedi il tuo sito personalizzato</h2>
-                <p class="section-subtitle">Compila i 4 brevi passaggi: la tua richiesta arriverà direttamente al team di <strong>MGD Studio</strong>.</p>
-              </div>
-
-              <div class="wizard-wrapper reveal">
-                <div class="wizard-header">
-                  <div class="wizard-progress-top">
-                    <span id="wizard-progress-label">Passaggio 1 di 4</span>
-                    <span class="wizard-progress-pct" id="wizard-progress-pct">25% completato</span>
-                  </div>
-                  <div class="wizard-progress-track">
-                    <div class="wizard-progress-fill" id="wizard-progress-fill"></div>
-                  </div>
-                  <div class="wizard-steps-indicator">
-                    <button type="button" class="step-pill is-active" data-step-indicator="1"><span class="step-pill__num">1</span><span>Cliente</span></button>
-                    <button type="button" class="step-pill" data-step-indicator="2"><span class="step-pill__num">2</span><span>Pacchetto</span></button>
-                    <button type="button" class="step-pill" data-step-indicator="3"><span class="step-pill__num">3</span><span>Il tuo sito</span></button>
-                    <button type="button" class="step-pill" data-step-indicator="4"><span class="step-pill__num">4</span><span>Invio</span></button>
-                  </div>
-                </div>
-
-                <div class="wizard-body">
-                  <div class="wizard-alert wizard-alert--info" id="wizard-package-banner"></div>
-                  <div class="wizard-alert wizard-alert--error" id="wizard-error-banner"></div>
-
-                  <form id="quote-multi-step-form" novalidate>
-                    <div class="hp-field-wrap" aria-hidden="true">
-                      <input type="text" id="input-website-hp" name="website_hp" tabindex="-1" autocomplete="off" />
-                    </div>
-
-                    <!-- PASSAGGIO 1 -->
-                    <div class="wizard-step-pane is-active" data-step-pane="1">
-                      <h3 class="step-heading">1. Informazioni cliente</h3>
-                      <div class="form-grid">
-                        <div class="form-group">
-                          <label class="form-label" for="input-full-name">Nome e cognome <span class="form-required">*</span></label>
-                          <input type="text" id="input-full-name" class="form-input" placeholder="Es. Marco Rossi" required />
-                          <span class="field-error-msg" id="err-full-name"></span>
-                        </div>
-                        <div class="form-group">
-                          <label class="form-label" for="input-business-name">Nome dell’attività <span class="form-required">*</span></label>
-                          <input type="text" id="input-business-name" class="form-input" placeholder="Es. Bar Centrale" required />
-                          <span class="field-error-msg" id="err-business-name"></span>
-                        </div>
-                        <div class="form-group">
-                          <label class="form-label" for="input-email">Email <span class="form-required">*</span></label>
-                          <input type="email" id="input-email" class="form-input" placeholder="nome@email.it" required />
-                          <span class="field-error-msg" id="err-email"></span>
-                        </div>
-                        <div class="form-group">
-                          <label class="form-label" for="input-phone">Telefono <span class="form-required">*</span></label>
-                          <input type="tel" id="input-phone" class="form-input" placeholder="Es. 333 123 4567" required />
-                          <span class="field-error-msg" id="err-phone"></span>
-                        </div>
-                        <div class="form-group form-group--full">
-                          <label class="form-label" for="select-business-type">Tipo di attività <span class="form-required">*</span></label>
-                          <select id="select-business-type" class="form-select" required>
-                            <option value="">Seleziona...</option>
-                            <option value="Ristorante">Ristorante</option>
-                            <option value="Bar">Bar</option>
-                            <option value="Negozio">Negozio</option>
-                            <option value="Azienda">Azienda</option>
-                            <option value="Parrucchiere">Parrucchiere</option>
-                            <option value="Altro">Altro</option>
-                          </select>
-                          <span class="field-error-msg" id="err-business-type"></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- PASSAGGIO 2 -->
-                    <div class="wizard-step-pane" data-step-pane="2">
-                      <h3 class="step-heading">2. Scegli il pacchetto</h3>
-                      <div class="choice-cards-grid">
-                        ${siteConfig.packages.map(pkg => `
-                          <label class="choice-card ${pkg.id === 'plus' ? 'is-selected' : ''}" data-package-card="${pkg.id}">
-                            <input type="radio" name="selectedPackage" value="${pkg.id}" ${pkg.id === 'plus' ? 'checked' : ''} />
-                            <span class="choice-card__title">${pkg.shortName}</span>
-                            <span class="choice-card__price">${pkg.price}</span>
-                            <span class="choice-card__meta">Una tantum</span>
-                          </label>
-                        `).join('')}
-                      </div>
-                    </div>
-
-                    <!-- PASSAGGIO 3 -->
-                    <div class="wizard-step-pane" data-step-pane="3">
-                      <h3 class="step-heading">3. Come vuoi il tuo sito?</h3>
-                      <div class="form-grid">
-                        <div class="form-group form-group--full">
-                          <span class="form-label">Stile desiderato <span class="form-required">*</span></span>
-                          <div class="choice-cards-grid choice-cards-grid--styles">
-                            ${STYLE_OPTIONS.map((st, i) => `
-                              <label class="choice-card ${i === 0 ? 'is-selected' : ''}" data-style-card="${st.id}">
-                                <input type="radio" name="style" value="${st.id}" ${i === 0 ? 'checked' : ''} />
-                                <span class="choice-card__title">${st.label}</span>
-                              </label>
-                            `).join('')}
-                          </div>
-                        </div>
-
-                        <div class="form-group form-group--full">
-                          <span class="form-label">Colori principali (anche più di uno)</span>
-                          <div class="chips-grid">
-                            ${COLOR_OPTIONS.map(c => `
-                              <label class="chip-option" data-color-chip="${c.id}">
-                                <input type="checkbox" name="colors" value="${c.id}" />
-                                <span class="color-swatch" style="background:${c.hex}"></span>
-                                <span>${c.label}</span>
-                              </label>
-                            `).join('')}
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <span class="form-label">Hai già un logo?</span>
-                          <div class="yesno-group">
-                            <label class="yesno-btn is-selected" data-radio-btn="hasLogo"><input type="radio" name="hasLogo" value="Sì" checked /> Sì</label>
-                            <label class="yesno-btn" data-radio-btn="hasLogo"><input type="radio" name="hasLogo" value="No" /> No</label>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <span class="form-label">Pulsante WhatsApp?</span>
-                          <div class="yesno-group">
-                            <label class="yesno-btn is-selected" data-radio-btn="wantsWhatsapp"><input type="radio" name="wantsWhatsapp" value="Sì" checked /> Sì</label>
-                            <label class="yesno-btn" data-radio-btn="wantsWhatsapp"><input type="radio" name="wantsWhatsapp" value="No" /> No</label>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <span class="form-label">Sistema di prenotazione?</span>
-                          <div class="yesno-group">
-                            <label class="yesno-btn" data-radio-btn="wantsBooking"><input type="radio" name="wantsBooking" value="Sì" /> Sì</label>
-                            <label class="yesno-btn is-selected" data-radio-btn="wantsBooking"><input type="radio" name="wantsBooking" value="No" checked /> No</label>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <span class="form-label">Mostrare prodotti o servizi?</span>
-                          <div class="yesno-group">
-                            <label class="yesno-btn is-selected" data-radio-btn="wantsCatalog"><input type="radio" name="wantsCatalog" value="Sì" checked /> Sì</label>
-                            <label class="yesno-btn" data-radio-btn="wantsCatalog"><input type="radio" name="wantsCatalog" value="No" /> No</label>
-                          </div>
-                        </div>
-
-                        <div class="form-group form-group--full">
-                          <span class="form-label">Sezioni da inserire <span class="form-required">*</span></span>
-                          <div class="chips-grid">
-                            ${SECTION_OPTIONS.map(s => {
-                              const checked = ['Home', 'Chi siamo', 'Servizi', 'Contatti'].includes(s);
-                              return `<label class="chip-option ${checked ? 'is-selected' : ''}" data-section-chip="${s}"><input type="checkbox" name="sections" value="${s}" ${checked ? 'checked' : ''} /><span>${s}</span></label>`;
-                            }).join('')}
-                          </div>
-                          <span class="field-error-msg" id="err-sections"></span>
-                        </div>
-
-                        <div class="form-group form-group--full">
-                          <label class="form-label" for="textarea-description">Descrivi brevemente come immagini il tuo sito <span class="form-required">*</span></label>
-                          <textarea id="textarea-description" class="form-textarea" placeholder="Raccontaci la tua idea..."></textarea>
-                          <span class="field-error-msg" id="err-description"></span>
-                        </div>
-
-                        <div class="form-group form-group--full">
-                          <label class="form-label" for="input-reference-links">Siti di riferimento che ti piacciono (opzionale)</label>
-                          <input type="text" id="input-reference-links" class="form-input" placeholder="Es. www.esempio.it" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- PASSAGGIO 4 -->
-                    <div class="wizard-step-pane" data-step-pane="4">
-                      <h3 class="step-heading">4. Dettagli finali e invio</h3>
-                      <div class="form-grid">
-                        <div class="form-group form-group--full">
-                          <label class="form-label" for="select-timeline">Quando vorresti avere il sito pronto? <span class="form-required">*</span></label>
-                          <select id="select-timeline" class="form-select" required>
-                            <option value="">Seleziona...</option>
-                            <option value="Il prima possibile (1-2 settimane)">Il prima possibile (1-2 settimane)</option>
-                            <option value="Entro 3-4 settimane">Entro 3-4 settimane</option>
-                            <option value="Entro 1-2 mesi">Entro 1-2 mesi</option>
-                            <option value="Non ho fretta">Non ho fretta</option>
-                          </select>
-                          <span class="field-error-msg" id="err-timeline"></span>
-                        </div>
-
-                        <div class="form-group form-group--full">
-                          <label class="form-label" for="textarea-additional-notes">Altre richieste o informazioni (opzionale)</label>
-                          <textarea id="textarea-additional-notes" class="form-textarea" style="min-height:68px;" placeholder="Eventuali note..."></textarea>
-                        </div>
-
-                        <div class="form-group form-group--full">
-                          <div class="summary-box">
-                            <div class="summary-box__header">
-                              <span class="summary-box__title">Riepilogo richiesta</span>
-                              <button type="button" class="privacy-link-btn" id="btn-summary-edit-step1" style="font-size:0.78rem;">Modifica</button>
-                            </div>
-                            <div class="summary-grid" id="quote-summary-content"></div>
-                          </div>
-                        </div>
-
-                        <div class="form-group form-group--full">
-                          <div class="privacy-consent-box">
-                            <input type="checkbox" id="checkbox-privacy" required />
-                            <label for="checkbox-privacy" style="font-size:0.84rem; color:var(--text-secondary);">
-                              Acconsento al trattamento dei dati personali secondo l’<button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button>. <span class="form-required">*</span>
-                            </label>
-                          </div>
-                          <span class="field-error-msg" id="err-privacy"></span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="wizard-footer">
-                      <button type="button" class="btn btn--secondary" id="btn-wizard-prev" style="visibility:hidden;">← Indietro</button>
-                      <button type="button" class="btn btn--primary" id="btn-wizard-next">Avanti →</button>
-                      <button type="submit" class="btn btn--primary btn--lg" id="btn-submit-quote" style="display:none;">Invia richiesta</button>
-                    </div>
-                  </form>
-
-                  <div class="wizard-confirmation" id="wizard-confirmation-screen">
-                    <div class="confirmation-icon">✓</div>
-                    <h3 class="confirmation-title">Richiesta inviata!</h3>
-                    <p class="confirmation-text">Grazie per averci contattato! Abbiamo ricevuto la tua richiesta e ti ricontatteremo al più presto.</p>
-                    <button type="button" class="btn btn--secondary" id="btn-reset-wizard">Invia un’altra richiesta</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 4. SEZIONE CHI SIAMO (MATTIA, GIOVANNI, DIEGO) -->
-          <section class="section" id="chi-siamo">
-            <div class="container">
-              <div class="section-header--center reveal">
-                <span class="section-eyebrow">Il Team MGD Studio</span>
-                <h2 class="section-title">Chi Siamo</h2>
-                <p class="section-subtitle">Siamo tre giovani sviluppatori appassionati di tecnologia, design e sviluppo web.</p>
-              </div>
-
-              <div class="team-grid">
-                <div class="team-card reveal">
-                  <div class="team-initial">M</div>
-                  <h3 class="team-name">Mattia</h3>
-                  <span class="team-role">Co-Founder & Web Developer</span>
-                </div>
-                <div class="team-card reveal">
-                  <div class="team-initial">G</div>
-                  <h3 class="team-name">Giovanni</h3>
-                  <span class="team-role">Co-Founder & Web Developer</span>
-                </div>
-                <div class="team-card reveal">
-                  <div class="team-initial">D</div>
-                  <h3 class="team-name">Diego</h3>
-                  <span class="team-role">Co-Founder & Web Developer</span>
-                </div>
-              </div>
-
-              <div class="team-note-box reveal">
-                <p class="team-note-text">
-                  <strong>Perché scegliere noi?</strong> Parli direttamente con noi tre senza intermediari: curiamo ogni sito nei minimi dettagli e ti seguiamo passo dopo passo dall’idea alla pubblicazione online.
-                </p>
-                <div class="team-note-pills">
-                  <span class="team-note-pill">✓ Contatto diretto con noi</span>
-                  <span class="team-note-pill">✓ Tempi rapidi di consegna</span>
-                  <span class="team-note-pill">✓ Nessun canone mensile nascosto</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 5. SEZIONE FAQ -->
-          <section class="section section--alt" id="faq">
-            <div class="container">
-              <div class="section-header--center reveal">
-                <span class="section-eyebrow">Domande & Risposte</span>
-                <h2 class="section-title">Domande frequenti</h2>
-                <p class="section-subtitle">Risposte chiare ai dubbi più comuni prima di iniziare il tuo progetto web.</p>
-              </div>
-
-              <div class="faq-list">
-                ${FAQ_ITEMS.map((item, idx) => `
-                  <div class="faq-item reveal" data-faq-item>
-                    <button
-                      type="button"
-                      class="faq-trigger"
-                      id="faq-trigger-${idx}"
-                      aria-expanded="false"
-                      aria-controls="faq-panel-${idx}"
-                      data-faq-trigger
-                    >
-                      <span>${item.question}</span>
-                      <span class="faq-icon" aria-hidden="true">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                      </span>
-                    </button>
-                    <div
-                      class="faq-panel"
-                      id="faq-panel-${idx}"
-                      role="region"
-                      aria-labelledby="faq-trigger-${idx}"
-                    >
-                      <div class="faq-panel__inner">
-                        <p class="faq-answer">${item.answer}</p>
-                      </div>
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </section>
-        </main>
-
-        <!-- FOOTER COMPATTO CON CONTATTI PULITI -->
-        <footer class="site-footer" id="contatti">
-          <div class="container">
-            <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.12);">
-              <div>
-                <a href="#home" class="brand-logo" aria-label="MGD Studio">
-                  <span class="brand-logo__footer-badge">
-                    <img src="${siteConfig.logo.imageUrl}" alt="${siteConfig.logo.altText}" style="height:32px; width:auto; display:block;" />
-                  </span>
-                </a>
-                <p class="footer-location">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <span>Siti web per aziende e attività — Sede a Piacenza, operativi in tutta Italia</span>
-                </p>
-                <p style="color:#94a3b8; font-size:0.86rem; margin-top:6px;">
-                  Contatto diretto: <a href="mailto:${siteConfig.contact.email}" style="color:#fff; font-weight:700; text-decoration:underline;">${siteConfig.contact.email}</a> · WhatsApp: <a href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20informazioni%20per%20realizzare%20un%20sito%20web" target="_blank" rel="noopener noreferrer" style="color:#4ade80; font-weight:700; text-decoration:underline;">+39 392 650 0185</a>
-                </p>
-              </div>
-              <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-                <a href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20informazioni%20per%20realizzare%20un%20sito%20web" target="_blank" rel="noopener noreferrer" class="btn btn--sm" aria-label="Scrivici su WhatsApp al +39 392 650 0185" style="background:linear-gradient(135deg,#25d366 0%,#16a34a 100%); color:#ffffff; box-shadow:0 10px 24px -6px rgba(37,211,102,0.45);">
-                  <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
-                  WhatsApp · +39 392 650 0185
-                </a>
-                <a href="mailto:${siteConfig.contact.email}" class="btn btn--primary btn--sm">✉️ Scrivici via Email</a>
-                <button type="button" class="footer-link" data-open-modal="privacy-modal">Privacy Policy</button>
-                <button type="button" class="footer-link" data-open-modal="cookie-modal">Cookie Policy</button>
-              </div>
-            </div>
-            <div class="footer-bottom">
-              <p>© ${new Date().getFullYear()} ${siteConfig.agencyName} · Piacenza e provincia — Tutti i diritti riservati.</p>
-              <p>Prezzi una tantum · Dominio e hosting da concordare separatamente.</p>
-            </div>
-          </div>
-        </footer>
-
-        <a
-          href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20una%20demo%20gratuita%20per%20la%20mia%20attivit%C3%A0"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="whatsapp-float"
-          aria-label="Scrivici su WhatsApp per una demo gratuita"
-        >
-          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
-          <span>WhatsApp</span>
-        </a>
-
-        <div class="modal-backdrop" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
-          <div class="modal-dialog">
-            <div class="modal-header">
-              <h3 class="modal-title" id="privacy-modal-title">Informativa sulla Privacy (GDPR)</h3>
-              <button type="button" class="modal-close-btn" data-close-modal="privacy-modal">✕</button>
-            </div>
-            <div class="modal-content">
-              <p>I dati inseriti nel modulo vengono utilizzati da <strong>${siteConfig.agencyName}</strong> (${siteConfig.contact.email}) esclusivamente per rispondere alla richiesta di preventivo, ai sensi del GDPR (Reg. UE 2016/679).</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal-backdrop" id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
-          <div class="modal-dialog">
-            <div class="modal-header">
-              <h3 class="modal-title" id="cookie-modal-title">Cookie Policy</h3>
-              <button type="button" class="modal-close-btn" data-close-modal="cookie-modal">✕</button>
-            </div>
-            <div class="modal-content">
-              <p>Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento e non impiega cookie di profilazione di terze parti.</p>
-            </div>
-          </div>
-        </div>
-      `;
-
-      // Animazione fluida allo scorrimento
-      const revealEls = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              io.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12 });
-        revealEls.forEach(el => io.observe(el));
-      } else {
-        revealEls.forEach(el => el.classList.add('is-visible'));
-      }
-
-      const toggleBtn = document.getElementById('mobile-menu-toggle');
-      const drawer = document.getElementById('mobile-drawer');
-      if (toggleBtn && drawer) {
-        toggleBtn.addEventListener('click', () => drawer.classList.toggle('is-open'));
-        drawer.querySelectorAll('[data-close-drawer]').forEach(l => l.addEventListener('click', () => drawer.classList.remove('is-open')));
-      }
-
-      document.querySelectorAll('[data-showcase-tab]').forEach(tab => {
-        tab.addEventListener('click', () => {
-          const proj = siteConfig.showcaseProjects.find(p => p.id === tab.getAttribute('data-showcase-tab'));
-          if (!proj) return;
-          document.querySelectorAll('[data-showcase-tab]').forEach(t => t.classList.remove('is-active'));
-          tab.classList.add('is-active');
-          document.getElementById('showcase-domain-url').textContent = '🔒 https://' + proj.domainPreview;
-          document.getElementById('showcase-mockup-frame').innerHTML = renderMockupInner(proj);
-        });
-      });
-
-      document.querySelectorAll('[data-device-mode]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('[data-device-mode]').forEach(b => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          document.getElementById('showcase-mockup-frame').classList.toggle('is-mobile', btn.getAttribute('data-device-mode') === 'mobile');
-        });
-      });
-
-      let currentStep = 1;
-      const form = document.getElementById('quote-multi-step-form');
-      const prevBtn = document.getElementById('btn-wizard-prev');
-      const nextBtn = document.getElementById('btn-wizard-next');
-      const submitBtn = document.getElementById('btn-submit-quote');
-      const packageBanner = document.getElementById('wizard-package-banner');
-      const errorBanner = document.getElementById('wizard-error-banner');
-      const confirmationScreen = document.getElementById('wizard-confirmation-screen');
-
-      function selectPackage(pkgId, showNotice) {
-        document.querySelectorAll('[data-package-card]').forEach(card => {
-          const match = card.getAttribute('data-package-card') === pkgId;
-          card.classList.toggle('is-selected', match);
-          card.querySelector('input').checked = match;
-        });
-        if (showNotice) {
-          const pkg = siteConfig.packages.find(p => p.id === pkgId);
-          if (pkg) {
-            packageBanner.textContent = `Hai selezionato il ${pkg.name} (${pkg.price} una tantum).`;
-            packageBanner.classList.add('is-visible');
-          }
-        }
-      }
-
-      document.querySelectorAll('[data-package-card]').forEach(c => c.addEventListener('click', () => selectPackage(c.getAttribute('data-package-card'), false)));
-      document.querySelectorAll('[data-select-package]').forEach(b => b.addEventListener('click', () => {
-        selectPackage(b.getAttribute('data-select-package'), true);
-        document.getElementById('richiedi-sito').scrollIntoView({ behavior: 'smooth' });
-      }));
-
-      document.querySelectorAll('[data-style-card]').forEach(c => c.addEventListener('click', () => {
-        document.querySelectorAll('[data-style-card]').forEach(x => x.classList.remove('is-selected'));
-        c.classList.add('is-selected');
-        c.querySelector('input').checked = true;
-      }));
-
-      document.querySelectorAll('[data-color-chip], [data-section-chip]').forEach(chip => {
-        const cb = chip.querySelector('input');
-        cb.addEventListener('change', () => chip.classList.toggle('is-selected', cb.checked));
-      });
-
-      document.querySelectorAll('[data-radio-btn]').forEach(lbl => {
-        const grp = lbl.getAttribute('data-radio-btn');
-        const rd = lbl.querySelector('input');
-        rd.addEventListener('change', () => {
-          document.querySelectorAll(`[data-radio-btn="${grp}"]`).forEach(x => x.classList.remove('is-selected'));
-          if (rd.checked) lbl.classList.add('is-selected');
-        });
-      });
-
-      function validateStep(step) {
-        errorBanner.classList.remove('is-visible');
-        form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
-        let ok = true;
-        if (step === 1) {
-          if (document.getElementById('input-full-name').value.trim().length < 2) { document.getElementById('err-full-name').textContent = 'Inserisci nome e cognome.'; ok = false; }
-          if (document.getElementById('input-business-name').value.trim().length < 2) { document.getElementById('err-business-name').textContent = 'Inserisci il nome attività.'; ok = false; }
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(document.getElementById('input-email').value.trim())) { document.getElementById('err-email').textContent = 'Email non valida.'; ok = false; }
-          if (document.getElementById('input-phone').value.trim().length < 6) { document.getElementById('err-phone').textContent = 'Telefono non valido.'; ok = false; }
-          if (!document.getElementById('select-business-type').value) { document.getElementById('err-business-type').textContent = 'Seleziona il tipo di attività.'; ok = false; }
-        } else if (step === 3) {
-          const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked'));
-          if (secs.length === 0) { document.getElementById('err-sections').textContent = 'Seleziona almeno una sezione.'; ok = false; }
-          if (document.getElementById('textarea-description').value.trim().length < 10) { document.getElementById('err-description').textContent = 'Inserisci una breve descrizione (min. 10 caratteri).'; ok = false; }
-        } else if (step === 4) {
-          if (!document.getElementById('select-timeline').value) { document.getElementById('err-timeline').textContent = 'Seleziona una tempistica.'; ok = false; }
-          if (!document.getElementById('checkbox-privacy').checked) { document.getElementById('err-privacy').textContent = 'Consenso obbligatorio.'; ok = false; }
-        }
-        return ok;
-      }
-
-      function goToStep(step) {
-        currentStep = step;
-        const pct = step * 25;
-        document.getElementById('wizard-progress-label').textContent = `Passaggio ${step} di 4`;
-        document.getElementById('wizard-progress-pct').textContent = `${pct}% completato`;
-        document.getElementById('wizard-progress-fill').style.width = `${pct}%`;
-
-        document.querySelectorAll('[data-step-pane]').forEach(p => p.classList.toggle('is-active', Number(p.getAttribute('data-step-pane')) === step));
-        document.querySelectorAll('[data-step-indicator]').forEach(ind => {
-          const s = Number(ind.getAttribute('data-step-indicator'));
-          ind.classList.toggle('is-active', s === step);
-          ind.classList.toggle('is-completed', s < step);
-          const numEl = ind.querySelector('.step-pill__num');
-          if (numEl) numEl.textContent = s < step ? '✓' : String(s);
-        });
-        prevBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
-        nextBtn.style.display = step < 4 ? 'inline-flex' : 'none';
-        submitBtn.style.display = step === 4 ? 'inline-flex' : 'none';
-
-        if (step === 4) {
-          const pkgId = form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
-          const pkg = siteConfig.packages.find(p => p.id === pkgId);
-          const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
-          const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
-          document.getElementById('quote-summary-content').innerHTML = `
-            <div><span class="summary-item-label">Cliente</span><span class="summary-item-val">${document.getElementById('input-full-name').value} (${document.getElementById('input-business-name').value})</span></div>
-            <div><span class="summary-item-label">Contatti</span><span class="summary-item-val">${document.getElementById('input-email').value} · ${document.getElementById('input-phone').value}</span></div>
-            <div><span class="summary-item-label">Pacchetto</span><span class="summary-item-val" style="color:var(--accent-blue)">${pkg ? pkg.name + ' (' + pkg.price + ')' : pkgId}</span></div>
-            <div><span class="summary-item-label">Stile & Sezioni</span><span class="summary-item-val">${style} · ${secs}</span></div>
-          `;
-        }
-      }
-
-      document.querySelectorAll('[data-step-indicator]').forEach(ind => {
-        ind.addEventListener('click', () => {
-          const targetStep = Number(ind.getAttribute('data-step-indicator'));
-          if (targetStep === currentStep) return;
-          if (targetStep < currentStep) {
-            goToStep(targetStep);
-          } else {
-            let canAdvance = true;
-            for (let s = currentStep; s < targetStep; s++) {
-              if (!validateStep(s)) {
-                goToStep(s);
-                canAdvance = false;
-                break;
-              }
-            }
-            if (canAdvance) goToStep(targetStep);
+    // Animazione fluida allo scorrimento
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
           }
         });
-      });
-
-      nextBtn.addEventListener('click', () => { if (validateStep(currentStep)) goToStep(currentStep + 1); });
-      prevBtn.addEventListener('click', () => { if (currentStep > 1) goToStep(currentStep - 1); });
-      document.getElementById('btn-summary-edit-step1').addEventListener('click', () => goToStep(1));
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!validateStep(4)) return;
-        if (document.getElementById('input-website-hp').value) return;
-
-        const fullName = document.getElementById('input-full-name').value.trim();
-        const businessName = document.getElementById('input-business-name').value.trim();
-        const email = document.getElementById('input-email').value.trim();
-        const phone = document.getElementById('input-phone').value.trim();
-        const businessType = document.getElementById('select-business-type').value;
-        const pkgId = form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
-        const pkg = siteConfig.packages.find(p => p.id === pkgId);
-        const pkgLabel = pkg ? `${pkg.name} (${pkg.price} una tantum)` : pkgId;
-        const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
-        const colors = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value).join(', ') || 'Da concordare';
-        const hasLogo = form.querySelector('input[name="hasLogo"]:checked')?.value || 'No';
-        const wantsWhatsapp = form.querySelector('input[name="wantsWhatsapp"]:checked')?.value || 'Sì';
-        const wantsBooking = form.querySelector('input[name="wantsBooking"]:checked')?.value || 'No';
-        const wantsShowcase = form.querySelector('input[name="wantsCatalog"]:checked')?.value || 'Sì';
-        const sections = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
-        const description = document.getElementById('textarea-description').value.trim();
-        const referenceLinks = document.getElementById('input-reference-links').value.trim() || 'Nessuno';
-        const timeline = document.getElementById('select-timeline').value;
-        const additionalNotes = document.getElementById('textarea-additional-notes').value.trim() || 'Nessuna';
-
-        const origBtnText = submitBtn.textContent;
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Invio in corso...';
-        errorBanner.classList.remove('is-visible');
-
-        try {
-          const response = await fetch(`https://formsubmit.co/ajax/${siteConfig.contact.email}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              _subject: `Nuova Richiesta Sito Web: ${businessName} (${pkg ? pkg.shortName : pkgId})`,
-              _template: 'table',
-              _captcha: 'false',
-              _replyto: email,
-              '1. Nome e Cognome': fullName,
-              '2. Nome Attività': businessName,
-              '3. Tipo di Attività': businessType,
-              '4. Email Cliente': email,
-              '5. Telefono Cliente': phone,
-              '6. Pacchetto Scelto': pkgLabel,
-              '7. Stile Desiderato': style,
-              '8. Colori Principali': colors,
-              '9. Ha già un Logo': hasLogo,
-              '10. Pulsante WhatsApp': wantsWhatsapp,
-              '11. Sistema Prenotazioni': wantsBooking,
-              '12. Vetrina Prodotti/Servizi': wantsShowcase,
-              '13. Sezioni da Includere': sections,
-              '14. Descrizione Progetto': description,
-              '15. Siti di Riferimento': referenceLinks,
-              '16. Tempistica Desiderata': timeline,
-              '17. Note Aggiuntive': additionalNotes
-            })
-          });
-
-          if (!response.ok) {
-            throw new Error('Errore durante l’invio');
-          }
-
-          form.style.display = 'none';
-          packageBanner.classList.remove('is-visible');
-          confirmationScreen.classList.add('is-visible');
-        } catch (err) {
-          errorBanner.textContent = 'Si è verificato un problema di connessione. Riprova tra qualche istante o scrivici a ' + siteConfig.contact.email;
-          errorBanner.classList.add('is-visible');
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = origBtnText;
-        }
-      });
-
-      document.getElementById('btn-reset-wizard').addEventListener('click', () => {
-        form.reset();
-        confirmationScreen.classList.remove('is-visible');
-        form.style.display = 'block';
-        selectPackage('plus', false);
-        goToStep(1);
-      });
-
-      document.querySelectorAll('[data-faq-trigger]').forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const item = trigger.closest('[data-faq-item]');
-          const isOpen = item.classList.contains('is-open');
-          document.querySelectorAll('[data-faq-item]').forEach(other => {
-            other.classList.remove('is-open');
-            const otherBtn = other.querySelector('[data-faq-trigger]');
-            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-          });
-          if (!isOpen) {
-            item.classList.add('is-open');
-            trigger.setAttribute('aria-expanded', 'true');
-          }
-        });
-      });
-
-      document.querySelectorAll('[data-open-modal]').forEach(b => b.addEventListener('click', () => document.getElementById(b.getAttribute('data-open-modal')).classList.add('is-open')));
-      document.querySelectorAll('[data-close-modal]').forEach(b => b.addEventListener('click', () => document.getElementById(b.getAttribute('data-close-modal')).classList.remove('is-open')));
-      document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-        backdrop.addEventListener('click', (e) => {
-          if (e.target === backdrop) {
-            backdrop.classList.remove('is-open');
-          }
-        });
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          document.querySelectorAll('.modal-backdrop.is-open').forEach(modal => {
-            modal.classList.remove('is-open');
-          });
-        }
-      });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('is-visible'));
     }
 
-    renderApp();
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    if (toggleBtn && drawer) {
+      toggleBtn.addEventListener('click', () => drawer.classList.toggle('is-open'));
+      drawer.querySelectorAll('[data-close-drawer]').forEach(l => l.addEventListener('click', () => drawer.classList.remove('is-open')));
+    }
+
+    document.querySelectorAll('[data-showcase-tab]').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const proj = siteConfig.showcaseProjects.find(p => p.id === tab.getAttribute('data-showcase-tab'));
+        if (!proj) return;
+        document.querySelectorAll('[data-showcase-tab]').forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        document.getElementById('showcase-domain-url').textContent = '🔒 https://' + proj.domainPreview;
+        document.getElementById('showcase-mockup-frame').innerHTML = renderMockupInner(proj);
+      });
+    });
+
+    document.querySelectorAll('[data-device-mode]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-device-mode]').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        document.getElementById('showcase-mockup-frame').classList.toggle('is-mobile', btn.getAttribute('data-device-mode') === 'mobile');
+      });
+    });
+
+    let currentStep = 1;
+    const form = document.getElementById('quote-multi-step-form');
+    const prevBtn = document.getElementById('btn-wizard-prev');
+    const nextBtn = document.getElementById('btn-wizard-next');
+    const submitBtn = document.getElementById('btn-submit-quote');
+    const packageBanner = document.getElementById('wizard-package-banner');
+    const errorBanner = document.getElementById('wizard-error-banner');
+    const confirmationScreen = document.getElementById('wizard-confirmation-screen');
+
+    function selectPackage(pkgId, showNotice) {
+      document.querySelectorAll('[data-package-card]').forEach(card => {
+        const match = card.getAttribute('data-package-card') === pkgId;
+        card.classList.toggle('is-selected', match);
+        card.querySelector('input').checked = match;
+      });
+      if (showNotice) {
+        const pkg = siteConfig.packages.find(p => p.id === pkgId);
+        if (pkg) {
+          packageBanner.textContent = `Hai selezionato il ${pkg.name} (${pkg.price} una tantum).`;
+          packageBanner.classList.add('is-visible');
+        }
+      }
+    }
+
+    document.querySelectorAll('[data-package-card]').forEach(c => c.addEventListener('click', () => selectPackage(c.getAttribute('data-package-card'), false)));
+    document.querySelectorAll('[data-select-package]').forEach(b => b.addEventListener('click', () => {
+      selectPackage(b.getAttribute('data-select-package'), true);
+      document.getElementById('richiedi-sito').scrollIntoView({ behavior: 'smooth' });
+    }));
+
+    document.querySelectorAll('[data-style-card]').forEach(c => c.addEventListener('click', () => {
+      document.querySelectorAll('[data-style-card]').forEach(x => x.classList.remove('is-selected'));
+      c.classList.add('is-selected');
+      c.querySelector('input').checked = true;
+    }));
+
+    document.querySelectorAll('[data-color-chip], [data-section-chip]').forEach(chip => {
+      const cb = chip.querySelector('input');
+      cb.addEventListener('change', () => chip.classList.toggle('is-selected', cb.checked));
+    });
+
+    document.querySelectorAll('[data-radio-btn]').forEach(lbl => {
+      const grp = lbl.getAttribute('data-radio-btn');
+      const rd = lbl.querySelector('input');
+      rd.addEventListener('change', () => {
+        document.querySelectorAll(`[data-radio-btn="${grp}"]`).forEach(x => x.classList.remove('is-selected'));
+        if (rd.checked) lbl.classList.add('is-selected');
+      });
+    });
+
+    function validateStep(step) {
+      errorBanner.classList.remove('is-visible');
+      form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
+      let ok = true;
+      if (step === 1) {
+        if (document.getElementById('input-full-name').value.trim().length < 2) { document.getElementById('err-full-name').textContent = 'Inserisci nome e cognome.'; ok = false; }
+        if (document.getElementById('input-business-name').value.trim().length < 2) { document.getElementById('err-business-name').textContent = 'Inserisci il nome attività.'; ok = false; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(document.getElementById('input-email').value.trim())) { document.getElementById('err-email').textContent = 'Email non valida.'; ok = false; }
+        if (document.getElementById('input-phone').value.trim().length < 6) { document.getElementById('err-phone').textContent = 'Telefono non valido.'; ok = false; }
+        if (!document.getElementById('select-business-type').value) { document.getElementById('err-business-type').textContent = 'Seleziona il tipo di attività.'; ok = false; }
+      } else if (step === 3) {
+        const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked'));
+        if (secs.length === 0) { document.getElementById('err-sections').textContent = 'Seleziona almeno una sezione.'; ok = false; }
+        if (document.getElementById('textarea-description').value.trim().length < 10) { document.getElementById('err-description').textContent = 'Inserisci una breve descrizione (min. 10 caratteri).'; ok = false; }
+      } else if (step === 4) {
+        if (!document.getElementById('select-timeline').value) { document.getElementById('err-timeline').textContent = 'Seleziona una tempistica.'; ok = false; }
+        if (!document.getElementById('checkbox-privacy').checked) { document.getElementById('err-privacy').textContent = 'Consenso obbligatorio.'; ok = false; }
+      }
+      return ok;
+    }
+
+    function goToStep(step) {
+      currentStep = step;
+      const pct = step * 25;
+      document.getElementById('wizard-progress-label').textContent = `Passaggio ${step} di 4`;
+      document.getElementById('wizard-progress-pct').textContent = `${pct}% completato`;
+      document.getElementById('wizard-progress-fill').style.width = `${pct}%`;
+
+      document.querySelectorAll('[data-step-pane]').forEach(p => p.classList.toggle('is-active', Number(p.getAttribute('data-step-pane')) === step));
+      document.querySelectorAll('[data-step-indicator]').forEach(ind => {
+        const s = Number(ind.getAttribute('data-step-indicator'));
+        ind.classList.toggle('is-active', s === step);
+        ind.classList.toggle('is-completed', s < step);
+        const numEl = ind.querySelector('.step-pill__num');
+        if (numEl) numEl.textContent = s < step ? '✓' : String(s);
+      });
+      prevBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
+      nextBtn.style.display = step < 4 ? 'inline-flex' : 'none';
+      submitBtn.style.display = step === 4 ? 'inline-flex' : 'none';
+
+      if (step === 4) {
+        const pkgId = form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
+        const pkg = siteConfig.packages.find(p => p.id === pkgId);
+        const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
+        const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
+        document.getElementById('quote-summary-content').innerHTML = `
+          <div><span class="summary-item-label">Cliente</span><span class="summary-item-val">${document.getElementById('input-full-name').value} (${document.getElementById('input-business-name').value})</span></div>
+          <div><span class="summary-item-label">Contatti</span><span class="summary-item-val">${document.getElementById('input-email').value} · ${document.getElementById('input-phone').value}</span></div>
+          <div><span class="summary-item-label">Pacchetto</span><span class="summary-item-val" style="color:var(--accent-blue)">${pkg ? pkg.name + ' (' + pkg.price + ')' : pkgId}</span></div>
+          <div><span class="summary-item-label">Stile & Sezioni</span><span class="summary-item-val">${style} · ${secs}</span></div>
+        `;
+      }
+    }
+
+    document.querySelectorAll('[data-step-indicator]').forEach(ind => {
+      ind.addEventListener('click', () => {
+        const targetStep = Number(ind.getAttribute('data-step-indicator'));
+        if (targetStep === currentStep) return;
+        if (targetStep < currentStep) {
+          goToStep(targetStep);
+        } else {
+          let canAdvance = true;
+          for (let s = currentStep; s < targetStep; s++) {
+            if (!validateStep(s)) {
+              goToStep(s);
+              canAdvance = false;
+              break;
+            }
+          }
+          if (canAdvance) goToStep(targetStep);
+        }
+      });
+    });
+
+    nextBtn.addEventListener('click', () => { if (validateStep(currentStep)) goToStep(currentStep + 1); });
+    prevBtn.addEventListener('click', () => { if (currentStep > 1) goToStep(currentStep - 1); });
+    document.getElementById('btn-summary-edit-step1').addEventListener('click', () => goToStep(1));
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validateStep(4)) return;
+      if (document.getElementById('input-website-hp').value) return;
+
+      const fullName = document.getElementById('input-full-name').value.trim();
+      const businessName = document.getElementById('input-business-name').value.trim();
+      const email = document.getElementById('input-email').value.trim();
+      const phone = document.getElementById('input-phone').value.trim();
+      const businessType = document.getElementById('select-business-type').value;
+      const pkgId = form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
+      const pkg = siteConfig.packages.find(p => p.id === pkgId);
+      const pkgLabel = pkg ? `${pkg.name} (${pkg.price} una tantum)` : pkgId;
+      const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
+      const colors = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value).join(', ') || 'Da concordare';
+      const hasLogo = form.querySelector('input[name="hasLogo"]:checked')?.value || 'No';
+      const wantsWhatsapp = form.querySelector('input[name="wantsWhatsapp"]:checked')?.value || 'Sì';
+      const wantsBooking = form.querySelector('input[name="wantsBooking"]:checked')?.value || 'No';
+      const wantsShowcase = form.querySelector('input[name="wantsCatalog"]:checked')?.value || 'Sì';
+      const sections = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
+      const description = document.getElementById('textarea-description').value.trim();
+      const referenceLinks = document.getElementById('input-reference-links').value.trim() || 'Nessuno';
+      const timeline = document.getElementById('select-timeline').value;
+      const additionalNotes = document.getElementById('textarea-additional-notes').value.trim() || 'Nessuna';
+
+      const origBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Invio in corso...';
+      errorBanner.classList.remove('is-visible');
+
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${siteConfig.contact.email}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Nuova Richiesta Sito Web: ${businessName} (${pkg ? pkg.shortName : pkgId})`,
+            _template: 'table',
+            _captcha: 'false',
+            _replyto: email,
+            '1. Nome e Cognome': fullName,
+            '2. Nome Attività': businessName,
+            '3. Tipo di Attività': businessType,
+            '4. Email Cliente': email,
+            '5. Telefono Cliente': phone,
+            '6. Pacchetto Scelto': pkgLabel,
+            '7. Stile Desiderato': style,
+            '8. Colori Principali': colors,
+            '9. Ha già un Logo': hasLogo,
+            '10. Pulsante WhatsApp': wantsWhatsapp,
+            '11. Sistema Prenotazioni': wantsBooking,
+            '12. Vetrina Prodotti/Servizi': wantsShowcase,
+            '13. Sezioni da Includere': sections,
+            '14. Descrizione Progetto': description,
+            '15. Siti di Riferimento': referenceLinks,
+            '16. Tempistica Desiderata': timeline,
+            '17. Note Aggiuntive': additionalNotes
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Errore durante l’invio');
+        }
+
+        window.va?.('event', {
+          name: 'quote_submitted',
+          data: {
+            package: pkgId,
+            businessType: businessType
+          }
+        });
+
+        form.style.display = 'none';
+        packageBanner.classList.remove('is-visible');
+        confirmationScreen.classList.add('is-visible');
+      } catch (err) {
+        errorBanner.textContent = 'Si è verificato un problema di connessione. Riprova tra qualche istante o scrivici a ' + siteConfig.contact.email;
+        errorBanner.classList.add('is-visible');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = origBtnText;
+      }
+    });
+
+    document.getElementById('btn-reset-wizard').addEventListener('click', () => {
+      form.reset();
+      document.querySelectorAll('[data-style-card], [data-color-chip], [data-section-chip], [data-radio-btn]').forEach(el => {
+        const inp = el.querySelector('input');
+        if (inp) el.classList.toggle('is-selected', inp.checked);
+      });
+      confirmationScreen.classList.remove('is-visible');
+      form.style.display = 'block';
+      selectPackage('plus', false);
+      goToStep(1);
+    });
+
+    document.querySelectorAll('[data-faq-trigger]').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('[data-faq-item]');
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('[data-faq-item]').forEach(other => {
+          other.classList.remove('is-open');
+          const otherBtn = other.querySelector('[data-faq-trigger]');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-va-whatsapp]').forEach(link => {
+      link.addEventListener('click', () => {
+        window.va?.('event', {
+          name: 'whatsapp_click',
+          data: {
+            location: link.getAttribute('data-va-whatsapp')
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-open-modal]').forEach(b => b.addEventListener('click', () => document.getElementById(b.getAttribute('data-open-modal')).classList.add('is-open')));
+    document.querySelectorAll('[data-close-modal]').forEach(b => b.addEventListener('click', () => document.getElementById(b.getAttribute('data-close-modal')).classList.remove('is-open')));
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+      backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) {
+          backdrop.classList.remove('is-open');
+        }
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-backdrop.is-open').forEach(modal => {
+          modal.classList.remove('is-open');
+        });
+      }
+    });
   </script>
 </body>
 </html>

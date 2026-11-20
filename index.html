@@ -114,6 +114,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    section[id], footer[id] { scroll-margin-top: 76px; }
     body {
       font-family: var(--font-sans);
       background-color: var(--bg-primary);
@@ -152,6 +153,7 @@
       border-radius: var(--radius-md); border: 1.5px solid transparent; cursor: pointer;
       transition: all var(--transition-fast); white-space: nowrap;
     }
+    .btn svg { flex-shrink: 0; }
     .btn--primary {
       background: linear-gradient(135deg, #0052ff 0%, #1d6bff 100%);
       color: #ffffff;
@@ -206,6 +208,7 @@
       border-bottom: 1px solid var(--border-subtle);
     }
     .hero__grid { display: grid; grid-template-columns: 0.95fr 1.15fr; gap: 40px; align-items: center; }
+    .hero__grid > * { min-width: 0; }
     .hero__tag {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
@@ -332,14 +335,14 @@
     }
     .showcase-mockup.is-mobile .mockup-notch { display: block; }
     .mockup-nav {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;
       padding: 10px 14px; background: #fff; border-bottom: 1px solid var(--border-subtle);
     }
     .mockup-brand { font-size: 0.82rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-primary); }
     .mockup-badge { font-size: 0.65rem; font-weight: 700; color: var(--accent-blue); background: var(--accent-blue-soft); padding: 3px 8px; border-radius: 999px; }
     .mockup-visual-hero {
       position: relative;
-      height: 165px;
+      min-height: 165px;
       background-size: cover;
       background-position: center;
       display: flex;
@@ -426,6 +429,7 @@
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      min-width: 0;
       transition: all var(--transition-smooth);
     }
     .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
@@ -508,12 +512,16 @@
     .yesno-group { display: flex; gap: 8px; }
     .yesno-btn { flex: 1; padding: 9px 12px; border: 1.5px solid var(--border-subtle); border-radius: 9px; font-size: 0.86rem; font-weight: 700; text-align: center; cursor: pointer; background: #fff; transition: all var(--transition-fast); }
     .yesno-btn.is-selected { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); }
+    .choice-card:has(input:focus-visible), .chip-option:has(input:focus-visible), .yesno-btn:has(input:focus-visible) {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: 2px;
+    }
     .summary-box { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; }
     .summary-box__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border-subtle); }
     .summary-box__title { font-weight: 800; font-size: 0.88rem; }
     .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; font-size: 0.82rem; }
     .summary-item-label { color: var(--text-muted); font-weight: 600; display: block; }
-    .summary-item-val { font-weight: 700; }
+    .summary-item-val { font-weight: 700; overflow-wrap: anywhere; }
     .privacy-consent-box { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1.5px solid var(--border-subtle); border-radius: 9px; }
     .privacy-link-btn { color: var(--accent-blue); text-decoration: underline; font-weight: 700; background: none; border: none; cursor: pointer; }
     .hp-field-wrap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -774,6 +782,8 @@
 
     @media (max-width: 900px) {
       .hero__grid, .pricing-grid, .steps-strip__grid, .team-grid { grid-template-columns: 1fr; }
+      .pricing-card--featured { transform: none; }
+      .pricing-card--featured:hover { transform: translateY(-5px); }
       .nav-links, .nav-actions .btn { display: none; }
       .mobile-menu-toggle { display: inline-flex; }
       .wizard-steps-indicator { grid-template-columns: 1fr 1fr; }
@@ -786,6 +796,14 @@
       .faq-answer { padding: 0 16px 18px; font-size: 0.9rem; }
       .whatsapp-float { padding: 10px 15px; font-size: 0.85rem; }
     }
+    @media (max-width: 560px) {
+      .showcase-browser-bar { flex-wrap: wrap; gap: 6px; padding: 9px 12px; }
+      .browser-url { order: 3; flex: 1 1 100%; max-width: none; }
+      .mockup-cards-grid { grid-template-columns: 1fr; }
+      .pricing-card { padding: 24px 18px; }
+      .pricing-card .btn { padding: 12px 16px; }
+      .btn--lg { padding: 12px 18px; font-size: 0.92rem; }
+    }
   </style>
 </head>
 <body>
@@ -794,7 +812,7 @@
       <a href="#home" class="brand-logo" aria-label="MGD Studio">
         <img src="data:image/webp;base64,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" alt="Logo MGD Studio" class="brand-logo__img" />
       </a>
-      <nav>
+      <nav aria-label="Navigazione principale">
         <ul class="nav-links">
           <li><a href="#home" class="nav-link">Home</a></li>
           <li><a href="#pacchetti" class="nav-link">Pacchetti</a></li>
@@ -805,7 +823,7 @@
       </nav>
       <div class="nav-actions">
         <a href="#richiedi-sito" class="btn btn--primary btn--sm">Richiedi il tuo sito</a>
-        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">☰</button>
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-drawer">☰</button>
       </div>
     </div>
     <div class="mobile-drawer" id="mobile-drawer">
@@ -1050,8 +1068,8 @@
           </div>
 
           <div class="wizard-body">
-            <div class="wizard-alert wizard-alert--info" id="wizard-package-banner"></div>
-            <div class="wizard-alert wizard-alert--error" id="wizard-error-banner"></div>
+            <div class="wizard-alert wizard-alert--info" id="wizard-package-banner" role="status" aria-live="polite"></div>
+            <div class="wizard-alert wizard-alert--error" id="wizard-error-banner" role="alert"></div>
 
             <form id="quote-multi-step-form" novalidate>
               <div class="hp-field-wrap" aria-hidden="true">
@@ -1274,9 +1292,9 @@
                   <div class="form-group form-group--full">
                     <div class="privacy-consent-box">
                       <input type="checkbox" id="checkbox-privacy" required />
-                      <label for="checkbox-privacy" style="font-size:0.84rem; color:var(--text-secondary);">
-                        Acconsento al trattamento dei dati personali secondo l’<button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button>. <span class="form-required">*</span>
-                      </label>
+                      <span style="font-size:0.84rem; color:var(--text-secondary);">
+                        <label for="checkbox-privacy">Acconsento al trattamento dei dati personali secondo l’</label><button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button><label for="checkbox-privacy">. <span class="form-required">*</span></label>
+                      </span>
                     </div>
                     <span class="field-error-msg" id="err-privacy"></span>
                   </div>
@@ -1503,7 +1521,7 @@
     <div class="modal-dialog">
       <div class="modal-header">
         <h3 class="modal-title" id="privacy-modal-title">Informativa sulla Privacy (GDPR)</h3>
-        <button type="button" class="modal-close-btn" data-close-modal="privacy-modal">✕</button>
+        <button type="button" class="modal-close-btn" data-close-modal="privacy-modal" aria-label="Chiudi finestra">✕</button>
       </div>
       <div class="modal-content">
         <p>I dati inseriti nel modulo vengono utilizzati da <strong>MGD Studio</strong> (gdesimone092@gmail.com) esclusivamente per rispondere alla richiesta di preventivo, ai sensi del GDPR (Reg. UE 2016/679).</p>
@@ -1515,7 +1533,7 @@
     <div class="modal-dialog">
       <div class="modal-header">
         <h3 class="modal-title" id="cookie-modal-title">Cookie Policy</h3>
-        <button type="button" class="modal-close-btn" data-close-modal="cookie-modal">✕</button>
+        <button type="button" class="modal-close-btn" data-close-modal="cookie-modal" aria-label="Chiudi finestra">✕</button>
       </div>
       <div class="modal-content">
         <p>Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento e non impiega cookie di profilazione di terze parti.</p>
@@ -1666,8 +1684,14 @@
     const toggleBtn = document.getElementById('mobile-menu-toggle');
     const drawer = document.getElementById('mobile-drawer');
     if (toggleBtn && drawer) {
-      toggleBtn.addEventListener('click', () => drawer.classList.toggle('is-open'));
-      drawer.querySelectorAll('[data-close-drawer]').forEach(l => l.addEventListener('click', () => drawer.classList.remove('is-open')));
+      toggleBtn.addEventListener('click', () => {
+        const isOpen = drawer.classList.toggle('is-open');
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+      drawer.querySelectorAll('[data-close-drawer]').forEach(l => l.addEventListener('click', () => {
+        drawer.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }));
     }
 
     document.querySelectorAll('[data-showcase-tab]').forEach(tab => {
@@ -1711,19 +1735,36 @@
           packageBanner.classList.add('is-visible');
         }
       }
+      if (currentStep === 4) {
+        goToStep(4);
+      }
     }
 
-    document.querySelectorAll('[data-package-card]').forEach(c => c.addEventListener('click', () => selectPackage(c.getAttribute('data-package-card'), false)));
+    document.querySelectorAll('[data-package-card]').forEach(c => {
+      const rd = c.querySelector('input');
+      if (rd) rd.addEventListener('change', () => selectPackage(c.getAttribute('data-package-card'), false));
+    });
     document.querySelectorAll('[data-select-package]').forEach(b => b.addEventListener('click', () => {
+      if (confirmationScreen.classList.contains('is-visible')) {
+        confirmationScreen.classList.remove('is-visible');
+        form.style.removeProperty('display');
+        errorBanner.classList.remove('is-visible');
+        form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
+        goToStep(1);
+      }
       selectPackage(b.getAttribute('data-select-package'), true);
       document.getElementById('richiedi-sito').scrollIntoView({ behavior: 'smooth' });
     }));
 
-    document.querySelectorAll('[data-style-card]').forEach(c => c.addEventListener('click', () => {
-      document.querySelectorAll('[data-style-card]').forEach(x => x.classList.remove('is-selected'));
-      c.classList.add('is-selected');
-      c.querySelector('input').checked = true;
-    }));
+    document.querySelectorAll('[data-style-card]').forEach(c => {
+      const rd = c.querySelector('input');
+      if (rd) {
+        rd.addEventListener('change', () => {
+          document.querySelectorAll('[data-style-card]').forEach(x => x.classList.remove('is-selected'));
+          if (rd.checked) c.classList.add('is-selected');
+        });
+      }
+    });
 
     document.querySelectorAll('[data-color-chip], [data-section-chip]').forEach(chip => {
       const cb = chip.querySelector('input');
@@ -1834,6 +1875,12 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (currentStep < 4) {
+        if (validateStep(currentStep)) goToStep(currentStep + 1);
+        return;
+      }
+      if (!validateStep(1)) { goToStep(1); return; }
+      if (!validateStep(3)) { goToStep(3); return; }
       if (!validateStep(4)) return;
       if (document.getElementById('input-website-hp').value) return;
 
@@ -1892,7 +1939,13 @@
           })
         });
 
-        if (!response.ok) {
+        let formSubmitResult = null;
+        try {
+          formSubmitResult = await response.json();
+        } catch {
+          // Alcune risposte potrebbero non avere body JSON
+        }
+        if (!response.ok || (formSubmitResult && (formSubmitResult.success === false || formSubmitResult.success === 'false'))) {
           throw new Error('Errore durante l’invio');
         }
 
@@ -1905,6 +1958,8 @@
         });
 
         if (siteConfig.notifications?.endpoint) {
+          const notifyCtrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+          const notifyTimer = notifyCtrl ? setTimeout(() => notifyCtrl.abort(), 5000) : null;
           try {
             await fetch(siteConfig.notifications.endpoint, {
               method: 'POST',
@@ -1912,6 +1967,7 @@
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
               },
+              signal: notifyCtrl ? notifyCtrl.signal : undefined,
               body: JSON.stringify({
                 fullName,
                 businessName,
@@ -1934,6 +1990,8 @@
             });
           } catch (notifyErr) {
             // Notifica lato server non bloccante per la conferma utente
+          } finally {
+            if (notifyTimer) clearTimeout(notifyTimer);
           }
         }
 
@@ -2005,6 +2063,10 @@
         document.querySelectorAll('.modal-backdrop.is-open').forEach(modal => {
           modal.classList.remove('is-open');
         });
+        if (drawer && drawer.classList.contains('is-open')) {
+          drawer.classList.remove('is-open');
+          if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+        }
       }
     });
   </script>

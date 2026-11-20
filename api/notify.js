@@ -13,7 +13,13 @@ module.exports = async function handler(req, res) {
 
   let data;
   try {
-    data = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    if (Buffer.isBuffer(req.body)) {
+      data = JSON.parse(req.body.toString('utf8'));
+    } else if (typeof req.body === 'string') {
+      data = JSON.parse(req.body);
+    } else {
+      data = req.body;
+    }
   } catch {
     return res.status(400).json({ ok: false, error: 'Invalid JSON body' });
   }
@@ -23,9 +29,21 @@ module.exports = async function handler(req, res) {
   }
 
   const val = (v, fallback = 'Non indicato') => {
-    const s = typeof v === 'string' ? v.trim() : String(v ?? '').trim();
+    if (v === null || v === undefined) return fallback;
+    if (Array.isArray(v)) {
+      const joined = v
+        .filter(item => item !== null && item !== undefined && typeof item !== 'object')
+        .map(item => String(item).trim())
+        .filter(Boolean)
+        .join(', ');
+      return joined || fallback;
+    }
+    if (typeof v === 'object') return fallback;
+    const s = String(v).trim();
     return s || fallback;
   };
+
+  const packageText = val(data.pkgLabel, '') || val(data.package);
 
   const lines = [
     '📩 Nuova richiesta preventivo — MGD Studio',
@@ -37,7 +55,7 @@ module.exports = async function handler(req, res) {
     `📞 Telefono: ${val(data.phone)}`,
     `✉️ Email: ${val(data.email)}`,
     '',
-    `📦 Pacchetto: ${val(data.pkgLabel || data.package)}`,
+    `📦 Pacchetto: ${packageText}`,
     `🎨 Stile: ${val(data.style)}`,
     `🌈 Colori: ${val(data.colors, 'Da concordare')}`,
     `🧩 Sezioni: ${val(data.sections)}`,
@@ -53,34 +71,43 @@ module.exports = async function handler(req, res) {
 
   const text = lines.join('\n').slice(0, 4096);
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
+
   try {
     const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
       body: JSON.stringify({
         chat_id: chatId,
         text
       })
     });
 
-    if (!tgRes.ok) {
-      let tgError = `Telegram API error (${tgRes.status})`;
-      try {
-        const errJson = await tgRes.json();
-        if (errJson && errJson.description) {
-          tgError = errJson.description;
-        }
-      } catch {
-        // Ignora errori di parsing su risposta di errore
-      }
-      return res.status(tgRes.status).json({ ok: false, error: tgError });
+    let tgJson = null;
+    try {
+      tgJson = await tgRes.json();
+    } catch {
+      // Ignora errori di parsing su risposta non-JSON
+    }
+
+    if (!tgRes.ok || (tgJson && tgJson.ok === false)) {
+      const tgError = (tgJson && tgJson.description) || `Telegram API error (${tgRes.status})`;
+      const status = tgRes.ok ? 502 : tgRes.status;
+      return res.status(status).json({ ok: false, error: tgError });
     }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
+    if (err && err.name === 'AbortError') {
+      return res.status(504).json({ ok: false, error: 'Telegram request timed out' });
+    }
     return res.status(502).json({
       ok: false,
       error: err && err.message ? err.message : 'Telegram request failed'
     });
+  } finally {
+    clearTimeout(timeoutId);
   }
 };

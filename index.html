@@ -3,14 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MGD Studio — Siti Web Moderni per Attività Locali</title>
+  <title>MGD Studio — Siti Web per Aziende e Attività</title>
   <meta name="description" content="MGD Studio: realizziamo siti web moderni, veloci e professionali per bar, ristoranti, parrucchieri, negozi e aziende." />
   <meta property="og:title" content="MGD Studio — Realizzazione Siti Web Professionali" />
   <meta property="og:description" content="Diamo vita alla tua presenza online. Scopri i nostri pacchetti chiari una tantum e richiedi il tuo sito personalizzato." />
   <meta property="og:type" content="website" />
-  <!-- Ricorda di sostituire TUO-DOMINIO con il tuo dominio reale e caricare og-image.png (1200x630) nella root -->
+  <!-- TODO: sostituire con URL definitivo (e caricare og-image.png 1200x630 nella root) -->
+  <link rel="canonical" href="https://TUO-DOMINIO.vercel.app/" />
+  <meta property="og:url" content="https://TUO-DOMINIO.vercel.app/" />
   <meta property="og:image" content="https://TUO-DOMINIO.vercel.app/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230052ff'/%3E%3Ctext x='32' y='40' text-anchor='middle' fill='%23ffffff' font-family='system-ui,-apple-system,Segoe UI,Arial,sans-serif' font-weight='800' font-size='21' letter-spacing='-0.6'%3EMGD%3C/text%3E%3C/svg%3E" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "MGD Studio",
+        "url": "https://TUO-DOMINIO.vercel.app/",
+        "image": "https://TUO-DOMINIO.vercel.app/og-image.png",
+        "telephone": "+39 392 650 0185",
+        "email": "gdesimone092@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Piacenza",
+          "addressRegion": "PC",
+          "addressCountry": "IT"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Italia"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+39 392 650 0185",
+          "contactType": "customer service",
+          "availableLanguage": "Italian"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quanto tempo serve per avere il sito online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In genere tra i 7 e i 10 giorni lavorativi dalla conferma della demo gratuita e dalla consegna dei materiali base (foto, orari e listino)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Devo scrivere io i testi o fare foto professionali?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No: ci occupiamo noi di strutturare i testi in modo chiaro e persuasivo per i tuoi clienti. Se hai già delle foto del locale o dei piatti le ottimizziamo noi, altrimenti ti guidiamo passo passo su cosa scattare anche con lo smartphone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ci sono costi nascosti ogni mese?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nessun costo a sorpresa. Il prezzo del pacchetto è trasparente e nel Pacchetto Completo sono inclusi 12 mesi di manutenzioni e aggiornamenti. Eventuali rinnovi di dominio o assistenza successiva vengono sempre concordati prima."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -285,7 +348,7 @@
       padding: 3px 9px; border-radius: 999px; margin-bottom: 6px;
     }
     .mockup-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
-    .mockup-headline { font-size: 1.04rem; font-weight: 800; line-height: 1.2; margin-bottom: 3px; color: #fff; }
+    .mockup-headline { font-family: var(--font-display); font-size: 1.04rem; font-weight: 800; line-height: 1.2; margin-bottom: 3px; color: #fff; }
     .mockup-subline { font-size: 0.73rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 10px; line-height: 1.35; }
     .mockup-actions { display: flex; gap: 6px; flex-wrap: wrap; }
     .mockup-btn-primary { background: var(--accent-blue); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 6px 12px; border-radius: 6px; box-shadow: 0 4px 10px rgba(0, 82, 255, 0.4); }
@@ -849,7 +912,7 @@
               <span class="mockup-status-dot"></span>
               <span>${project.statusText}</span>
             </div>
-            <h2 class="mockup-headline">${project.headline}</h2>
+            <p class="mockup-headline">${project.headline}</p>
             <p class="mockup-subline">${project.subline}</p>
             <div class="mockup-actions">
               <a href="#richiedi-sito" class="mockup-btn-primary">${project.primaryCta}</a>
@@ -913,7 +976,7 @@
               <div class="reveal is-visible">
                 <span class="hero__tag">
                   <span class="hero__tag-dot"></span>
-                  <span>MGD Studio · Siti Web per Attività Locali</span>
+                  <span>MGD Studio · Siti Web per Aziende e Attività</span>
                 </span>
                 <h1 class="hero__title">Diamo vita alla tua <span class="hero__title-accent">presenza online.</span></h1>
                 <div class="hero__location">
@@ -1350,7 +1413,7 @@
                 </a>
                 <p class="footer-location">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <span>Realtà locale di Piacenza e provincia — Siti web per attività del territorio</span>
+                  <span>Siti web per aziende e attività — Sede a Piacenza, operativi in tutta Italia</span>
                 </p>
                 <p style="color:#94a3b8; font-size:0.86rem; margin-top:6px;">
                   Contatto diretto: <a href="mailto:${siteConfig.contact.email}" style="color:#fff; font-weight:700; text-decoration:underline;">${siteConfig.contact.email}</a> · WhatsApp: <a href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20informazioni%20per%20realizzare%20un%20sito%20web" target="_blank" rel="noopener noreferrer" style="color:#4ade80; font-weight:700; text-decoration:underline;">+39 392 650 0185</a>
@@ -1384,10 +1447,10 @@
           <span>WhatsApp</span>
         </a>
 
-        <div class="modal-backdrop" id="privacy-modal">
+        <div class="modal-backdrop" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
           <div class="modal-dialog">
             <div class="modal-header">
-              <h3 class="modal-title">Informativa sulla Privacy (GDPR)</h3>
+              <h3 class="modal-title" id="privacy-modal-title">Informativa sulla Privacy (GDPR)</h3>
               <button type="button" class="modal-close-btn" data-close-modal="privacy-modal">✕</button>
             </div>
             <div class="modal-content">
@@ -1396,10 +1459,10 @@
           </div>
         </div>
 
-        <div class="modal-backdrop" id="cookie-modal">
+        <div class="modal-backdrop" id="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
           <div class="modal-dialog">
             <div class="modal-header">
-              <h3 class="modal-title">Cookie Policy</h3>
+              <h3 class="modal-title" id="cookie-modal-title">Cookie Policy</h3>
               <button type="button" class="modal-close-btn" data-close-modal="cookie-modal">✕</button>
             </div>
             <div class="modal-content">
@@ -1683,6 +1746,20 @@
 
       document.querySelectorAll('[data-open-modal]').forEach(b => b.addEventListener('click', () => document.getElementById(b.getAttribute('data-open-modal')).classList.add('is-open')));
       document.querySelectorAll('[data-close-modal]').forEach(b => b.addEventListener('click', () => document.getElementById(b.getAttribute('data-close-modal')).classList.remove('is-open')));
+      document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', (e) => {
+          if (e.target === backdrop) {
+            backdrop.classList.remove('is-open');
+          }
+        });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.modal-backdrop.is-open').forEach(modal => {
+            modal.classList.remove('is-open');
+          });
+        }
+      });
     }
 
     renderApp();

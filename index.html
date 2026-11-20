@@ -50,7 +50,7 @@
             "name": "Quanto tempo serve per avere il sito online?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In genere tra i 7 e i 10 giorni lavorativi dalla conferma della demo gratuita e dalla consegna dei materiali base (foto, orari e listino)."
+              "text": "In genere tra i 7 e i 10 giorni lavorativi dalla conferma della bozza e proposta gratuita e dalla consegna dei materiali base (foto, orari e listino)."
             }
           },
           {
@@ -66,7 +66,7 @@
             "name": "Ci sono costi nascosti ogni mese?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Nessun costo a sorpresa. Il prezzo del pacchetto è trasparente e nel Pacchetto Completo sono inclusi 12 mesi di manutenzioni e aggiornamenti. Eventuali rinnovi di dominio o assistenza successiva vengono sempre concordati prima."
+              "text": "Nessun costo a sorpresa. Il prezzo del pacchetto è trasparente e nel Pacchetto Completo sono inclusi supporto post-pubblicazione e aggiornamenti concordati. Eventuali rinnovi di dominio, hosting o interventi successivi vengono sempre concordati prima."
             }
           }
         ]
@@ -529,52 +529,269 @@
       color: var(--accent-blue);
     }
 
-    /* 3. MODULO MULTI-STEP CON BARRA DI PROGRESSO INTERATTIVA */
-    .wizard-wrapper {
-      max-width: 820px;
+    /* 3. CONFIGURATORE CONVERSAZIONALE GUIDATO A 2 COLONNE */
+    .configurator-shell {
+      max-width: 1120px;
       margin: 0 auto;
       background: #ffffff;
-      border: 1px solid rgba(203, 213, 225, 0.72);
+      border: 1px solid rgba(203, 213, 225, 0.78);
       border-radius: 22px;
-      box-shadow: 0 22px 52px -16px rgba(10, 15, 29, 0.11), 0 8px 22px -10px rgba(10, 15, 29, 0.05);
+      box-shadow: 0 24px 56px -18px rgba(10, 15, 29, 0.12), 0 8px 24px -10px rgba(10, 15, 29, 0.05);
       overflow: hidden;
     }
-    .wizard-header {
+    .configurator-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
+      align-items: stretch;
+    }
+    .chat-column {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: #ffffff;
+    }
+    .chat-header {
+      background: linear-gradient(180deg, #f8fafc 0%, #f3f7fc 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 18px 22px 15px;
+    }
+    .chat-header__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .chat-identity {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+    .chat-avatar {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #0a0f1d 0%, #0052ff 100%);
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 18px -6px rgba(0, 82, 255, 0.42);
+    }
+    .chat-avatar__dot {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #22c55e;
+      border: 2px solid #ffffff;
+    }
+    .chat-identity__text { min-width: 0; }
+    .chat-identity__title {
+      font-family: var(--font-display);
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .chat-identity__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--status-success);
+      margin-top: 2px;
+    }
+    .chat-status-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+      flex-shrink: 0;
+    }
+    .chat-header__controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chat-step-pill {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--accent-blue);
+      background: var(--accent-blue-soft);
+      border: 1px solid var(--accent-blue-subtle);
+      padding: 4px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .chat-reset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease;
+    }
+    .chat-reset-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+    }
+    .chat-reset-btn:focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: 2px;
+    }
+    .wizard-progress-track { width: 100%; height: 7px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .wizard-progress-fill { height: 100%; width: 14%; background: linear-gradient(90deg, #0052ff 0%, #0ea5e9 100%); border-radius: 999px; transition: width 0.36s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 10px rgba(0, 82, 255, 0.3); }
+
+    /* AREA MESSAGGI CONVERSAZIONE */
+    .chat-messages {
       background: linear-gradient(180deg, #f8fafc 0%, #f4f7fb 100%);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 22px 28px 20px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      max-height: 290px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
     }
-    .wizard-progress-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); }
-    .wizard-progress-pct { color: var(--accent-blue); font-weight: 800; background: var(--accent-blue-soft); border: 1px solid var(--accent-blue-subtle); padding: 3px 11px; border-radius: 999px; white-space: nowrap; }
-    .wizard-progress-track { width: 100%; height: 8px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-bottom: 16px; }
-    .wizard-progress-fill { height: 100%; width: 25%; background: linear-gradient(90deg, #0052ff 0%, #0ea5e9 100%); border-radius: 999px; transition: width 0.38s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 12px rgba(0, 82, 255, 0.35); }
-    .wizard-steps-indicator { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
-    .step-pill { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 14px; background: #ffffff; border: 1.5px solid var(--border-subtle); font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); cursor: pointer; text-align: left; transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease; }
-    .step-pill:hover { border-color: var(--accent-blue); transform: translateY(-1px); }
-    .step-pill.is-active { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); box-shadow: 0 6px 16px -8px rgba(0, 82, 255, 0.28); }
-    .step-pill.is-completed { border-color: #86efac; background: #f0fdf4; color: var(--status-success); }
-    .step-pill__num { width: 24px; height: 24px; border-radius: 50%; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; transition: all 0.2s ease; }
-    .step-pill.is-active .step-pill__num { background: var(--accent-blue); color: #fff; }
-    .step-pill.is-completed .step-pill__num { background: var(--status-success); color: #fff; }
-    .wizard-body { padding: 30px 28px 28px; }
+    .chat-msg {
+      display: flex;
+      flex-direction: column;
+      max-width: 88%;
+      animation: chatBubbleIn 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes chatBubbleIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-msg--bot { align-self: flex-start; }
+    .chat-msg--user { align-self: flex-end; align-items: flex-end; }
+    .chat-bubble {
+      padding: 11px 15px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+    .chat-msg--bot .chat-bubble {
+      background: #ffffff;
+      color: var(--text-primary);
+      border: 1px solid rgba(203, 213, 225, 0.72);
+      border-radius: 16px 16px 16px 5px;
+      box-shadow: 0 4px 12px -6px rgba(10, 15, 29, 0.08);
+    }
+    .chat-msg--bot .chat-bubble strong { color: var(--text-primary); font-weight: 700; }
+    .chat-msg--notice .chat-bubble {
+      background: var(--accent-blue-soft);
+      border-color: var(--accent-blue-subtle);
+      color: #1e3a8a;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .chat-msg--downgrade .chat-bubble {
+      background: #fffbeb;
+      border-color: #fde68a;
+      color: #92400e;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .chat-msg--user .chat-bubble {
+      background: linear-gradient(135deg, #0052ff 0%, #0042d4 100%);
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 18px 18px 5px 18px;
+      box-shadow: 0 8px 18px -8px rgba(0, 82, 255, 0.45);
+    }
+    .chat-bubble__meta {
+      font-size: 0.69rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      padding: 0 4px;
+    }
+
+    /* AREA INTERATTIVA DOMANDA CORRENTE */
+    .chat-stage {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .chat-editing-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 9px 13px;
+      margin-bottom: 14px;
+      border-radius: 12px;
+      background: var(--accent-blue-soft);
+      border: 1px solid var(--accent-blue-subtle);
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .chat-editing-banner.is-visible { display: flex; }
+    .chat-editing-return-btn {
+      background: #ffffff;
+      color: var(--accent-blue);
+      border: 1px solid var(--accent-blue-subtle);
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background-color 0.16s ease, border-color 0.16s ease;
+    }
+    .chat-editing-return-btn:hover { background: var(--accent-blue); color: #ffffff; border-color: var(--accent-blue); }
+
     .wizard-step-pane { display: none; }
-    .wizard-step-pane.is-active { display: block; animation: fadeStep 0.24s cubic-bezier(0.22, 1, 0.36, 1); }
-    @keyframes fadeStep { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-    .step-heading { font-size: 1.24rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
-    .step-intro { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .wizard-step-pane.is-active { display: block; animation: fadeStep 0.26s cubic-bezier(0.22, 1, 0.36, 1); }
+    @keyframes fadeStep { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .stage-label-hint {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 11px;
+      display: block;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
     .form-group--full { grid-column: 1 / -1; }
-    .form-label { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
-    .form-hint { font-size: 0.76rem; color: var(--text-muted); font-weight: 500; }
+    .form-label { font-size: 0.84rem; font-weight: 700; color: var(--text-primary); }
+    .form-hint { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
     .form-required { color: var(--accent-blue); }
     .form-input, .form-select, .form-textarea {
       width: 100%;
-      padding: 13px 15px;
+      padding: 12px 14px;
       border: 1.5px solid #e2e8f0;
       border-radius: 12px;
       background: #ffffff;
-      font-size: 0.93rem;
+      font-size: 0.92rem;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     }
     .form-input:hover, .form-select:hover, .form-textarea:hover { border-color: var(--border-strong); }
@@ -599,16 +816,17 @@
       font-weight: 800;
       vertical-align: middle;
     }
-    .form-textarea { min-height: 92px; resize: vertical; }
+    .form-textarea { min-height: 82px; resize: vertical; }
     .field-error-msg { font-size: 0.76rem; font-weight: 600; color: var(--status-error); min-height: 14px; }
-    .choice-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .choice-cards-grid--categories { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .choice-cards-grid--styles { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
+    .choice-cards-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .choice-cards-grid--categories { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .choice-cards-grid--styles { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 9px; }
+    .choice-cards-grid--timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
     .choice-card {
       position: relative;
       border: 1.5px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 16px 15px;
+      padding: 13px 14px;
       cursor: pointer;
       background: #ffffff;
       display: flex;
@@ -618,20 +836,20 @@
       transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     }
     .choice-card:hover {
-      border-color: var(--border-strong);
+      border-color: var(--accent-blue);
       transform: translateY(-2px);
       box-shadow: 0 10px 24px -12px rgba(10, 15, 29, 0.14);
     }
     .choice-card.is-selected {
       border-color: var(--accent-blue);
       background: var(--accent-blue-soft);
-      box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.11), 0 12px 24px -12px rgba(0, 82, 255, 0.3);
+      box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.11), 0 12px 24px -12px rgba(0, 82, 255, 0.28);
     }
     .choice-card.is-selected::after {
       content: '✓';
       position: absolute;
-      top: 11px;
-      right: 11px;
+      top: 10px;
+      right: 10px;
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -644,19 +862,25 @@
       justify-content: center;
       box-shadow: 0 3px 8px rgba(0, 82, 255, 0.28);
     }
-    .choice-card--category { padding-right: 36px; }
-    .choice-card--style { padding: 14px 36px 14px 15px; }
+    .choice-card--category {
+      flex-direction: row;
+      align-items: center;
+      gap: 11px;
+      padding: 12px 34px 12px 13px;
+    }
+    .choice-card--style { padding: 12px 34px 12px 13px; }
+    .choice-card--timeline { padding: 12px 34px 12px 13px; }
     .choice-card__icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
       background: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem;
-      margin-bottom: 6px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
       transition: background-color 0.2s ease, border-color 0.2s ease;
     }
     .choice-card.is-selected .choice-card__icon {
@@ -666,13 +890,13 @@
     .choice-card__rec-badge {
       display: none;
       align-self: flex-start;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 800;
       letter-spacing: 0.015em;
       color: var(--accent-blue);
       background: var(--accent-blue-soft);
       border: 1px solid var(--accent-blue-subtle);
-      padding: 3px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       margin-bottom: 6px;
       max-width: calc(100% - 26px);
@@ -683,40 +907,40 @@
       background: #ffffff;
       border-color: rgba(0, 82, 255, 0.24);
     }
-    .choice-card__title { font-weight: 800; font-size: 0.94rem; line-height: 1.25; color: var(--text-primary); }
-    .choice-card__price { font-size: 1.32rem; font-weight: 800; color: var(--accent-blue); line-height: 1.15; }
-    .choice-card__meta { font-size: 0.75rem; color: var(--text-secondary); }
-    .choice-card--package { padding: 18px 16px; justify-content: flex-start; gap: 0; }
-    .choice-card--package .choice-card__title { font-size: 0.88rem; letter-spacing: 0.015em; text-transform: uppercase; padding-right: 26px; margin-bottom: 6px; }
-    .choice-card__price-row { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
-    .choice-card__billing { font-size: 0.74rem; font-weight: 600; color: var(--text-muted); }
-    .choice-card__desc { font-size: 0.76rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 11px; line-height: 1.35; }
-    .choice-card__features { list-style: none; border-top: 1px solid var(--border-subtle); padding-top: 11px; margin-top: 2px; display: flex; flex-direction: column; gap: 6px; }
+    .choice-card__title { font-weight: 800; font-size: 0.88rem; line-height: 1.25; color: var(--text-primary); overflow-wrap: anywhere; }
+    .choice-card__price { font-size: 1.26rem; font-weight: 800; color: var(--accent-blue); line-height: 1.15; }
+    .choice-card__meta { font-size: 0.74rem; color: var(--text-secondary); }
+    .choice-card--package { padding: 15px 13px; justify-content: flex-start; gap: 0; }
+    .choice-card--package .choice-card__title { font-size: 0.82rem; letter-spacing: 0.015em; text-transform: uppercase; padding-right: 26px; margin-bottom: 5px; }
+    .choice-card__price-row { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; margin-bottom: 3px; }
+    .choice-card__billing { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); }
+    .choice-card__desc { font-size: 0.74rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.35; }
+    .choice-card__features { list-style: none; border-top: 1px solid var(--border-subtle); padding-top: 10px; margin-top: 2px; display: flex; flex-direction: column; gap: 5px; }
     .choice-card.is-selected .choice-card__features { border-top-color: rgba(0, 82, 255, 0.16); }
-    .choice-card__feature-item { display: flex; align-items: flex-start; gap: 7px; font-size: 0.77rem; line-height: 1.38; color: var(--text-secondary); font-weight: 500; }
-    .choice-card__check { width: 15px; height: 15px; border-radius: 50%; background: var(--accent-blue-soft); color: var(--accent-blue); font-size: 0.6rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .choice-card__feature-item { display: flex; align-items: flex-start; gap: 6px; font-size: 0.74rem; line-height: 1.36; color: var(--text-secondary); font-weight: 500; }
+    .choice-card__check { width: 14px; height: 14px; border-radius: 50%; background: var(--accent-blue-soft); color: var(--accent-blue); font-size: 0.58rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
     .choice-card.is-selected .choice-card__check { background: #ffffff; }
-    .wizard-pkg-footnote { font-size: 0.73rem; color: var(--text-muted); line-height: 1.45; margin-top: 6px; }
-    .sections-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
-    .sections-counter { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; font-weight: 800; color: var(--accent-blue); background: var(--accent-blue-soft); border: 1px solid var(--accent-blue-subtle); padding: 4px 11px; border-radius: 999px; white-space: nowrap; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .wizard-pkg-footnote { font-size: 0.72rem; color: var(--text-muted); line-height: 1.45; margin-top: 8px; }
+    .sections-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+    .sections-counter { display: inline-flex; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 800; color: var(--accent-blue); background: var(--accent-blue-soft); border: 1px solid var(--accent-blue-subtle); padding: 4px 11px; border-radius: 999px; white-space: nowrap; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
     .sections-counter.is-at-limit { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
-    .sections-micro-notice { display: none; font-size: 0.8rem; font-weight: 600; line-height: 1.45; padding: 10px 13px; border-radius: 12px; margin-top: 8px; }
+    .sections-micro-notice { display: none; font-size: 0.79rem; font-weight: 600; line-height: 1.45; padding: 10px 13px; border-radius: 12px; margin-top: 8px; }
     .sections-micro-notice.is-visible { display: block; }
     .sections-micro-notice--limit { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
     .sections-micro-notice--downgrade { background: var(--accent-blue-soft); border: 1px solid var(--accent-blue-subtle); color: #1e40af; }
-    .choice-card input, .chip-option input, .yesno-btn input { position: absolute; opacity: 0; pointer-events: none; }
+    .choice-card input, .chip-option input { position: absolute; opacity: 0; pointer-events: none; }
     .chips-grid { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip-option {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 9px 15px;
-      min-height: 40px;
+      padding: 8px 14px;
+      min-height: 38px;
       max-width: 100%;
       overflow-wrap: anywhere;
       border: 1.5px solid var(--border-subtle);
       border-radius: 999px;
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       background: #ffffff;
@@ -739,7 +963,7 @@
     }
     .chip-option.is-disabled:hover { border-color: var(--border-subtle); transform: none; }
     .chip-option--custom { padding: 0 7px 0 0; gap: 4px; }
-    .chip-option__toggle { display: inline-flex; align-items: center; gap: 7px; padding: 9px 6px 9px 15px; min-height: 37px; cursor: pointer; min-width: 0; overflow-wrap: anywhere; }
+    .chip-option__toggle { display: inline-flex; align-items: center; gap: 7px; padding: 8px 6px 8px 14px; min-height: 35px; cursor: pointer; min-width: 0; overflow-wrap: anywhere; }
     .chip-option.is-disabled .chip-option__toggle { cursor: not-allowed; }
     .chip-remove-btn { width: 24px; height: 24px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.22); color: inherit; font-size: 0.95rem; font-weight: 800; line-height: 1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: background-color 0.15s ease, transform 0.15s ease; }
     .chip-option:not(.is-selected) .chip-remove-btn { background: var(--bg-tertiary); color: var(--text-secondary); }
@@ -748,76 +972,287 @@
     .chip-remove-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; }
     .custom-features-grid { margin-top: 8px; }
     .custom-features-grid[hidden] { display: none; }
-    .extra-sections-toggle { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; padding: 7px 14px; border-radius: 999px; border: 1.5px dashed var(--border-strong); background: var(--bg-secondary); color: var(--accent-blue); font-size: 0.81rem; font-weight: 700; cursor: pointer; transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease; }
+    .extra-sections-toggle { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; padding: 7px 14px; border-radius: 999px; border: 1.5px dashed var(--border-strong); background: var(--bg-secondary); color: var(--accent-blue); font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease; }
     .extra-sections-toggle:hover { border-color: var(--accent-blue); background: var(--accent-blue-soft); transform: translateY(-1px); }
     .extra-sections-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
     .extra-sections-toggle__icon { font-size: 0.95rem; font-weight: 800; line-height: 1; }
-    .extra-sections-panel { margin-top: 10px; padding: 14px; border-radius: 16px; background: var(--bg-secondary); border: 1px solid var(--border-subtle); }
+    .extra-sections-panel { margin-top: 10px; padding: 13px; border-radius: 16px; background: var(--bg-secondary); border: 1px solid var(--border-subtle); }
     .extra-sections-panel[hidden] { display: none; }
-    .extra-sections-panel__hint { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; }
+    .extra-sections-panel__hint { font-size: 0.74rem; font-weight: 600; color: var(--text-muted); margin-bottom: 9px; }
     .custom-section-wrap { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-subtle); display: flex; flex-direction: column; gap: 6px; }
-    .custom-section-label { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); }
+    .custom-section-label { font-size: 0.79rem; font-weight: 700; color: var(--text-secondary); }
     .custom-section-bar { display: flex; align-items: stretch; gap: 8px; min-width: 0; }
-    .custom-section-input { flex: 1 1 0; min-width: 0; padding: 10px 14px; font-size: 0.88rem; }
+    .custom-section-input { flex: 1 1 0; min-width: 0; padding: 10px 13px; font-size: 0.88rem; }
     .custom-section-input:disabled { background: var(--bg-secondary); color: var(--text-muted); cursor: not-allowed; opacity: 0.65; }
-    .custom-section-btn { flex-shrink: 0; border-radius: 12px; padding: 0 15px; min-height: 44px; min-width: 44px; font-size: 0.85rem; font-weight: 700; }
+    .custom-section-btn { flex-shrink: 0; border-radius: 12px; padding: 0 14px; min-height: 44px; min-width: 44px; font-size: 0.84rem; font-weight: 700; }
     .custom-section-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; pointer-events: none; }
     .color-swatch { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); flex-shrink: 0; }
-    .yesno-group { display: flex; gap: 8px; }
-    .yesno-btn { flex: 1; padding: 10px 14px; border: 1.5px solid var(--border-subtle); border-radius: 12px; font-size: 0.86rem; font-weight: 700; text-align: center; cursor: pointer; background: #fff; transition: all 0.2s ease; }
-    .yesno-btn.is-selected { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); }
-    .choice-card:has(input:focus-visible), .chip-option:has(input:focus-visible), .yesno-btn:has(input:focus-visible) {
+    .choice-card:has(input:focus-visible), .chip-option:has(input:focus-visible) {
       outline: 2px solid var(--accent-blue);
       outline-offset: 2px;
     }
-    .summary-box { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 16px; }
-    .summary-box__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle); }
-    .summary-box__title { font-weight: 800; font-size: 0.9rem; }
-    .summary-blocks { display: flex; flex-direction: column; gap: 10px; }
-    .summary-block { background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 14px; padding: 12px 14px; }
-    .summary-block__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border-subtle); }
-    .summary-block__title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
-    .summary-edit-btn { font-size: 0.78rem; padding: 2px 6px; flex-shrink: 0; }
-    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; font-size: 0.83rem; }
-    .summary-item-label { color: var(--text-muted); font-weight: 600; display: block; }
-    .summary-item-val { font-weight: 700; overflow-wrap: anywhere; }
-    .step4-contact-box {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border-subtle);
-    }
-    .step4-contact-heading {
-      font-size: 0.96rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 12px;
-    }
-    .privacy-consent-box { display: flex; align-items: flex-start; gap: 10px; padding: 13px 14px; border: 1.5px solid var(--border-subtle); border-radius: 12px; background: #ffffff; }
+    .privacy-consent-box { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1.5px solid var(--border-subtle); border-radius: 12px; background: #ffffff; }
+    .privacy-consent-box input { margin-top: 3px; flex-shrink: 0; }
     .privacy-link-btn { color: var(--accent-blue); text-decoration: underline; font-weight: 700; background: none; border: none; cursor: pointer; }
     .hp-field-wrap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-    .wizard-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 22px; margin-top: 22px; border-top: 1px solid var(--border-subtle); gap: 12px; }
-    .wizard-footer .btn { border-radius: 14px; min-height: 46px; }
+    .stage-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      margin-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+      gap: 10px;
+    }
+    .stage-footer .btn { border-radius: 14px; min-height: 45px; }
     .wizard-reassurance {
       display: none;
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       font-weight: 600;
       color: var(--text-muted);
-      margin-top: 12px;
+      margin-top: 11px;
       line-height: 1.45;
     }
     .wizard-reassurance.is-visible { display: block; }
-    .wizard-alert { padding: 11px 15px; border-radius: 14px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; display: none; line-height: 1.4; }
+    .wizard-alert { padding: 10px 14px; border-radius: 13px; font-size: 0.83rem; font-weight: 600; margin-bottom: 14px; display: none; line-height: 1.4; }
     .wizard-alert.is-visible { display: block; }
-    .wizard-alert--info { background: var(--accent-blue-soft); color: var(--accent-blue); border: 1px solid var(--accent-blue-subtle); }
-    .wizard-alert--info.is-visible { display: flex; align-items: center; gap: 9px; }
-    .wizard-alert__badge { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-blue); color: #ffffff; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .wizard-alert--error { background: var(--status-error-bg); color: var(--status-error); border: 1px solid #fecaca; }
-    .wizard-confirmation { display: none; text-align: center; padding: 32px 16px; }
-    .wizard-confirmation.is-visible { display: block; }
-    .confirmation-icon { width: 60px; height: 60px; border-radius: 50%; background: var(--status-success-bg); color: var(--status-success); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 1.5rem; font-weight: 800; }
-    .confirmation-title { font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; }
-    .confirmation-text { font-size: 0.98rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 20px; }
+
+    /* COLONNA DESTRA: SCHEDA PROGETTO LIVE (DARK NAVY) */
+    .project-sheet-col {
+      background: #f8fafc;
+      border-left: 1px solid var(--border-subtle);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .project-sheet {
+      background: linear-gradient(165deg, #0a0f1d 0%, #101b36 58%, #0c1428 100%);
+      color: #f8fafc;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: 0 18px 40px -16px rgba(10, 15, 29, 0.45);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .sheet-mobile-toggle {
+      display: none;
+      width: 100%;
+      padding: 14px 16px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .sheet-mobile-toggle__left {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .sheet-mobile-toggle__chevron {
+      font-size: 0.9rem;
+      color: #93c5fd;
+      transition: transform 0.22s ease;
+      flex-shrink: 0;
+    }
+    .project-sheet.is-mobile-open .sheet-mobile-toggle__chevron {
+      transform: rotate(180deg);
+    }
+    .sheet-desktop-header {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .sheet-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.015em;
+    }
+    .sheet-status {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-top: 2px;
+    }
+    .sheet-count-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #bfdbfe;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(96, 165, 250, 0.32);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .sheet-count-badge.is-ready {
+      color: #bbf7d0;
+      background: rgba(34, 197, 94, 0.2);
+      border-color: rgba(74, 222, 128, 0.35);
+    }
+    .project-sheet-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      flex: 1;
+    }
+    .sheet-item {
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(148, 163, 184, 0.13);
+      border-radius: 13px;
+      padding: 10px 12px;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .sheet-item.is-current {
+      border-color: rgba(59, 130, 246, 0.65);
+      background: rgba(0, 82, 255, 0.14);
+    }
+    .sheet-item.is-filled {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(148, 163, 184, 0.22);
+    }
+    .sheet-item__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .sheet-item__label {
+      font-size: 0.69rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.055em;
+      color: #94a3b8;
+    }
+    .sheet-item.is-current .sheet-item__label { color: #93c5fd; }
+    .sheet-edit-btn {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.16);
+      border: 1px solid rgba(96, 165, 250, 0.28);
+      border-radius: 999px;
+      padding: 2px 9px;
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+      flex-shrink: 0;
+    }
+    .sheet-edit-btn:hover {
+      background: #0052ff;
+      color: #ffffff;
+      border-color: #3b82f6;
+    }
+    .sheet-edit-btn:focus-visible {
+      outline: 2px solid #93c5fd;
+      outline-offset: 2px;
+    }
+    .sheet-item__value {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #f8fafc;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    .sheet-item__placeholder {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #94a3b8;
+      font-style: italic;
+    }
+    .sheet-item__sub {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-top: 2px;
+      overflow-wrap: anywhere;
+    }
+    .sheet-pkg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.66rem;
+      font-weight: 800;
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.16);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      padding: 1px 7px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .sheet-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 5px;
+    }
+    .sheet-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 2px 8px;
+      border-radius: 999px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+    .sheet-total-bar {
+      margin-top: auto;
+      padding: 12px 14px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, rgba(0, 82, 255, 0.24) 0%, rgba(14, 165, 233, 0.16) 100%);
+      border: 1px solid rgba(96, 165, 250, 0.32);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .sheet-total-bar[hidden] {
+      display: none;
+    }
+    .sheet-total-bar__label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #bfdbfe;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sheet-total-bar__price {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    /* SCHERMATA CONFERMA POST-INVIO */
+    .wizard-confirmation { display: none; text-align: center; padding: 42px 24px; }
+    .wizard-confirmation.is-visible { display: block; animation: fadeStep 0.3s ease; }
+    .confirmation-icon { width: 62px; height: 62px; border-radius: 50%; background: var(--status-success-bg); color: var(--status-success); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 1.55rem; font-weight: 800; }
+    .confirmation-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+    .confirmation-text { font-size: 0.98rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 22px; }
     .confirmation-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
     .confirmation-actions .btn { border-radius: 14px; min-height: 46px; }
 
@@ -1025,11 +1460,18 @@
     /* MODALI */
     .modal-backdrop { position: fixed; inset: 0; z-index: 200; background: rgba(10, 15, 29, 0.6); display: none; align-items: center; justify-content: center; padding: 20px; }
     .modal-backdrop.is-open { display: flex; }
-    .modal-dialog { background: #fff; border-radius: 16px; max-width: 580px; width: 100%; overflow: hidden; }
-    .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; }
-    .modal-title { font-weight: 800; font-size: 1rem; }
-    .modal-close-btn { width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--border-subtle); background: var(--bg-secondary); cursor: pointer; }
-    .modal-content { padding: 20px; font-size: 0.88rem; color: var(--text-secondary); }
+    .modal-dialog { background: #fff; border-radius: 16px; max-width: 600px; width: 100%; overflow: hidden; box-shadow: 0 24px 56px -12px rgba(10, 15, 29, 0.32); }
+    .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .modal-title { font-weight: 800; font-size: 1rem; color: var(--text-primary); }
+    .modal-close-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border-subtle); background: var(--bg-secondary); cursor: pointer; flex-shrink: 0; font-weight: 700; color: var(--text-primary); }
+    .modal-close-btn:hover { background: var(--bg-tertiary); }
+    .modal-content { padding: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; max-height: 75vh; overflow-y: auto; }
+    .modal-content h4 { font-size: 0.9rem; font-weight: 800; color: var(--text-primary); margin: 15px 0 6px; }
+    .modal-content h4:first-child { margin-top: 0; }
+    .modal-content p { margin-bottom: 10px; }
+    .modal-content ul { padding-left: 18px; margin-bottom: 11px; display: flex; flex-direction: column; gap: 6px; }
+    .modal-content p:last-child, .modal-content ul:last-child { margin-bottom: 0; }
+    .modal-content a { color: var(--accent-blue); text-decoration: underline; font-weight: 600; }
 
     /* PULSANTE WHATSAPP FLOTTANTE */
     .whatsapp-float {
@@ -1065,17 +1507,30 @@
       flex-shrink: 0;
     }
 
+    @media (max-width: 1080px) {
+      .choice-cards-grid--packages { grid-template-columns: 1fr; }
+    }
     @media (max-width: 900px) {
       .hero__grid, .pricing-grid, .steps-strip__grid, .team-grid, .reviews-grid { grid-template-columns: 1fr; }
       .pricing-card--featured { transform: none; }
       .pricing-card--featured:hover { transform: translateY(-5px); }
       .nav-links, .nav-actions .btn { display: none; }
       .mobile-menu-toggle { display: inline-flex; }
-      .wizard-steps-indicator { grid-template-columns: 1fr 1fr; }
-      .form-grid, .choice-cards-grid, .summary-grid { grid-template-columns: 1fr; }
+      .configurator-layout { grid-template-columns: 1fr; }
+      .project-sheet-col {
+        order: -1;
+        border-left: none;
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 12px;
+      }
+      .sheet-desktop-header { display: none; }
+      .sheet-mobile-toggle { display: flex; }
+      .project-sheet-body { display: none; border-top: 1px solid rgba(148, 163, 184, 0.14); }
+      .project-sheet.is-mobile-open .project-sheet-body { display: flex; }
+      .form-grid, .choice-cards-grid, .choice-cards-grid--timeline { grid-template-columns: 1fr; }
       .choice-cards-grid--categories { grid-template-columns: 1fr 1fr; }
-      .wizard-footer { flex-direction: column-reverse; align-items: stretch; }
-      .wizard-footer .btn { width: 100%; }
+      .stage-footer { flex-direction: column-reverse; align-items: stretch; }
+      .stage-footer .btn { width: 100%; }
       .confirmation-actions { flex-direction: column; align-items: stretch; }
       .confirmation-actions .btn { width: 100%; }
       .consultation-box { flex-direction: column; align-items: stretch; text-align: center; padding: 18px; }
@@ -1090,15 +1545,23 @@
       .mockup-cards-grid { grid-template-columns: 1fr; }
       .pricing-card { padding: 24px 18px; }
       .pricing-card .btn { padding: 12px 16px; }
-      .wizard-header { padding: 18px 16px 16px; }
-      .wizard-body { padding: 22px 16px 20px; }
+      .chat-header { padding: 15px 14px 13px; }
+      .chat-messages { padding: 14px; max-height: 240px; }
+      .chat-msg { max-width: 94%; }
+      .chat-stage { padding: 16px 14px 18px; }
+      .project-sheet-col { padding: 10px; }
+      .sheet-mobile-toggle { padding: 12px 13px; font-size: 0.82rem; }
+      .project-sheet-body { padding: 12px; }
       .choice-cards-grid--categories { grid-template-columns: 1fr; }
-      .choice-card--package { padding: 16px 14px; }
-      .sections-counter { font-size: 0.73rem; padding: 4px 10px; }
-      .extra-sections-panel { padding: 12px; }
+      .choice-card--package { padding: 14px 13px; }
+      .sections-counter { font-size: 0.72rem; padding: 4px 10px; }
+      .extra-sections-panel { padding: 11px; }
       .custom-section-btn { padding: 0 13px; }
-      .wizard-footer .btn { white-space: normal; text-align: center; padding: 12px 16px; }
+      .stage-footer .btn { white-space: normal; text-align: center; padding: 12px 15px; }
       .btn--lg { padding: 12px 18px; font-size: 0.92rem; }
+      .modal-backdrop { padding: 12px; }
+      .modal-header { padding: 14px 16px; }
+      .modal-content { padding: 16px; font-size: 0.84rem; }
     }
     @media (max-width: 420px) {
       .custom-section-btn__label { display: none; }
@@ -1284,7 +1747,7 @@
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Ottimizzazione smartphone e tablet</span></li>
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Modulo contatti</span></li>
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Collegamento WhatsApp</span></li>
-                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Pubblicazione online</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Pubblicazione online*</span></li>
               </ul>
             </div>
             <button type="button" class="btn btn--dark btn--full" data-select-package="vetrina">
@@ -1324,7 +1787,7 @@
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Tutto quello incluso nel pacchetto Plus</span></li>
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Sito web completamente personalizzato</span></li>
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Fino a 12 sezioni</span></li>
-                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Manutenzioni e aggiornamenti inclusi per 12 mesi*</span></li>
+                <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Supporto post-pubblicazione e aggiornamenti concordati*</span></li>
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Supporto prioritario</span></li>
                 <li class="pricing-feature-item"><span class="pricing-check">✓</span><span>Aggiornamenti e modifiche ai contenuti</span></li>
               </ul>
@@ -1334,8 +1797,8 @@
             </button>
           </article>
         </div>
-        <p style="text-align:center; font-size:0.78rem; color:var(--text-muted); max-width:740px; margin:0 auto;">
-          *Prezzi <strong>una tantum</strong> (dominio, hosting e servizi esterni da concordare separatamente). Per il Pacchetto Completo le manutenzioni sono soggette a una politica di utilizzo concordata e non comprendono nuove funzionalità o la ricostruzione del sito.
+        <p style="text-align:center; font-size:0.78rem; color:var(--text-muted); max-width:760px; margin:0 auto;">
+          *Importi indicativi — dettagli fiscali e preventivo definitivo concordati prima dell’avvio (dominio, hosting e servizi esterni esclusi). Per il Pacchetto Completo il supporto post-pubblicazione e gli aggiornamenti concordati seguono condizioni definite prima dell’avvio e non comprendono nuove funzionalità o la ricostruzione del sito.
         </p>
       </div>
     </section>
@@ -1352,48 +1815,72 @@
       </div>
     </section>
 
-    <!-- 3. IL MODULO DA COMPILARE -->
+    <!-- 3. CONFIGURATORE CONVERSAZIONALE GUIDATO -->
     <section class="section section--alt" id="richiedi-sito">
       <div class="container">
         <div class="section-header--center reveal">
           <span class="section-eyebrow">Preventivo &amp; Configurazione</span>
           <h2 class="section-title">Richiedi il tuo sito personalizzato</h2>
-          <p class="section-subtitle">Compila i 4 brevi passaggi: la tua richiesta arriverà direttamente al team di <strong>MGD Studio</strong>.</p>
+          <p class="section-subtitle">Rispondi a 7 brevi domande guidate: la tua scheda progetto si compila dal vivo e arriva direttamente al team di <strong>MGD Studio</strong>.</p>
         </div>
 
-        <div class="wizard-wrapper reveal">
-          <div class="wizard-header">
-            <div class="wizard-progress-top">
-              <span id="wizard-progress-label">Step 1 di 4 · ~1 minuto</span>
-              <span class="wizard-progress-pct" id="wizard-progress-pct">25%</span>
-            </div>
-            <div class="wizard-progress-track" id="wizard-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" aria-label="Avanzamento modulo preventivo">
-              <div class="wizard-progress-fill" id="wizard-progress-fill"></div>
-            </div>
-            <div class="wizard-steps-indicator">
-              <button type="button" class="step-pill is-active" data-step-indicator="1"><span class="step-pill__num">1</span><span>Attività</span></button>
-              <button type="button" class="step-pill" data-step-indicator="2"><span class="step-pill__num">2</span><span>Pacchetto</span></button>
-              <button type="button" class="step-pill" data-step-indicator="3"><span class="step-pill__num">3</span><span>Stile</span></button>
-              <button type="button" class="step-pill" data-step-indicator="4"><span class="step-pill__num">4</span><span>Contatti</span></button>
-            </div>
-          </div>
-
-          <div class="wizard-body">
-            <div class="wizard-alert wizard-alert--info" id="wizard-package-banner" role="status" aria-live="polite"></div>
-            <div class="wizard-alert wizard-alert--error" id="wizard-error-banner" role="alert"></div>
-
-            <form id="quote-multi-step-form" novalidate>
-              <div class="hp-field-wrap" aria-hidden="true">
-                <input type="text" id="input-honey" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="configurator-shell reveal">
+          <div class="configurator-layout" id="configurator-layout">
+            <!-- COLONNA SINISTRA: CHAT GUIDATA -->
+            <div class="chat-column">
+              <div class="chat-header">
+                <div class="chat-header__top">
+                  <div class="chat-identity">
+                    <div class="chat-avatar" aria-hidden="true">
+                      MGD
+                      <span class="chat-avatar__dot"></span>
+                    </div>
+                    <div class="chat-identity__text">
+                      <div class="chat-identity__title">Assistente MGD Studio</div>
+                      <div class="chat-identity__status">
+                        <span class="chat-status-pulse" aria-hidden="true"></span>
+                        <span>Online ora</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chat-header__controls">
+                    <span class="chat-step-pill" id="chat-step-pill">Step 1 di 7</span>
+                    <button type="button" class="chat-reset-btn" id="btn-reset-wizard" data-reset-wizard aria-label="Ricomincia configurazione">
+                      <span aria-hidden="true">↺</span>
+                      <span>Ricomincia</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="wizard-progress-track" id="wizard-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="14" aria-label="Avanzamento configuratore preventivo">
+                  <div class="wizard-progress-fill" id="wizard-progress-fill"></div>
+                </div>
               </div>
 
-              <!-- PASSAGGIO 1: LA TUA ATTIVITÀ (ZERO ATTRITO) -->
-              <div class="wizard-step-pane is-active" data-step-pane="1">
-                <h3 class="step-heading">1. Parlaci della tua attività</h3>
-                <p class="step-intro">Nessun dato personale richiesto ora: scegli la tua categoria per personalizzare le funzionalità.</p>
-                <div class="form-grid">
-                  <div class="form-group form-group--full">
-                    <span class="form-label">Categoria attività <span class="form-required">*</span></span>
+              <!-- AREA MESSAGGI CONVERSAZIONE -->
+              <div class="chat-messages" id="chat-messages" aria-live="polite">
+                <div class="chat-msg chat-msg--bot">
+                  <span class="chat-bubble__meta">Assistente MGD Studio</span>
+                  <div class="chat-bubble">Ciao! 👋 Ti guido passo passo nella creazione della tua proposta su misura in meno di 1 minuto. <strong>Di che tipo di attività si tratta?</strong></div>
+                </div>
+              </div>
+
+              <!-- AREA INTERATTIVA DOMANDA CORRENTE -->
+              <div class="chat-stage">
+                <div class="chat-editing-banner" id="chat-editing-banner" role="status" aria-live="polite">
+                  <span id="chat-editing-text">Stai modificando una risposta · Le altre restano salvate</span>
+                  <button type="button" class="chat-editing-return-btn" id="btn-return-from-edit">Torna avanti →</button>
+                </div>
+
+                <div class="wizard-alert wizard-alert--error" id="wizard-error-banner" role="alert"></div>
+
+                <form id="quote-multi-step-form" novalidate>
+                  <div class="hp-field-wrap" aria-hidden="true">
+                    <input type="text" id="input-honey" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                  </div>
+
+                  <!-- STEP 1: CATEGORIA ATTIVITÀ (1 CLIC) -->
+                  <div class="wizard-step-pane is-active" data-step-pane="1">
+                    <span class="stage-label-hint">Tocca una categoria per iniziare</span>
                     <div class="choice-cards-grid choice-cards-grid--categories">
                       <label class="choice-card choice-card--category" data-category-card="Ristorante / Pizzeria / Bar">
                         <input type="radio" name="businessType" value="Ristorante / Pizzeria / Bar" />
@@ -1424,27 +1911,26 @@
                     <span class="field-error-msg" id="err-business-type"></span>
                   </div>
 
-                  <div class="form-group">
-                    <label class="form-label" for="input-business-name">Nome dell’attività <span class="form-required">*</span></label>
-                    <input type="text" id="input-business-name" class="form-input" placeholder="Es. Bar Centrale" required />
-                    <span class="field-error-msg" id="err-business-name"></span>
+                  <!-- STEP 2: NOME ATTIVITÀ E CITTÀ -->
+                  <div class="wizard-step-pane" data-step-pane="2">
+                    <div class="form-grid">
+                      <div class="form-group">
+                        <label class="form-label" for="input-business-name">Nome dell’attività <span class="form-required">*</span></label>
+                        <input type="text" id="input-business-name" class="form-input" placeholder="Es. Trattoria Da Mario" required />
+                        <span class="field-error-msg" id="err-business-name"></span>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" for="input-business-address">Città / Indirizzo <span class="form-hint">(opzionale)</span></label>
+                        <input type="text" id="input-business-address" class="form-input" placeholder="Es. Via Roma 15, Piacenza" />
+                        <span class="field-error-msg" id="err-business-address"></span>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label class="form-label" for="input-business-address">Città / Indirizzo <span class="form-hint">(opzionale)</span></label>
-                    <input type="text" id="input-business-address" class="form-input" placeholder="Es. Via Roma 15, Piacenza" />
-                    <span class="field-error-msg" id="err-business-address"></span>
-                  </div>
-                </div>
-              </div>
 
-              <!-- PASSAGGIO 2: PACCHETTO + FUNZIONALITÀ SMART -->
-              <div class="wizard-step-pane" data-step-pane="2">
-                <h3 class="step-heading">2. Pacchetto e funzionalità</h3>
-                <p class="step-intro">Prezzi chiari una tantum: seleziona il pacchetto e le sezioni che ti servono davvero.</p>
-                <div class="form-grid">
-                  <div class="form-group form-group--full">
-                    <span class="form-label">Scegli il pacchetto <span class="form-required">*</span></span>
-                    <div class="choice-cards-grid">
+                  <!-- STEP 3: SCELTA PACCHETTO (CARD COMPLETE) -->
+                  <div class="wizard-step-pane" data-step-pane="3">
+                    <span class="stage-label-hint">Scegli il pacchetto una tantum più adatto</span>
+                    <div class="choice-cards-grid choice-cards-grid--packages">
                       <label class="choice-card choice-card--package" data-package-card="vetrina">
                         <input type="radio" name="selectedPackage" value="vetrina" />
                         <span class="choice-card__rec-badge" data-rec-badge></span>
@@ -1461,7 +1947,7 @@
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Ottimizzazione smartphone e tablet</span></span>
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Modulo contatti</span></span>
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Collegamento WhatsApp</span></span>
-                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Pubblicazione online</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Pubblicazione online*</span></span>
                         </span>
                       </label>
                       <label class="choice-card choice-card--package is-selected is-recommended" data-package-card="plus">
@@ -1489,239 +1975,272 @@
                           <span class="choice-card__price">600€</span>
                           <span class="choice-card__billing">una tantum</span>
                         </span>
-                        <span class="choice-card__desc">Su misura con assistenza 12 mesi · Fino a 12 sezioni</span>
+                        <span class="choice-card__desc">Su misura con supporto prioritario · Fino a 12 sezioni</span>
                         <span class="choice-card__features" role="list">
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Tutto quello incluso nel pacchetto Plus</span></span>
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Sito web completamente personalizzato</span></span>
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Fino a 12 sezioni</span></span>
-                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Manutenzioni e aggiornamenti inclusi per 12 mesi*</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Supporto post-pubblicazione e aggiornamenti concordati*</span></span>
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Supporto prioritario</span></span>
                           <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Aggiornamenti e modifiche ai contenuti</span></span>
                         </span>
                       </label>
                     </div>
-                    <p class="wizard-pkg-footnote">*Prezzi una tantum (dominio, hosting e servizi esterni da concordare separatamente). Manutenzioni soggette a politica di utilizzo concordata.</p>
+                    <p class="wizard-pkg-footnote">*Importi indicativi — dettagli fiscali e preventivo definitivo concordati prima dell’avvio (dominio, hosting e servizi esterni esclusi). Supporto post-pubblicazione soggetto a condizioni concordate.</p>
                   </div>
 
-                  <div class="form-group form-group--full">
-                    <div class="sections-header">
-                      <span class="form-label" id="dynamic-features-label">Funzionalità e sezioni consigliate <span class="form-required">*</span></span>
-                      <span class="sections-counter" id="sections-counter" aria-live="polite">Sezioni selezionate: 3 / 8</span>
-                    </div>
-                    <div class="chips-grid" id="dynamic-features-grid">
-                      <label class="chip-option is-selected" data-section-chip="Chi siamo"><input type="checkbox" name="sections" value="Chi siamo" checked /><span>Chi siamo</span></label>
-                      <label class="chip-option is-selected" data-section-chip="Servizi"><input type="checkbox" name="sections" value="Servizi" checked /><span>Servizi</span></label>
-                      <label class="chip-option" data-section-chip="Galleria foto"><input type="checkbox" name="sections" value="Galleria foto" /><span>Galleria foto</span></label>
-                      <label class="chip-option" data-section-chip="Listino/Catalogo"><input type="checkbox" name="sections" value="Listino/Catalogo" /><span>Listino/Catalogo</span></label>
-                      <label class="chip-option is-selected" data-section-chip="Contatti e mappa"><input type="checkbox" name="sections" value="Contatti e mappa" checked /><span>Contatti e mappa</span></label>
-                      <label class="chip-option" data-section-chip="FAQ"><input type="checkbox" name="sections" value="FAQ" /><span>FAQ</span></label>
-                    </div>
-                    <div class="chips-grid custom-features-grid" id="custom-features-grid" hidden></div>
-
-                    <div class="sections-micro-notice sections-micro-notice--downgrade" id="sections-downgrade-notice" role="status" aria-live="polite"></div>
-                    <div class="sections-micro-notice sections-micro-notice--limit" id="sections-limit-notice" role="status" aria-live="polite"></div>
-
-                    <button type="button" class="extra-sections-toggle" id="btn-toggle-extra-sections" aria-expanded="false" aria-controls="extra-sections-panel">
-                      <span class="extra-sections-toggle__icon" id="extra-sections-toggle-icon" aria-hidden="true">+</span>
-                      <span id="extra-sections-toggle-text">Mostra altre sezioni</span>
-                    </button>
-                    <div class="extra-sections-panel" id="extra-sections-panel" hidden>
-                      <p class="extra-sections-panel__hint">Sezioni extra universali compatibili con ogni attività:</p>
-                      <div class="chips-grid" id="extra-features-grid"></div>
-                    </div>
-
-                    <div class="custom-section-wrap">
-                      <label class="custom-section-label" for="input-custom-section">+ Aggiungi sezione personalizzata</label>
-                      <div class="custom-section-bar" id="custom-section-bar">
-                        <input
-                          type="text"
-                          id="input-custom-section"
-                          class="form-input custom-section-input"
-                          maxlength="48"
-                          placeholder="Es. Area clienti, Booking, Portfolio..."
-                          autocomplete="off"
-                        />
-                        <button type="button" id="btn-add-custom-section" class="btn btn--secondary custom-section-btn" aria-label="Aggiungi sezione personalizzata">
-                          +<span class="custom-section-btn__label"> Aggiungi</span>
-                        </button>
-                      </div>
-                      <span class="field-error-msg" id="err-custom-section"></span>
-                    </div>
-
-                    <span class="field-error-msg" id="err-sections"></span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- PASSAGGIO 3: STILE E RIFERIMENTI -->
-              <div class="wizard-step-pane" data-step-pane="3">
-                <h3 class="step-heading">3. Stile e riferimenti</h3>
-                <p class="step-intro">Indicaci l’estetica che preferisci, eventuali link utili e le tempistiche ideali.</p>
-                <div class="form-grid">
-                  <div class="form-group form-group--full">
-                    <span class="form-label">Stile visivo desiderato <span class="form-required">*</span></span>
-                    <div class="choice-cards-grid choice-cards-grid--styles">
-                      <label class="choice-card choice-card--style is-selected" data-style-card="Moderno">
-                        <input type="radio" name="style" value="Moderno" checked />
-                        <span class="choice-card__title">Moderno</span>
-                      </label>
-                      <label class="choice-card choice-card--style" data-style-card="Elegante">
-                        <input type="radio" name="style" value="Elegante" />
-                        <span class="choice-card__title">Elegante</span>
-                      </label>
-                      <label class="choice-card choice-card--style" data-style-card="Minimal">
-                        <input type="radio" name="style" value="Minimal" />
-                        <span class="choice-card__title">Minimal</span>
-                      </label>
-                      <label class="choice-card choice-card--style" data-style-card="Creativo">
-                        <input type="radio" name="style" value="Creativo" />
-                        <span class="choice-card__title">Creativo</span>
-                      </label>
-                      <label class="choice-card choice-card--style" data-style-card="Classico">
-                        <input type="radio" name="style" value="Classico" />
-                        <span class="choice-card__title">Classico</span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="form-group form-group--full">
-                    <span class="form-label">Colori principali <span class="form-hint">(anche più di uno)</span></span>
-                    <div class="chips-grid">
-                      <label class="chip-option" data-color-chip="Blu Elettrico">
-                        <input type="checkbox" name="colors" value="Blu Elettrico" />
-                        <span class="color-swatch" style="background:#0052ff"></span>
-                        <span>Blu Elettrico</span>
-                      </label>
-                      <label class="chip-option" data-color-chip="Nero">
-                        <input type="checkbox" name="colors" value="Nero" />
-                        <span class="color-swatch" style="background:#0a0f1d"></span>
-                        <span>Nero</span>
-                      </label>
-                      <label class="chip-option" data-color-chip="Bianco / Grigio">
-                        <input type="checkbox" name="colors" value="Bianco / Grigio" />
-                        <span class="color-swatch" style="background:#e2e8f0"></span>
-                        <span>Bianco / Grigio</span>
-                      </label>
-                      <label class="chip-option" data-color-chip="Oro">
-                        <input type="checkbox" name="colors" value="Oro" />
-                        <span class="color-swatch" style="background:#d4af37"></span>
-                        <span>Oro</span>
-                      </label>
-                      <label class="chip-option" data-color-chip="Verde">
-                        <input type="checkbox" name="colors" value="Verde" />
-                        <span class="color-swatch" style="background:#15803d"></span>
-                        <span>Verde</span>
-                      </label>
-                      <label class="chip-option" data-color-chip="Rosso / Bordeaux">
-                        <input type="checkbox" name="colors" value="Rosso / Bordeaux" />
-                        <span class="color-swatch" style="background:#b91c1c"></span>
-                        <span>Rosso</span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="form-label" for="select-timeline">Quando vorresti il sito pronto? <span class="form-required">*</span></label>
-                    <select id="select-timeline" class="form-select" required>
-                      <option value="">Seleziona...</option>
-                      <option value="Il prima possibile (1-2 settimane)">Il prima possibile (1-2 settimane)</option>
-                      <option value="Entro 3-4 settimane">Entro 3-4 settimane</option>
-                      <option value="Entro 1-2 mesi">Entro 1-2 mesi</option>
-                      <option value="Non ho fretta">Non ho fretta</option>
-                    </select>
-                    <span class="field-error-msg" id="err-timeline"></span>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="form-label" for="input-social-or-site-link">Link sito attuale, Instagram o Google Maps <span class="form-hint">(opzionale)</span></label>
-                    <input type="text" id="input-social-or-site-link" name="social_or_site_link" class="form-input" placeholder="es. instagram.com/tuaattivita o sito attuale" />
-                  </div>
-
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="textarea-description">Descrivi brevemente come immagini il tuo sito <span class="form-required">*</span></label>
-                    <textarea id="textarea-description" class="form-textarea" placeholder="Raccontaci la tua idea, i punti di forza del tuo locale o cosa vuoi mettere in evidenza..."></textarea>
-                    <span class="field-error-msg" id="err-description"></span>
-                  </div>
-
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="textarea-additional-notes">Altre note o siti di riferimento <span class="form-hint">(opzionale)</span></label>
-                    <textarea id="textarea-additional-notes" class="form-textarea" style="min-height:68px;" placeholder="Eventuali richieste particolari o siti che ti piacciono..."></textarea>
-                  </div>
-                </div>
-              </div>
-
-              <!-- PASSAGGIO 4: RIEPILOGO + DATI DI CONTATTO -->
-              <div class="wizard-step-pane" data-step-pane="4">
-                <h3 class="step-heading">4. Riepilogo e contatti</h3>
-                <p class="step-intro">Controlla le tue scelte e lasciaci i recapiti per ricevere la proposta gratuita.</p>
-                <div class="form-grid">
-                  <div class="form-group form-group--full">
-                    <div class="summary-box">
-                      <div class="summary-box__header">
-                        <span class="summary-box__title">Riepilogo richiesta</span>
-                      </div>
-                      <div class="summary-blocks" id="quote-summary-content"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="step4-contact-box">
-                  <h4 class="step4-contact-heading">Dove ti inviamo la proposta gratuita?</h4>
-                  <div class="form-grid">
-                    <div class="form-group form-group--full">
-                      <label class="form-label" for="input-full-name">Nome e Cognome <span class="form-required">*</span></label>
-                      <input type="text" id="input-full-name" class="form-input" placeholder="Es. Marco Rossi" required />
-                      <span class="field-error-msg" id="err-full-name"></span>
-                    </div>
+                  <!-- STEP 4: SEZIONI E FUNZIONALITÀ (SMART + LIMITE DINAMICO) -->
+                  <div class="wizard-step-pane" data-step-pane="4">
                     <div class="form-group">
-                      <label class="form-label" for="input-phone">Telefono / WhatsApp <span class="form-required">*</span></label>
-                      <input type="tel" id="input-phone" class="form-input" placeholder="Es. 333 123 4567" required />
-                      <span class="field-error-msg" id="err-phone"></span>
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label" for="input-email">Email <span class="form-required">*</span></label>
-                      <input type="email" id="input-email" class="form-input" placeholder="nome@email.it" required />
-                      <span class="field-error-msg" id="err-email"></span>
-                    </div>
-                    <div class="form-group form-group--full">
-                      <div class="privacy-consent-box">
-                        <input type="checkbox" id="checkbox-privacy" required />
-                        <span style="font-size:0.84rem; color:var(--text-secondary);">
-                          <label for="checkbox-privacy">Acconsento al trattamento dei dati personali secondo l’</label><button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button><label for="checkbox-privacy">. <span class="form-required">*</span></label>
-                        </span>
+                      <div class="sections-header">
+                        <span class="form-label" id="dynamic-features-label">Sezioni consigliate per te <span class="form-required">*</span></span>
+                        <span class="sections-counter" id="sections-counter" aria-live="polite">Sezioni selezionate: 3 / 8</span>
                       </div>
-                      <span class="field-error-msg" id="err-privacy"></span>
+                      <div class="chips-grid" id="dynamic-features-grid">
+                        <label class="chip-option is-selected" data-section-chip="Chi siamo"><input type="checkbox" name="sections" value="Chi siamo" checked /><span>Chi siamo</span></label>
+                        <label class="chip-option is-selected" data-section-chip="Servizi"><input type="checkbox" name="sections" value="Servizi" checked /><span>Servizi</span></label>
+                        <label class="chip-option" data-section-chip="Galleria foto"><input type="checkbox" name="sections" value="Galleria foto" /><span>Galleria foto</span></label>
+                        <label class="chip-option" data-section-chip="Listino/Catalogo"><input type="checkbox" name="sections" value="Listino/Catalogo" /><span>Listino/Catalogo</span></label>
+                        <label class="chip-option is-selected" data-section-chip="Contatti e mappa"><input type="checkbox" name="sections" value="Contatti e mappa" checked /><span>Contatti e mappa</span></label>
+                        <label class="chip-option" data-section-chip="FAQ"><input type="checkbox" name="sections" value="FAQ" /><span>FAQ</span></label>
+                      </div>
+                      <div class="chips-grid custom-features-grid" id="custom-features-grid" hidden></div>
+
+                      <div class="sections-micro-notice sections-micro-notice--downgrade" id="sections-downgrade-notice" role="status" aria-live="polite"></div>
+                      <div class="sections-micro-notice sections-micro-notice--limit" id="sections-limit-notice" role="status" aria-live="polite"></div>
+
+                      <button type="button" class="extra-sections-toggle" id="btn-toggle-extra-sections" aria-expanded="false" aria-controls="extra-sections-panel">
+                        <span class="extra-sections-toggle__icon" id="extra-sections-toggle-icon" aria-hidden="true">+</span>
+                        <span id="extra-sections-toggle-text">Mostra altre sezioni</span>
+                      </button>
+                      <div class="extra-sections-panel" id="extra-sections-panel" hidden>
+                        <p class="extra-sections-panel__hint">Sezioni extra universali compatibili con ogni attività:</p>
+                        <div class="chips-grid" id="extra-features-grid"></div>
+                      </div>
+
+                      <div class="custom-section-wrap">
+                        <label class="custom-section-label" for="input-custom-section">+ Aggiungi sezione personalizzata</label>
+                        <div class="custom-section-bar" id="custom-section-bar">
+                          <input
+                            type="text"
+                            id="input-custom-section"
+                            class="form-input custom-section-input"
+                            maxlength="48"
+                            placeholder="Es. Area clienti, Booking, Portfolio..."
+                            autocomplete="off"
+                          />
+                          <button type="button" id="btn-add-custom-section" class="btn btn--secondary custom-section-btn" aria-label="Aggiungi sezione personalizzata">
+                            +<span class="custom-section-btn__label"> Aggiungi</span>
+                          </button>
+                        </div>
+                        <span class="field-error-msg" id="err-custom-section"></span>
+                      </div>
+
+                      <span class="field-error-msg" id="err-sections"></span>
                     </div>
                   </div>
+
+                  <!-- STEP 5: STILE VISIVO E COLORI -->
+                  <div class="wizard-step-pane" data-step-pane="5">
+                    <div class="form-grid">
+                      <div class="form-group form-group--full">
+                        <span class="form-label">Stile visivo desiderato <span class="form-required">*</span></span>
+                        <div class="choice-cards-grid choice-cards-grid--styles">
+                          <label class="choice-card choice-card--style is-selected" data-style-card="Moderno">
+                            <input type="radio" name="style" value="Moderno" checked />
+                            <span class="choice-card__title">Moderno</span>
+                          </label>
+                          <label class="choice-card choice-card--style" data-style-card="Elegante">
+                            <input type="radio" name="style" value="Elegante" />
+                            <span class="choice-card__title">Elegante</span>
+                          </label>
+                          <label class="choice-card choice-card--style" data-style-card="Minimal">
+                            <input type="radio" name="style" value="Minimal" />
+                            <span class="choice-card__title">Minimal</span>
+                          </label>
+                          <label class="choice-card choice-card--style" data-style-card="Creativo">
+                            <input type="radio" name="style" value="Creativo" />
+                            <span class="choice-card__title">Creativo</span>
+                          </label>
+                          <label class="choice-card choice-card--style" data-style-card="Classico">
+                            <input type="radio" name="style" value="Classico" />
+                            <span class="choice-card__title">Classico</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="form-group form-group--full">
+                        <span class="form-label">Colori principali <span class="form-hint">(anche più di uno, opzionale)</span></span>
+                        <div class="chips-grid">
+                          <label class="chip-option" data-color-chip="Blu Elettrico">
+                            <input type="checkbox" name="colors" value="Blu Elettrico" />
+                            <span class="color-swatch" style="background:#0052ff"></span>
+                            <span>Blu Elettrico</span>
+                          </label>
+                          <label class="chip-option" data-color-chip="Nero">
+                            <input type="checkbox" name="colors" value="Nero" />
+                            <span class="color-swatch" style="background:#0a0f1d"></span>
+                            <span>Nero</span>
+                          </label>
+                          <label class="chip-option" data-color-chip="Bianco / Grigio">
+                            <input type="checkbox" name="colors" value="Bianco / Grigio" />
+                            <span class="color-swatch" style="background:#e2e8f0"></span>
+                            <span>Bianco / Grigio</span>
+                          </label>
+                          <label class="chip-option" data-color-chip="Oro">
+                            <input type="checkbox" name="colors" value="Oro" />
+                            <span class="color-swatch" style="background:#d4af37"></span>
+                            <span>Oro</span>
+                          </label>
+                          <label class="chip-option" data-color-chip="Verde">
+                            <input type="checkbox" name="colors" value="Verde" />
+                            <span class="color-swatch" style="background:#15803d"></span>
+                            <span>Verde</span>
+                          </label>
+                          <label class="chip-option" data-color-chip="Rosso / Bordeaux">
+                            <input type="checkbox" name="colors" value="Rosso / Bordeaux" />
+                            <span class="color-swatch" style="background:#b91c1c"></span>
+                            <span>Rosso</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="form-group form-group--full">
+                        <label class="form-label" for="input-custom-colors">Altri colori o preferenze <span class="form-hint">(opzionale)</span></label>
+                        <input type="text" id="input-custom-colors" class="form-input" placeholder="Es. Verde salvia e beige, oppure colori del mio logo" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- STEP 6: TEMPISTICA E LINK DI RIFERIMENTO -->
+                  <div class="wizard-step-pane" data-step-pane="6">
+                    <div class="form-grid">
+                      <div class="form-group form-group--full">
+                        <span class="form-label">Quando vorresti il sito pronto? <span class="form-required">*</span></span>
+                        <div class="choice-cards-grid choice-cards-grid--timeline">
+                          <label class="choice-card choice-card--timeline" data-timeline-card="Il prima possibile (1-2 settimane)">
+                            <input type="radio" name="timeline" value="Il prima possibile (1-2 settimane)" />
+                            <span class="choice-card__title">⚡ 1–2 settimane</span>
+                            <span class="choice-card__meta">Il prima possibile</span>
+                          </label>
+                          <label class="choice-card choice-card--timeline" data-timeline-card="Entro 3-4 settimane">
+                            <input type="radio" name="timeline" value="Entro 3-4 settimane" />
+                            <span class="choice-card__title">📅 3–4 settimane</span>
+                            <span class="choice-card__meta">Tempistica ideale</span>
+                          </label>
+                          <label class="choice-card choice-card--timeline" data-timeline-card="Entro 1-2 mesi">
+                            <input type="radio" name="timeline" value="Entro 1-2 mesi" />
+                            <span class="choice-card__title">🗓️ 1–2 mesi</span>
+                            <span class="choice-card__meta">Con calma</span>
+                          </label>
+                          <label class="choice-card choice-card--timeline" data-timeline-card="Non ho fretta">
+                            <input type="radio" name="timeline" value="Non ho fretta" />
+                            <span class="choice-card__title">🌿 Non ho fretta</span>
+                            <span class="choice-card__meta">Flessibile</span>
+                          </label>
+                        </div>
+                        <span class="field-error-msg" id="err-timeline"></span>
+                      </div>
+
+                      <div class="form-group form-group--full">
+                        <label class="form-label" for="input-social-or-site-link">Link sito attuale, Instagram o Google Maps <span class="form-hint">(opzionale)</span></label>
+                        <input type="text" id="input-social-or-site-link" name="social_or_site_link" class="form-input" placeholder="es. instagram.com/tuaattivita o sito attuale" />
+                      </div>
+
+                      <div class="form-group form-group--full">
+                        <label class="form-label" for="textarea-description">Breve descrizione o note <span class="form-hint">(opzionale)</span></label>
+                        <textarea id="textarea-description" class="form-textarea" placeholder="Raccontaci in poche righe cosa vuoi mettere in evidenza o siti di riferimento che ti piacciono..."></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- STEP 7: DATI DI CONTATTO E INVIO (SBLOCCO FINALE) -->
+                  <div class="wizard-step-pane" data-step-pane="7">
+                    <div class="form-grid">
+                      <div class="form-group form-group--full">
+                        <label class="form-label" for="input-full-name">Nome e Cognome <span class="form-required">*</span></label>
+                        <input type="text" id="input-full-name" class="form-input" placeholder="Es. Marco Rossi" required />
+                        <span class="field-error-msg" id="err-full-name"></span>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" for="input-phone">Telefono / WhatsApp <span class="form-required">*</span></label>
+                        <input type="tel" id="input-phone" class="form-input" placeholder="Es. 333 123 4567" required />
+                        <span class="field-error-msg" id="err-phone"></span>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" for="input-email">Email <span class="form-required">*</span></label>
+                        <input type="email" id="input-email" class="form-input" placeholder="nome@email.it" required />
+                        <span class="field-error-msg" id="err-email"></span>
+                      </div>
+                      <div class="form-group form-group--full">
+                        <div class="privacy-consent-box">
+                          <input type="checkbox" id="checkbox-privacy" required />
+                          <span style="font-size:0.83rem; color:var(--text-secondary); line-height:1.45;">
+                            <label for="checkbox-privacy">Acconsento al trattamento dei dati personali secondo l’</label><button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button><label for="checkbox-privacy">. <span class="form-required">*</span></label>
+                          </span>
+                        </div>
+                        <span class="field-error-msg" id="err-privacy"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="stage-footer">
+                    <button type="button" class="btn btn--secondary" id="btn-wizard-prev" style="visibility:hidden;">← Indietro</button>
+                    <button type="button" class="btn btn--primary" id="btn-wizard-next" style="display:none;">Continua →</button>
+                    <button type="submit" class="btn btn--primary btn--lg" id="btn-submit-quote" style="display:none;">Ricevi la mia proposta gratuita →</button>
+                  </div>
+                  <p class="wizard-reassurance" id="wizard-reassurance">Ti rispondiamo entro 24 ore lavorative · Nessun impegno · Studio locale a Piacenza</p>
+                </form>
+              </div>
+            </div>
+
+            <!-- COLONNA DESTRA: SCHEDA PROGETTO LIVE -->
+            <div class="project-sheet-col">
+              <aside class="project-sheet" id="project-sheet" aria-label="Scheda progetto dal vivo">
+                <button type="button" class="sheet-mobile-toggle" id="btn-toggle-project-sheet" aria-expanded="false" aria-controls="project-sheet-body">
+                  <span class="sheet-mobile-toggle__left">
+                    <span aria-hidden="true">📋</span>
+                    <span id="sheet-mobile-label">Scheda progetto (0/7 completati)</span>
+                  </span>
+                  <span class="sheet-mobile-toggle__chevron" aria-hidden="true">▾</span>
+                </button>
+
+                <div class="sheet-desktop-header">
+                  <div>
+                    <div class="sheet-title">Scheda progetto</div>
+                    <div class="sheet-status" id="sheet-status-text">In attesa della prima risposta…</div>
+                  </div>
+                  <span class="sheet-count-badge" id="sheet-desktop-count">0 / 7</span>
                 </div>
-              </div>
 
-              <div class="wizard-footer">
-                <button type="button" class="btn btn--secondary" id="btn-wizard-prev" style="visibility:hidden;">← Indietro</button>
-                <button type="button" class="btn btn--primary" id="btn-wizard-next">Avanti →</button>
-                <button type="submit" class="btn btn--primary btn--lg" id="btn-submit-quote" style="display:none;">Ricevi la mia proposta gratuita →</button>
-              </div>
-              <p class="wizard-reassurance" id="wizard-reassurance">Ti rispondiamo entro 24h · Nessun impegno · Studio locale a Piacenza</p>
-            </form>
+                <div class="project-sheet-body" id="project-sheet-body">
+                  <div id="project-sheet-items" style="display:flex; flex-direction:column; gap:9px;"></div>
+                  <div class="sheet-total-bar" id="sheet-total-bar" hidden>
+                    <span class="sheet-total-bar__label">Pacchetto scelto</span>
+                    <span class="sheet-total-bar__price" id="sheet-total-price">—</span>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
 
-            <div class="wizard-confirmation" id="wizard-confirmation-screen">
-              <div class="confirmation-icon">✓</div>
-              <h3 class="confirmation-title">Richiesta inviata!</h3>
-              <p class="confirmation-text">Grazie per averci contattato! Abbiamo ricevuto la tua richiesta e ti ricontatteremo al più presto.</p>
-              <div class="confirmation-actions">
-                <a
-                  id="btn-confirmation-whatsapp"
-                  href="https://wa.me/393926500185"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn btn--whatsapp"
-                  data-va-whatsapp="post_submit"
-                >
-                  <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
-                  <span>Scrivici subito su WhatsApp</span>
-                </a>
-                <button type="button" class="btn btn--secondary" id="btn-reset-wizard">Invia un’altra richiesta</button>
-              </div>
+          <div class="wizard-confirmation" id="wizard-confirmation-screen">
+            <div class="confirmation-icon">✓</div>
+            <h3 class="confirmation-title">Richiesta inviata!</h3>
+            <p class="confirmation-text">Grazie per averci contattato! Abbiamo ricevuto la tua scheda progetto e ti risponderemo entro 24 ore lavorative senza impegno.</p>
+            <div class="confirmation-actions">
+              <a
+                id="btn-confirmation-whatsapp"
+                href="https://wa.me/393926500185"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--whatsapp"
+                data-va-whatsapp="post_submit"
+              >
+                <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
+                <span>Scrivici subito su WhatsApp</span>
+              </a>
+              <button type="button" class="btn btn--secondary" id="btn-confirmation-reset" data-reset-wizard>Invia un’altra richiesta</button>
             </div>
           </div>
         </div>
@@ -1818,7 +2337,7 @@
               aria-labelledby="faq-trigger-0"
             >
               <div class="faq-panel__inner">
-                <p class="faq-answer">In genere tra i 7 e i 10 giorni lavorativi dalla conferma della demo gratuita e dalla consegna dei materiali base (foto, orari e listino).</p>
+                <p class="faq-answer">In genere tra i 7 e i 10 giorni lavorativi dalla conferma della bozza e proposta gratuita e dalla consegna dei materiali base (foto, orari e listino).</p>
               </div>
             </div>
           </div>
@@ -1870,7 +2389,7 @@
               aria-labelledby="faq-trigger-2"
             >
               <div class="faq-panel__inner">
-                <p class="faq-answer">Nessun costo a sorpresa. Il prezzo del pacchetto è trasparente e nel Pacchetto Completo sono inclusi 12 mesi di manutenzioni e aggiornamenti. Eventuali rinnovi di dominio o assistenza successiva vengono sempre concordati prima.</p>
+                <p class="faq-answer">Nessun costo a sorpresa. Il prezzo del pacchetto è trasparente e nel Pacchetto Completo sono inclusi supporto post-pubblicazione e aggiornamenti concordati. Eventuali rinnovi di dominio, hosting o interventi successivi vengono sempre concordati prima.</p>
               </div>
             </div>
           </div>
@@ -1908,19 +2427,19 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 MGD Studio · Piacenza, Italia — Tutti i diritti riservati.</p>
-        <p>Prezzi una tantum · Dominio e hosting da concordare separatamente.</p>
+        <p>© 2026 MGD Studio · Piacenza, Italia — Tutti i diritti riservati. <!-- TODO: inserire P.IVA obbligatoria appena attiva (Art. 35 DPR 633/1972) --></p>
+        <p>Importi indicativi — dettagli fiscali e preventivo definitivo concordati prima dell’avvio (dominio, hosting e servizi esterni esclusi).</p>
       </div>
     </div>
   </footer>
 
   <a
-    href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20una%20demo%20gratuita%20per%20la%20mia%20attivit%C3%A0"
+    href="https://wa.me/393926500185?text=Ciao%20MGD%20Studio%2C%20vorrei%20una%20proposta%20gratuita%20per%20la%20mia%20attivit%C3%A0"
     target="_blank"
     rel="noopener noreferrer"
     class="whatsapp-float"
     data-va-whatsapp="floating"
-    aria-label="Scrivici su WhatsApp per una demo gratuita"
+    aria-label="Scrivici su WhatsApp per una proposta gratuita"
   >
     <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
     <span>WhatsApp</span>
@@ -1929,11 +2448,31 @@
   <div class="modal-backdrop" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
     <div class="modal-dialog">
       <div class="modal-header">
-        <h3 class="modal-title" id="privacy-modal-title">Informativa sulla Privacy (GDPR)</h3>
+        <h3 class="modal-title" id="privacy-modal-title">Informativa sulla Privacy (Art. 13 GDPR)</h3>
         <button type="button" class="modal-close-btn" data-close-modal="privacy-modal" aria-label="Chiudi finestra">✕</button>
       </div>
       <div class="modal-content">
-        <p>I dati inseriti nel modulo vengono utilizzati da <strong>MGD Studio</strong> (gdesimone092@gmail.com) esclusivamente per rispondere alla richiesta di preventivo, ai sensi del GDPR (Reg. UE 2016/679).</p>
+        <p>La presente informativa descrive le modalità di trattamento dei dati personali raccolti tramite questo sito ai sensi dell’<strong>art. 13 del Regolamento (UE) 2016/679 (GDPR)</strong>.</p>
+
+        <h4>1. Titolare / Referente del trattamento</h4>
+        <p><strong>MGD Studio</strong> — Referente: <strong>Mattia Pinna</strong> (Piacenza, PC).<br />Email di contatto: <a href="mailto:gdesimone092@gmail.com">gdesimone092@gmail.com</a>.</p>
+
+        <h4>2. Finalità e base giuridica del trattamento</h4>
+        <p>I dati inseriti volontariamente nel configuratore (nome e cognome, telefono/WhatsApp, email, informazioni e preferenze sull’attività) sono trattati esclusivamente per gestire e rispondere alla tua richiesta di preventivo e proposta personalizzata. La base giuridica è l’esecuzione di misure precontrattuali adottate su richiesta dell’interessato (art. 6, par. 1, lett. b GDPR) e il consenso esplicito espresso mediante la relativa casella (art. 6, par. 1, lett. a GDPR).</p>
+
+        <h4>3. Destinatari e servizi terzi coinvolti</h4>
+        <p>I tuoi dati non vengono venduti né diffusi per finalità di marketing di terzi. Per il funzionamento tecnico dell’invio della richiesta transitano tramite i seguenti fornitori tecnici:</p>
+        <ul>
+          <li><strong>FormSubmit</strong> — inoltro via email della richiesta compilata e invio dell’email di conferma automatica;</li>
+          <li><strong>Vercel</strong> — infrastruttura di hosting del sito web ed esecuzione dell’endpoint tecnico <code>/api/notify</code>;</li>
+          <li><strong>Telegram</strong> — ricezione della notifica interna al team di MGD Studio per garantire una presa in carico rapida.</li>
+        </ul>
+
+        <h4>4. Periodo di conservazione</h4>
+        <p>I dati raccolti tramite il configuratore sono conservati per il tempo necessario a evadere la richiesta e comunque per un periodo massimo di <strong>12 mesi</strong> dall’invio, salvo successiva instaurazione di un rapporto di collaborazione o obblighi di legge.</p>
+
+        <h4>5. Diritti dell’interessato</h4>
+        <p>In ogni momento puoi esercitare i diritti previsti dagli artt. 15–22 del GDPR: <strong>accesso</strong> ai tuoi dati, <strong>rettifica</strong>, <strong>cancellazione</strong>, <strong>limitazione</strong> del trattamento, <strong>opposizione</strong> e revoca del consenso, scrivendo a <a href="mailto:gdesimone092@gmail.com">gdesimone092@gmail.com</a>. Hai inoltre il diritto di proporre reclamo all’Autorità <strong>Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">garanteprivacy.it</a>).</p>
       </div>
     </div>
   </div>
@@ -1945,7 +2484,24 @@
         <button type="button" class="modal-close-btn" data-close-modal="cookie-modal" aria-label="Chiudi finestra">✕</button>
       </div>
       <div class="modal-content">
-        <p>Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento e non impiega cookie di profilazione di terze parti.</p>
+        <p>Questa pagina spiega in modo trasparente quali tecnologie di archiviazione e risorse esterne vengono utilizzate da <strong>MGD Studio</strong>.</p>
+
+        <h4>1. Nessun cookie di profilazione</h4>
+        <p>Questo sito <strong>non utilizza cookie di profilazione né cookie pubblicitari di terze parti</strong> e non effettua tracciamento individuale a scopo commerciale.</p>
+
+        <h4>2. Statistiche aggregate senza cookie (Vercel Web Analytics)</h4>
+        <p>Per misurare in modo aggregato le visite e il corretto funzionamento del sito utilizziamo <strong>Vercel Web Analytics</strong>, uno strumento di analisi privacy-friendly che non installa cookie di tracciamento sul dispositivo dell’utente.</p>
+
+        <h4>3. Archiviazione locale tecnica (<code>localStorage</code>)</h4>
+        <p>Il sito utilizza il <code>localStorage</code> del browser con finalità strettamente tecniche per:</p>
+        <ul>
+          <li>salvare localmente la <strong>bozza di configurazione del progetto</strong> (Step 1–6: categoria, pacchetto, sezioni, stile, tempistica) così da non perdere le scelte in caso di ricaricamento della pagina — <strong>senza mai memorizzare dati personali</strong> (nome, telefono o email);</li>
+          <li>prevenire invii accidentali duplicati (protezione anti-spam temporanea di 45 secondi).</li>
+        </ul>
+        <p>Puoi cancellare la bozza in qualsiasi momento cliccando su <strong>Ricomincia</strong> nel configuratore o dalle impostazioni del tuo browser.</p>
+
+        <h4>4. Risorse esterne tecniche</h4>
+        <p>Per la resa grafica delle pagine vengono caricate risorse tecniche esterne da <strong>Google Fonts</strong> (caratteri tipografici) e da <strong>Unsplash</strong> (immagini dimostrative utilizzate nei mockup di anteprima).</p>
       </div>
     </div>
   </div>
@@ -2173,48 +2729,60 @@
       });
     });
 
+    const TOTAL_STEPS = 7;
     let currentStep = 1;
+    let furthestStep = 1;
+    let editingReturnStep = null;
+    let activeCategory = '';
+    let activePackageId = 'plus';
     let userPickedPackage = false;
     let packagePreselected = false;
+    let packageConfirmed = false;
+    let sectionsConfirmed = false;
+    let styleConfirmed = false;
+    let timelineConfirmed = false;
     let customSections = [];
     let extraSectionsOpen = false;
+    let lastDowngradeMessage = '';
     let suppressSubmitUntil = 0;
-    const DRAFT_STORAGE_KEY = 'mgd_quote_draft_v2';
+    let suppressStepAdvanceUntil = 0;
+
+    const DRAFT_STORAGE_KEY = 'mgd_quote_chat_draft_v1';
+    const LEGACY_DRAFT_KEY = 'mgd_quote_draft_v2';
     const SUBMIT_COOLDOWN_KEY = 'mgd_quote_last_submit_ts';
     const SUBMIT_COOLDOWN_MS = 45000;
-    const STEP_META = {
-      1: { label: 'Step 1 di 4 · ~1 minuto', pct: 25 },
-      2: { label: 'Step 2 di 4 · ~45 secondi', pct: 50 },
-      3: { label: 'Step 3 di 4 · ~30 secondi', pct: 75 },
-      4: { label: 'Step 4 di 4 · Quasi fatto', pct: 100 }
-    };
 
     const CATEGORY_SMART_CONFIG = {
       'Ristorante / Pizzeria / Bar': {
+        icon: '🍽️',
         recommendedPkg: 'plus',
         badge: 'Consigliato per ristoranti',
         features: ['Menu digitale QR', 'Prenotazione tavoli', 'Ordini WhatsApp', 'Galleria piatti', 'Mappa e orari', 'Recensioni'],
         defaults: ['Menu digitale QR', 'Prenotazione tavoli', 'Mappa e orari']
       },
       'Negozio / Attività locale': {
+        icon: '🛍️',
         recommendedPkg: 'plus',
         badge: 'Più scelto dai negozi',
         features: ['Vetrina prodotti', 'Offerte in evidenza', 'Contatto rapido WhatsApp', 'Orari e mappa', 'Galleria negozio', 'Recensioni'],
         defaults: ['Vetrina prodotti', 'Contatto rapido WhatsApp', 'Orari e mappa']
       },
       'Professionista / Studio': {
+        icon: '💼',
         recommendedPkg: 'vetrina',
         badge: 'Ideale per professionisti',
         features: ['Schede servizi', 'Prenotazione consulenza', 'Chi siamo / Team', 'Casi studio', 'FAQ', 'Modulo contatti'],
         defaults: ['Schede servizi', 'Prenotazione consulenza', 'Modulo contatti']
       },
       'Artigiano / Servizi': {
+        icon: '🛠️',
         recommendedPkg: 'vetrina',
         badge: 'Ideale per artigiani',
         features: ['Elenco lavori/servizi', 'Galleria prima/dopo', 'Richiesta sopralluogo', 'Zone servite', 'WhatsApp rapido', 'Recensioni'],
         defaults: ['Elenco lavori/servizi', 'Galleria prima/dopo', 'WhatsApp rapido']
       },
       'Altro': {
+        icon: '✨',
         recommendedPkg: 'plus',
         badge: 'Più scelto',
         features: ['Chi siamo', 'Servizi', 'Galleria foto', 'Listino/Catalogo', 'Contatti e mappa', 'FAQ'],
@@ -2238,14 +2806,30 @@
       { label: 'Eventi e promozioni', overlaps: ['Offerte in evidenza'] }
     ];
 
+    const STEP_NAMES = {
+      1: 'Categoria',
+      2: 'Attività e Città',
+      3: 'Pacchetto',
+      4: 'Sezioni scelte',
+      5: 'Stile e Colori',
+      6: 'Tempistica e Riferimenti',
+      7: 'Contatti'
+    };
+
+    const configuratorLayout = document.getElementById('configurator-layout');
     const form = document.getElementById('quote-multi-step-form');
     const prevBtn = document.getElementById('btn-wizard-prev');
     const nextBtn = document.getElementById('btn-wizard-next');
     const submitBtn = document.getElementById('btn-submit-quote');
-    const packageBanner = document.getElementById('wizard-package-banner');
     const errorBanner = document.getElementById('wizard-error-banner');
     const confirmationScreen = document.getElementById('wizard-confirmation-screen');
     const progressTrack = document.getElementById('wizard-progress-track');
+    const progressFill = document.getElementById('wizard-progress-fill');
+    const chatStepPill = document.getElementById('chat-step-pill');
+    const chatMessagesEl = document.getElementById('chat-messages');
+    const chatEditingBanner = document.getElementById('chat-editing-banner');
+    const chatEditingText = document.getElementById('chat-editing-text');
+    const btnReturnFromEdit = document.getElementById('btn-return-from-edit');
     const reassuranceNote = document.getElementById('wizard-reassurance');
     const dynamicFeaturesGrid = document.getElementById('dynamic-features-grid');
     const extraFeaturesGrid = document.getElementById('extra-features-grid');
@@ -2260,6 +2844,14 @@
     const customSectionInput = document.getElementById('input-custom-section');
     const customSectionAddBtn = document.getElementById('btn-add-custom-section');
     const customSectionErr = document.getElementById('err-custom-section');
+    const projectSheet = document.getElementById('project-sheet');
+    const projectSheetToggleBtn = document.getElementById('btn-toggle-project-sheet');
+    const projectSheetItems = document.getElementById('project-sheet-items');
+    const sheetMobileLabel = document.getElementById('sheet-mobile-label');
+    const sheetDesktopCount = document.getElementById('sheet-desktop-count');
+    const sheetStatusText = document.getElementById('sheet-status-text');
+    const sheetTotalBar = document.getElementById('sheet-total-bar');
+    const sheetTotalPrice = document.getElementById('sheet-total-price');
 
     function getSelectedCategory() {
       return form.querySelector('input[name="businessType"]:checked')?.value || '';
@@ -2272,6 +2864,21 @@
     function getSelectedPackage() {
       const pkgId = getSelectedPackageId();
       return siteConfig.packages.find(p => p.id === pkgId) || siteConfig.packages[1] || siteConfig.packages[0];
+    }
+
+    function getSelectedStyle() {
+      return form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
+    }
+
+    function getSelectedTimeline() {
+      return form.querySelector('input[name="timeline"]:checked')?.value || '';
+    }
+
+    function getCombinedColorsText() {
+      const chips = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value);
+      const customNote = (document.getElementById('input-custom-colors')?.value || '').trim();
+      const all = customNote ? [...chips, customNote] : chips;
+      return all.join(', ');
     }
 
     function getPackageMaxSections(pkgOrId) {
@@ -2368,14 +2975,18 @@
         checkedInputs = allInputs.filter(cb => cb.checked);
       }
 
-      if (sectionsDowngradeNotice) {
-        if (removedLabels.length > 0 && showDowngradeNotice) {
-          const countTxt = removedLabels.length === 1
-            ? 'è stata deselezionata automaticamente 1 sezione in eccesso'
-            : `sono state deselezionate automaticamente ${removedLabels.length} sezioni in eccesso`;
-          sectionsDowngradeNotice.textContent = `Passando al pacchetto ${pkg.shortName} (max ${max} sezioni) ${countTxt}: ${removedLabels.join(', ')}.`;
+      if (removedLabels.length > 0 && showDowngradeNotice) {
+        const countTxt = removedLabels.length === 1
+          ? 'è stata deselezionata automaticamente 1 sezione in eccesso'
+          : `sono state deselezionate automaticamente ${removedLabels.length} sezioni in eccesso`;
+        lastDowngradeMessage = `Passando al pacchetto ${pkg.shortName} (max ${max} sezioni) ${countTxt}: ${removedLabels.join(', ')}.`;
+        if (sectionsDowngradeNotice) {
+          sectionsDowngradeNotice.textContent = lastDowngradeMessage;
           sectionsDowngradeNotice.classList.add('is-visible');
-        } else if (clearDowngradeNotice) {
+        }
+      } else if (clearDowngradeNotice) {
+        lastDowngradeMessage = '';
+        if (sectionsDowngradeNotice) {
           sectionsDowngradeNotice.textContent = '';
           sectionsDowngradeNotice.classList.remove('is-visible');
         }
@@ -2414,7 +3025,7 @@
           });
           sectionsLimitNotice.textContent = hasHigherTier
             ? `Hai raggiunto il limite di ${max} sezioni del pacchetto ${pkg.shortName}. Passa a un pacchetto superiore per aggiungerne altre.`
-            : `Hai raggiunto il limite massimo di ${max} sezioni incluse nel pacchetto ${pkg.shortName}. Per richieste particolari puoi indicarle nelle note allo Step 3.`;
+            : `Hai raggiunto il limite massimo di ${max} sezioni incluse nel pacchetto ${pkg.shortName}. Puoi aggiungere eventuali extra nelle note allo Step 6.`;
           sectionsLimitNotice.classList.add('is-visible');
         } else {
           sectionsLimitNotice.textContent = '';
@@ -2426,19 +3037,8 @@
       return { count, max, removedLabels };
     }
 
-    function updatePackageBanner(pkgId, forceShow = false) {
-      const pkg = siteConfig.packages.find(p => p.id === pkgId);
-      if (!pkg || !packageBanner) return;
-      if (forceShow) packagePreselected = true;
-      if (!packagePreselected) return;
-      const max = getPackageMaxSections(pkg);
-      const limitPart = max !== null ? `fino a ${max} sezioni` : 'sezioni illimitate';
-      packageBanner.innerHTML = `<span class="wizard-alert__badge" aria-hidden="true">✓</span><span>Pacchetto preselezionato: <strong>${escapeHtml(pkg.name)}</strong> (${escapeHtml(pkg.price)} una tantum · ${escapeHtml(limitPart)})</span>`;
-      packageBanner.classList.add('is-visible');
-    }
-
     function syncChoiceStates() {
-      document.querySelectorAll('[data-category-card], [data-package-card], [data-style-card], [data-color-chip], [data-section-chip]').forEach(el => {
+      document.querySelectorAll('[data-category-card], [data-package-card], [data-style-card], [data-timeline-card], [data-color-chip], [data-section-chip]').forEach(el => {
         const inp = el.querySelector('input');
         if (inp) el.classList.toggle('is-selected', inp.checked);
       });
@@ -2449,7 +3049,7 @@
       const cfg = CATEGORY_SMART_CONFIG[category] || CATEGORY_SMART_CONFIG['Altro'];
       const universalList = getUniversalSectionsForCategory(category);
 
-      // Aggiorna badge pacchetto consigliato
+      // Aggiorna badge pacchetto consigliato sulle card dello Step 3
       document.querySelectorAll('[data-package-card]').forEach(card => {
         const pkgId = card.getAttribute('data-package-card');
         const isRec = pkgId === cfg.recommendedPkg;
@@ -2459,7 +3059,7 @@
       });
 
       if (autoSelectPkg && !userPickedPackage) {
-        selectPackage(cfg.recommendedPkg, false, false);
+        selectPackage(cfg.recommendedPkg, { isManual: false, fromPricing: false });
       }
 
       const max = getPackageMaxSections(getSelectedPackage());
@@ -2467,12 +3067,10 @@
 
       let selectedSet;
       if (isRestore && Array.isArray(selectedSections)) {
-        // Deduplica customSections rispetto ai chip standard
         customSections = customSections.filter(lbl => !stdLower.has(lbl.toLowerCase()));
         selectedSet = new Set(selectedSections);
       } else if (isCategorySwitch) {
-        // Cambio categoria allo Step 1: rimuovi i vecchi chip specifici della categoria precedente,
-        // mantieni eventuali sezioni universali e personalizzate ancora valide
+        // Rimuovi i vecchi chip specifici della categoria precedente, mantieni universali + personalizzati validi
         const prevUniversalChecked = extraFeaturesGrid
           ? Array.from(extraFeaturesGrid.querySelectorAll('input[name="sections"]:checked')).map(x => x.value)
           : [];
@@ -2499,7 +3097,6 @@
         selectedSet = new Set(baseList);
       }
 
-      // Renderizza i 6 chip consigliati per la categoria corrente
       if (dynamicFeaturesGrid) {
         dynamicFeaturesGrid.innerHTML = cfg.features.map(feat => {
           const isChecked = selectedSet.has(feat);
@@ -2508,7 +3105,6 @@
         }).join('');
       }
 
-      // Renderizza le sezioni extra universali (almeno 10, senza duplicati con i 6 consigliati)
       if (extraFeaturesGrid) {
         extraFeaturesGrid.innerHTML = universalList.map(feat => {
           const isChecked = selectedSet.has(feat);
@@ -2517,9 +3113,7 @@
         }).join('');
       }
 
-      // Renderizza eventuali chip personalizzati
       renderCustomChips(selectedSet);
-
       enforceSectionLimit({ showDowngradeNotice: false, clearDowngradeNotice: true });
     }
 
@@ -2549,8 +3143,10 @@
           extraSectionsOpen = true;
         }
         customSectionInput.value = '';
+        sectionsConfirmed = true;
         enforceSectionLimit({ clearDowngradeNotice: true });
         validateSections(true);
+        renderProjectSheet();
         saveDraft();
         return;
       }
@@ -2559,8 +3155,10 @@
       const selectedSet = new Set([...currentSelected, raw]);
       renderCustomChips(selectedSet);
       customSectionInput.value = '';
+      sectionsConfirmed = true;
       enforceSectionLimit({ clearDowngradeNotice: true });
       validateSections(true);
+      renderProjectSheet();
       saveDraft();
     }
 
@@ -2573,62 +3171,8 @@
       if (customSectionErr) customSectionErr.textContent = '';
       enforceSectionLimit({ clearDowngradeNotice: true });
       validateSections(true);
+      renderProjectSheet();
       saveDraft();
-    }
-
-    function saveDraft() {
-      try {
-        const draft = {
-          businessType: getSelectedCategory(),
-          businessName: document.getElementById('input-business-name').value,
-          businessAddress: document.getElementById('input-business-address').value,
-          selectedPackage: getSelectedPackageId(),
-          userPickedPackage,
-          packagePreselected,
-          sections: getSelectedSectionValues(),
-          customSections: [...customSections],
-          extraSectionsOpen,
-          style: form.querySelector('input[name="style"]:checked')?.value || 'Moderno',
-          colors: Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value),
-          timeline: document.getElementById('select-timeline').value,
-          socialOrSiteLink: document.getElementById('input-social-or-site-link').value,
-          description: document.getElementById('textarea-description').value,
-          additionalNotes: document.getElementById('textarea-additional-notes').value,
-          fullName: document.getElementById('input-full-name').value,
-          phone: document.getElementById('input-phone').value,
-          email: document.getElementById('input-email').value
-        };
-        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
-      } catch {
-        // localStorage non disponibile (es. navigazione privata restrittiva)
-      }
-    }
-
-    function clearDraft() {
-      try {
-        localStorage.removeItem(DRAFT_STORAGE_KEY);
-      } catch {
-        // Ignora errori localStorage
-      }
-    }
-
-    function getRemainingCooldownSeconds() {
-      try {
-        const lastTs = Number(localStorage.getItem(SUBMIT_COOLDOWN_KEY) || 0);
-        if (!lastTs) return 0;
-        const diff = SUBMIT_COOLDOWN_MS - (Date.now() - lastTs);
-        return diff > 0 ? Math.ceil(diff / 1000) : 0;
-      } catch {
-        return 0;
-      }
-    }
-
-    function markSubmittedNow() {
-      try {
-        localStorage.setItem(SUBMIT_COOLDOWN_KEY, String(Date.now()));
-      } catch {
-        // Ignora errori localStorage
-      }
     }
 
     function isValidPhone(val) {
@@ -2638,21 +3182,15 @@
       return digits.length >= 7 && digits.length <= 15;
     }
 
+    function isValidEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+    }
+
     const FIELD_RULES = {
       'input-business-name': {
         errId: 'err-business-name',
         check: el => el.value.trim().length >= 2,
         msg: 'Inserisci il nome dell’attività.'
-      },
-      'select-timeline': {
-        errId: 'err-timeline',
-        check: el => Boolean(el.value),
-        msg: 'Seleziona una tempistica.'
-      },
-      'textarea-description': {
-        errId: 'err-description',
-        check: el => el.value.trim().length >= 10,
-        msg: 'Inserisci una breve descrizione (min. 10 caratteri).'
       },
       'input-full-name': {
         errId: 'err-full-name',
@@ -2666,7 +3204,7 @@
       },
       'input-email': {
         errId: 'err-email',
-        check: el => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim()),
+        check: el => isValidEmail(el.value),
         msg: 'Inserisci un indirizzo email valido.'
       },
       'checkbox-privacy': {
@@ -2727,7 +3265,14 @@
       const secs = getSelectedSectionValues();
       const errEl = document.getElementById('err-sections');
       const ok = secs.length > 0;
-      if (errEl) errEl.textContent = !ok && showError ? 'Seleziona almeno una funzionalità o sezione.' : '';
+      if (errEl) errEl.textContent = !ok && showError ? 'Seleziona almeno una sezione o funzionalità.' : '';
+      return ok;
+    }
+
+    function validateTimeline(showError) {
+      const ok = Boolean(getSelectedTimeline());
+      const errEl = document.getElementById('err-timeline');
+      if (errEl) errEl.textContent = !ok && showError ? 'Seleziona una tempistica indicativa.' : '';
       return ok;
     }
 
@@ -2739,96 +3284,610 @@
       });
     }
 
+    function getStepQuestionHtml(step) {
+      const bizName = (document.getElementById('input-business-name')?.value || '').trim();
+      const safeBiz = bizName ? escapeHtml(bizName) : 'la tua attività';
+      const pkg = getSelectedPackage();
+      const max = getPackageMaxSections(pkg);
+      const limitLabel = max !== null ? `fino a <strong>${max} sezioni</strong>` : '<strong>sezioni illimitate</strong>';
+      switch (step) {
+        case 1:
+          return 'Ciao! 👋 Ti guido passo passo nella configurazione del tuo sito web in meno di 1 minuto. <strong>Di che tipo di attività si tratta?</strong>';
+        case 2:
+          return 'Perfetto! <strong>Come si chiama la tua attività</strong> e in che città si trova?';
+        case 3:
+          return packagePreselected
+            ? `Ottimo! Avevi già preselezionato il <strong>${escapeHtml(pkg.name)} (${escapeHtml(pkg.price)} una tantum)</strong>: confermalo qui sotto o scegline un altro.`
+            : `Quale <strong>pacchetto una tantum</strong> preferisci per ${safeBiz}? Qui sotto trovi tutti i dettagli inclusi.`;
+        case 4:
+          return `Perfetto! Con il pacchetto <strong>${escapeHtml(pkg.shortName)}</strong> puoi includere ${limitLabel}. <strong>Quali sezioni vuoi nel sito?</strong>`;
+        case 5:
+          return `Che <strong>stile visivo</strong> e quali <strong>colori</strong> immagini per ${safeBiz}?`;
+        case 6:
+          return 'Ci siamo quasi! <strong>Quando vorresti il sito pronto?</strong> Se vuoi, aggiungi anche un link al tuo sito attuale, Instagram o Google Maps.';
+        case 7:
+          return 'Fantastico! 🎉 La tua Scheda Progetto è pronta: <strong>dove ti inviamo la proposta gratuita?</strong>';
+        default:
+          return '';
+      }
+    }
+
+    function getStepAnswerText(step) {
+      const cat = getSelectedCategory();
+      const bizName = (document.getElementById('input-business-name')?.value || '').trim();
+      const bizAddr = (document.getElementById('input-business-address')?.value || '').trim();
+      const pkg = getSelectedPackage();
+      const secs = getSelectedSectionValues();
+      const style = getSelectedStyle();
+      const colorsTxt = getCombinedColorsText();
+      const timeline = getSelectedTimeline();
+      const link = (document.getElementById('input-social-or-site-link')?.value || '').trim();
+
+      switch (step) {
+        case 1: {
+          if (!cat) return '';
+          const icon = CATEGORY_SMART_CONFIG[cat]?.icon || '✨';
+          return `${icon} ${cat}`;
+        }
+        case 2:
+          if (!bizName) return '';
+          return bizAddr ? `${bizName} · ${bizAddr}` : bizName;
+        case 3:
+          return (packageConfirmed || packagePreselected) ? `${pkg.name} (${pkg.price} una tantum)` : '';
+        case 4: {
+          if (!secs.length) return '';
+          const preview = secs.slice(0, 3).join(', ');
+          return secs.length > 3 ? `${secs.length} sezioni: ${preview} +${secs.length - 3}` : secs.join(', ');
+        }
+        case 5:
+          return colorsTxt ? `${style} · ${colorsTxt}` : `${style} · Colori da concordare`;
+        case 6:
+          if (!timeline) return '';
+          return link ? `${timeline} · ${link}` : timeline;
+        default:
+          return '';
+      }
+    }
+
+    function renderChatMessages() {
+      if (!chatMessagesEl) return;
+      const chunks = [];
+
+      if (packagePreselected && currentStep < 3) {
+        const pkg = getSelectedPackage();
+        const max = getPackageMaxSections(pkg);
+        const limitPart = max !== null ? `fino a ${max} sezioni` : 'sezioni illimitate';
+        chunks.push(`
+          <div class="chat-msg chat-msg--bot chat-msg--notice">
+            <div class="chat-bubble">✓ Pacchetto preselezionato: <strong>${escapeHtml(pkg.name)}</strong> (${escapeHtml(pkg.price)} una tantum · ${escapeHtml(limitPart)}) — già visibile nella Scheda Progetto.</div>
+          </div>
+        `);
+      }
+
+      for (let s = 1; s <= currentStep; s++) {
+        const showMeta = s === 1 ? '<span class="chat-bubble__meta">Assistente MGD Studio</span>' : '';
+        chunks.push(`
+          <div class="chat-msg chat-msg--bot">
+            ${showMeta}
+            <div class="chat-bubble">${getStepQuestionHtml(s)}</div>
+          </div>
+        `);
+
+        if (s < currentStep) {
+          const ans = getStepAnswerText(s);
+          if (ans) {
+            chunks.push(`
+              <div class="chat-msg chat-msg--user">
+                <div class="chat-bubble">${escapeHtml(ans)}</div>
+              </div>
+            `);
+          }
+        }
+      }
+
+      if (lastDowngradeMessage) {
+        chunks.push(`
+          <div class="chat-msg chat-msg--bot chat-msg--downgrade">
+            <div class="chat-bubble">ℹ️ ${escapeHtml(lastDowngradeMessage)}</div>
+          </div>
+        `);
+      }
+
+      chatMessagesEl.innerHTML = chunks.join('');
+      requestAnimationFrame(() => {
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+      });
+    }
+
+    function renderProjectSheet() {
+      if (!projectSheetItems) return;
+
+      const cat = getSelectedCategory();
+      const catIcon = CATEGORY_SMART_CONFIG[cat]?.icon || '';
+      const bizName = (document.getElementById('input-business-name')?.value || '').trim();
+      const bizAddr = (document.getElementById('input-business-address')?.value || '').trim();
+      const pkg = getSelectedPackage();
+      const max = getPackageMaxSections(pkg);
+      const secs = getSelectedSectionValues();
+      const style = getSelectedStyle();
+      const colorsTxt = getCombinedColorsText();
+      const timeline = getSelectedTimeline();
+      const link = (document.getElementById('input-social-or-site-link')?.value || '').trim();
+      const desc = (document.getElementById('textarea-description')?.value || '').trim();
+      const fullName = (document.getElementById('input-full-name')?.value || '').trim();
+      const phone = (document.getElementById('input-phone')?.value || '').trim();
+      const email = (document.getElementById('input-email')?.value || '').trim();
+
+      const contactComplete = fullName.length >= 2 && isValidPhone(phone) && isValidEmail(email);
+      const pkgFilled = packageConfirmed || packagePreselected;
+      const secsFilled = (sectionsConfirmed || furthestStep > 4) && secs.length > 0;
+      const styleFilled = styleConfirmed || furthestStep > 5;
+      const timeFilled = Boolean(timeline);
+
+      const items = [
+        {
+          step: 1,
+          label: 'Categoria',
+          filled: Boolean(cat),
+          valueHtml: cat ? `${escapeHtml(catIcon)} ${escapeHtml(cat)}` : '',
+          placeholder: 'Seleziona allo Step 1'
+        },
+        {
+          step: 2,
+          label: 'Attività e Città',
+          filled: bizName.length >= 2,
+          valueHtml: bizName
+            ? `${escapeHtml(bizName)}${bizAddr ? `<span class="sheet-item__sub">📍 ${escapeHtml(bizAddr)}</span>` : ''}`
+            : '',
+          placeholder: 'Nome attività e città'
+        },
+        {
+          step: 3,
+          label: 'Pacchetto',
+          filled: pkgFilled,
+          valueHtml: pkgFilled
+            ? `${escapeHtml(pkg.name)} · ${escapeHtml(pkg.price)}${packagePreselected && !packageConfirmed ? '<span class="sheet-pkg-badge">Preselezionato</span>' : ''}<span class="sheet-item__sub">${max !== null ? `Una tantum · Fino a ${max} sezioni` : 'Una tantum · Sezioni illimitate'}</span>`
+            : '',
+          placeholder: 'Da scegliere'
+        },
+        {
+          step: 4,
+          label: 'Sezioni scelte',
+          filled: secsFilled,
+          valueHtml: secsFilled
+            ? `<span>${max !== null ? `${secs.length} / ${max} sezioni` : `${secs.length} sezioni`}</span><div class="sheet-tags">${secs.map(s => `<span class="sheet-tag">${escapeHtml(s)}</span>`).join('')}</div>`
+            : '',
+          placeholder: 'In base al pacchetto'
+        },
+        {
+          step: 5,
+          label: 'Stile e Colori',
+          filled: styleFilled,
+          valueHtml: styleFilled
+            ? `${escapeHtml(style)}<span class="sheet-item__sub">${escapeHtml(colorsTxt || 'Colori da concordare')}</span>`
+            : '',
+          placeholder: 'Estetica e palette'
+        },
+        {
+          step: 6,
+          label: 'Tempistica e Riferimenti',
+          filled: timeFilled,
+          valueHtml: timeFilled
+            ? `${escapeHtml(timeline)}${link ? `<span class="sheet-item__sub">🔗 ${escapeHtml(link)}</span>` : ''}${desc ? `<span class="sheet-item__sub">📝 ${escapeHtml(desc.length > 75 ? desc.slice(0, 75) + '…' : desc)}</span>` : ''}`
+            : '',
+          placeholder: 'Tempi, link o note'
+        },
+        {
+          step: 7,
+          label: 'Contatti',
+          filled: contactComplete,
+          valueHtml: contactComplete
+            ? `${escapeHtml(fullName)}<span class="sheet-item__sub">${escapeHtml(phone)} · ${escapeHtml(email)}</span>`
+            : (fullName ? `${escapeHtml(fullName)}<span class="sheet-item__sub">Completa telefono ed email…</span>` : ''),
+          placeholder: 'Solo allo step finale'
+        }
+      ];
+
+      const completedCount = items.filter(it => it.filled).length;
+
+      projectSheetItems.innerHTML = items.map(it => {
+        const isCurrent = it.step === currentStep;
+        const canEdit = it.filled && !isCurrent;
+        const editBtn = canEdit
+          ? `<button type="button" class="sheet-edit-btn" data-edit-step="${it.step}" aria-label="Modifica ${escapeHtml(it.label)}">Modifica</button>`
+          : '';
+        const body = it.valueHtml
+          ? `<div class="sheet-item__value">${it.valueHtml}</div>`
+          : `<div class="sheet-item__placeholder">${escapeHtml(it.placeholder)}</div>`;
+        return `
+          <div class="sheet-item ${isCurrent ? 'is-current' : ''} ${it.filled ? 'is-filled' : ''}" data-sheet-step="${it.step}">
+            <div class="sheet-item__top">
+              <span class="sheet-item__label">${it.step}. ${escapeHtml(it.label)}</span>
+              ${editBtn}
+            </div>
+            ${body}
+          </div>
+        `;
+      }).join('');
+
+      if (sheetDesktopCount) {
+        sheetDesktopCount.textContent = `${completedCount} / ${TOTAL_STEPS}`;
+        sheetDesktopCount.classList.toggle('is-ready', completedCount >= TOTAL_STEPS - 1);
+      }
+      if (sheetMobileLabel) {
+        sheetMobileLabel.textContent = `Scheda progetto (${completedCount}/${TOTAL_STEPS} completati)`;
+      }
+      if (sheetStatusText) {
+        if (completedCount === 0) sheetStatusText.textContent = 'In attesa della prima risposta…';
+        else if (completedCount < TOTAL_STEPS - 1) sheetStatusText.textContent = 'Si compila dal vivo a ogni passo';
+        else if (completedCount === TOTAL_STEPS - 1) sheetStatusText.textContent = 'Quasi completa · Mancano i contatti';
+        else sheetStatusText.textContent = 'Scheda completa · Pronta per l’invio ✓';
+      }
+      if (sheetTotalBar && sheetTotalPrice) {
+        if (pkgFilled) {
+          sheetTotalBar.hidden = false;
+          sheetTotalPrice.textContent = `${pkg.price} una tantum`;
+        } else {
+          sheetTotalBar.hidden = true;
+          sheetTotalPrice.textContent = '—';
+        }
+      }
+    }
+
+    function saveDraft() {
+      try {
+        // Privacy GDPR: salva in localStorage SOLO la configurazione del progetto (Step 1–6),
+        // mai dati personali (nome, telefono, email dello Step 7).
+        const draft = {
+          currentStep,
+          furthestStep,
+          businessType: getSelectedCategory(),
+          businessName: document.getElementById('input-business-name').value,
+          businessAddress: document.getElementById('input-business-address').value,
+          selectedPackage: getSelectedPackageId(),
+          userPickedPackage,
+          packagePreselected,
+          packageConfirmed,
+          sections: getSelectedSectionValues(),
+          sectionsConfirmed,
+          customSections: [...customSections],
+          extraSectionsOpen,
+          style: getSelectedStyle(),
+          colors: Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value),
+          customColorNote: document.getElementById('input-custom-colors').value,
+          styleConfirmed,
+          timeline: getSelectedTimeline(),
+          socialOrSiteLink: document.getElementById('input-social-or-site-link').value,
+          description: document.getElementById('textarea-description').value,
+          timelineConfirmed
+        };
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+      } catch {
+        // localStorage non disponibile
+      }
+    }
+
+    function clearDraft() {
+      try {
+        localStorage.removeItem(DRAFT_STORAGE_KEY);
+        localStorage.removeItem(LEGACY_DRAFT_KEY);
+      } catch {
+        // Ignora errori localStorage
+      }
+    }
+
+    function getRemainingCooldownSeconds() {
+      try {
+        const lastTs = Number(localStorage.getItem(SUBMIT_COOLDOWN_KEY) || 0);
+        if (!lastTs) return 0;
+        const diff = SUBMIT_COOLDOWN_MS - (Date.now() - lastTs);
+        return diff > 0 ? Math.ceil(diff / 1000) : 0;
+      } catch {
+        return 0;
+      }
+    }
+
+    function markSubmittedNow() {
+      try {
+        localStorage.setItem(SUBMIT_COOLDOWN_KEY, String(Date.now()));
+      } catch {
+        // Ignora errori localStorage
+      }
+    }
+
+    function validateStep(step) {
+      errorBanner.classList.remove('is-visible');
+      if (step === 1) return validateCategory(true);
+      if (step === 2) return validateField('input-business-name', true);
+      if (step === 3) return Boolean(getSelectedPackageId());
+      if (step === 4) return validateSections(true);
+      if (step === 5) return Boolean(getSelectedStyle());
+      if (step === 6) return validateTimeline(true);
+      if (step === 7) {
+        return [
+          validateField('input-full-name', true),
+          validateField('input-phone', true),
+          validateField('input-email', true),
+          validateField('checkbox-privacy', true)
+        ].every(Boolean);
+      }
+      return true;
+    }
+
+    function selectPackage(pkgId, options = {}) {
+      const { isManual = true, fromPricing = false } = options;
+      activePackageId = pkgId;
+      if (fromPricing) {
+        userPickedPackage = true;
+        packagePreselected = true;
+      } else if (isManual) {
+        userPickedPackage = true;
+        packageConfirmed = true;
+        packagePreselected = false;
+      }
+      document.querySelectorAll('[data-package-card]').forEach(card => {
+        const match = card.getAttribute('data-package-card') === pkgId;
+        card.classList.toggle('is-selected', match);
+        const rd = card.querySelector('input');
+        if (rd) rd.checked = match;
+      });
+      enforceSectionLimit({ showDowngradeNotice: isManual, clearDowngradeNotice: true });
+      validateSections(false);
+      renderProjectSheet();
+      renderChatMessages();
+      saveDraft();
+    }
+
+    function goToStep(step) {
+      currentStep = Math.max(1, Math.min(TOTAL_STEPS, Number(step) || 1));
+      if (currentStep > furthestStep) furthestStep = currentStep;
+      if (editingReturnStep !== null && currentStep >= editingReturnStep) {
+        editingReturnStep = null;
+      }
+
+      const pct = Math.round((currentStep / TOTAL_STEPS) * 100);
+      if (chatStepPill) chatStepPill.textContent = `Step ${currentStep} di ${TOTAL_STEPS}`;
+      if (progressFill) progressFill.style.width = `${pct}%`;
+      if (progressTrack) progressTrack.setAttribute('aria-valuenow', String(pct));
+
+      document.querySelectorAll('[data-step-pane]').forEach(pane => {
+        pane.classList.toggle('is-active', Number(pane.getAttribute('data-step-pane')) === currentStep);
+      });
+
+      const isEditingEarlier = editingReturnStep !== null && editingReturnStep > currentStep;
+      if (chatEditingBanner && chatEditingText && btnReturnFromEdit) {
+        chatEditingBanner.classList.toggle('is-visible', isEditingEarlier);
+        if (isEditingEarlier) {
+          chatEditingText.textContent = `Stai modificando: ${STEP_NAMES[currentStep] || 'Step ' + currentStep}`;
+          btnReturnFromEdit.textContent = `Torna allo Step ${editingReturnStep} →`;
+        }
+      }
+
+      prevBtn.style.visibility = currentStep > 1 ? 'visible' : 'hidden';
+
+      const showNext =
+        (currentStep === 1 && Boolean(getSelectedCategory())) ||
+        currentStep === 2 ||
+        currentStep === 3 ||
+        currentStep === 4 ||
+        currentStep === 5 ||
+        currentStep === 6;
+
+      nextBtn.style.display = showNext ? 'inline-flex' : 'none';
+      if (isEditingEarlier) {
+        nextBtn.textContent = 'Salva modifica →';
+      } else if (currentStep === 3) {
+        const pkg = getSelectedPackage();
+        nextBtn.textContent = `Conferma ${pkg.shortName} →`;
+      } else {
+        nextBtn.textContent = 'Continua →';
+      }
+
+      submitBtn.style.display = currentStep === TOTAL_STEPS ? 'inline-flex' : 'none';
+      if (reassuranceNote) reassuranceNote.classList.toggle('is-visible', currentStep === TOTAL_STEPS);
+
+      renderChatMessages();
+      renderProjectSheet();
+      saveDraft();
+    }
+
+    function advanceFromStep(step) {
+      if (Date.now() < suppressStepAdvanceUntil) return;
+      if (!validateStep(step)) return;
+      suppressStepAdvanceUntil = Date.now() + 180;
+
+      if (step === 3) packageConfirmed = true;
+      if (step === 4) sectionsConfirmed = true;
+      if (step === 5) styleConfirmed = true;
+      if (step === 6) timelineConfirmed = true;
+
+      let target;
+      if (editingReturnStep !== null && editingReturnStep > step) {
+        target = editingReturnStep;
+        editingReturnStep = null;
+      } else {
+        target = Math.min(TOTAL_STEPS, step + 1);
+      }
+      if (target > furthestStep) furthestStep = target;
+      goToStep(target);
+    }
+
+    function startEditingStep(targetStep) {
+      const s = Number(targetStep);
+      if (s < 1 || s > TOTAL_STEPS || s === currentStep) return;
+      if (editingReturnStep === null && currentStep > s) {
+        editingReturnStep = currentStep;
+      }
+      if (projectSheet && projectSheet.classList.contains('is-mobile-open')) {
+        projectSheet.classList.remove('is-mobile-open');
+        if (projectSheetToggleBtn) projectSheetToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+      goToStep(s);
+    }
+
+    function resetConfigurator() {
+      form.reset();
+      currentStep = 1;
+      furthestStep = 1;
+      editingReturnStep = null;
+      activeCategory = '';
+      activePackageId = 'plus';
+      userPickedPackage = false;
+      packagePreselected = false;
+      packageConfirmed = false;
+      sectionsConfirmed = false;
+      styleConfirmed = false;
+      timelineConfirmed = false;
+      customSections = [];
+      extraSectionsOpen = false;
+      lastDowngradeMessage = '';
+      if (customSectionInput) customSectionInput.value = '';
+      if (customSectionErr) customSectionErr.textContent = '';
+      clearDraft();
+      clearAllFieldStates();
+      selectPackage('plus', { isManual: false, fromPricing: false });
+      packageConfirmed = false;
+      applyCategorySmartUI('Altro', { autoSelectPkg: false, selectedSections: CATEGORY_SMART_CONFIG['Altro'].defaults });
+      updateExtraToggleUI();
+      syncChoiceStates();
+      errorBanner.classList.remove('is-visible');
+      confirmationScreen.classList.remove('is-visible');
+      if (configuratorLayout) configuratorLayout.style.removeProperty('display');
+      if (projectSheet) {
+        projectSheet.classList.remove('is-mobile-open');
+        if (projectSheetToggleBtn) projectSheetToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+      clearDraft();
+      goToStep(1);
+      clearDraft();
+    }
+
+    // Validazione inline su blur / input
     Object.keys(FIELD_RULES).forEach(fieldId => {
       const el = document.getElementById(fieldId);
       const rule = FIELD_RULES[fieldId];
       if (!el) return;
-      if (el.tagName === 'SELECT' || rule.isCheckbox) {
-        el.addEventListener('change', () => validateField(fieldId, true));
+      if (rule.isCheckbox) {
+        el.addEventListener('change', () => {
+          validateField(fieldId, true);
+          renderProjectSheet();
+        });
         el.addEventListener('blur', () => validateField(fieldId, true));
       } else {
         el.addEventListener('blur', () => validateField(fieldId, true));
         el.addEventListener('input', () => {
           const hasError = el.classList.contains('is-invalid') || Boolean(document.getElementById(rule.errId)?.textContent);
           validateField(fieldId, hasError);
+          renderProjectSheet();
         });
       }
     });
 
-    function selectPackage(pkgId, showNotice, isManual = true) {
-      if (isManual) userPickedPackage = true;
-      document.querySelectorAll('[data-package-card]').forEach(card => {
-        const match = card.getAttribute('data-package-card') === pkgId;
-        card.classList.toggle('is-selected', match);
-        card.querySelector('input').checked = match;
+    // Step 1: Categoria 1 clic
+    document.querySelectorAll('[data-category-card]').forEach(card => {
+      const rd = card.querySelector('input');
+      if (!rd) return;
+      rd.addEventListener('change', () => {
+        document.querySelectorAll('[data-category-card]').forEach(x => x.classList.remove('is-selected'));
+        if (rd.checked) {
+          activeCategory = rd.value;
+          card.classList.add('is-selected');
+          validateCategory(true);
+          applyCategorySmartUI(rd.value, { autoSelectPkg: true, isCategorySwitch: true });
+          advanceFromStep(1);
+        }
       });
-      if (showNotice) {
-        updatePackageBanner(pkgId, true);
-      } else if (packagePreselected) {
-        updatePackageBanner(pkgId, false);
-      }
-      enforceSectionLimit({ showDowngradeNotice: isManual, clearDowngradeNotice: true });
-      validateSections(false);
-      saveDraft();
-      if (currentStep === 4) {
-        goToStep(4);
-      }
-    }
-
-    document.querySelectorAll('[data-category-card]').forEach(c => {
-      const rd = c.querySelector('input');
-      if (rd) {
-        rd.addEventListener('change', () => {
-          document.querySelectorAll('[data-category-card]').forEach(x => x.classList.remove('is-selected'));
-          if (rd.checked) {
-            c.classList.add('is-selected');
-            validateCategory(true);
-            applyCategorySmartUI(rd.value, { autoSelectPkg: true, isCategorySwitch: true });
-            saveDraft();
-          }
-        });
-      }
+      rd.addEventListener('click', () => {
+        if (rd.checked && rd.value === activeCategory) {
+          advanceFromStep(1);
+        }
+      });
     });
 
-    document.querySelectorAll('[data-package-card]').forEach(c => {
-      const rd = c.querySelector('input');
-      if (rd) rd.addEventListener('change', () => selectPackage(c.getAttribute('data-package-card'), false, true));
+    // Step 3: Pacchetti 1 clic
+    document.querySelectorAll('[data-package-card]').forEach(card => {
+      const rd = card.querySelector('input');
+      if (!rd) return;
+      const pkgId = card.getAttribute('data-package-card');
+      rd.addEventListener('change', () => {
+        if (rd.checked) {
+          selectPackage(pkgId, { isManual: true, fromPricing: false });
+          advanceFromStep(3);
+        }
+      });
+      rd.addEventListener('click', () => {
+        if (rd.checked && pkgId === activePackageId) {
+          selectPackage(pkgId, { isManual: true, fromPricing: false });
+          advanceFromStep(3);
+        }
+      });
     });
-    document.querySelectorAll('[data-select-package]').forEach(b => b.addEventListener('click', () => {
-      if (confirmationScreen.classList.contains('is-visible')) {
-        confirmationScreen.classList.remove('is-visible');
-        form.style.removeProperty('display');
-        errorBanner.classList.remove('is-visible');
-        clearAllFieldStates();
-        goToStep(1);
-      }
-      selectPackage(b.getAttribute('data-select-package'), true, true);
-      document.getElementById('richiedi-sito').scrollIntoView({ behavior: 'smooth' });
-    }));
 
-    document.querySelectorAll('[data-style-card]').forEach(c => {
-      const rd = c.querySelector('input');
-      if (rd) {
-        rd.addEventListener('change', () => {
-          document.querySelectorAll('[data-style-card]').forEach(x => x.classList.remove('is-selected'));
-          if (rd.checked) c.classList.add('is-selected');
-        });
-      }
+    // Preselezione dalle pricing card principali (#pacchetti)
+    document.querySelectorAll('[data-select-package]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (confirmationScreen.classList.contains('is-visible')) {
+          resetConfigurator();
+        }
+        const pkgId = btn.getAttribute('data-select-package');
+        selectPackage(pkgId, { isManual: true, fromPricing: true });
+        document.getElementById('richiedi-sito').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Step 5: Stile e Colori
+    document.querySelectorAll('[data-style-card]').forEach(card => {
+      const rd = card.querySelector('input');
+      if (!rd) return;
+      rd.addEventListener('change', () => {
+        document.querySelectorAll('[data-style-card]').forEach(x => x.classList.remove('is-selected'));
+        if (rd.checked) {
+          card.classList.add('is-selected');
+          styleConfirmed = true;
+          renderProjectSheet();
+          saveDraft();
+        }
+      });
     });
 
     document.querySelectorAll('[data-color-chip]').forEach(chip => {
       const cb = chip.querySelector('input');
-      cb.addEventListener('change', () => chip.classList.toggle('is-selected', cb.checked));
+      if (!cb) return;
+      cb.addEventListener('change', () => {
+        chip.classList.toggle('is-selected', cb.checked);
+        styleConfirmed = true;
+        renderProjectSheet();
+        saveDraft();
+      });
     });
 
-    // Event delegation sui chip funzionalità (consigliati, extra universali e personalizzati)
+    // Step 6: Pillole Tempistica
+    document.querySelectorAll('[data-timeline-card]').forEach(card => {
+      const rd = card.querySelector('input');
+      if (!rd) return;
+      rd.addEventListener('change', () => {
+        document.querySelectorAll('[data-timeline-card]').forEach(x => x.classList.remove('is-selected'));
+        if (rd.checked) {
+          card.classList.add('is-selected');
+          timelineConfirmed = true;
+          validateTimeline(true);
+          renderProjectSheet();
+          saveDraft();
+        }
+      });
+    });
+
+    // Step 4: Chip sezioni (consigliati, extra universali e personalizzati)
     [dynamicFeaturesGrid, extraFeaturesGrid, customFeaturesGrid].forEach(grid => {
       if (!grid) return;
       grid.addEventListener('change', (e) => {
         const cb = e.target;
         if (!cb || cb.name !== 'sections') return;
+        sectionsConfirmed = true;
         enforceSectionLimit({ clearDowngradeNotice: true });
         validateSections(true);
+        renderProjectSheet();
+        renderChatMessages();
         saveDraft();
       });
     });
@@ -2877,6 +3936,7 @@
       });
     }
 
+    // Gestione Enter sul form: avanza negli input testo (mai su custom-section o textarea)
     form.addEventListener('keydown', (e) => {
       if (e.key !== 'Enter' && e.keyCode !== 13) return;
       const target = e.target;
@@ -2884,7 +3944,14 @@
       if (target.tagName === 'TEXTAREA') return;
       if (target.id === 'input-custom-section') {
         e.preventDefault();
+        e.stopPropagation();
         suppressSubmitUntil = Date.now() + 400;
+        return;
+      }
+      if (currentStep < TOTAL_STEPS && target.tagName === 'INPUT' && target.type !== 'checkbox' && target.type !== 'radio') {
+        e.preventDefault();
+        suppressSubmitUntil = Date.now() + 400;
+        advanceFromStep(currentStep);
       }
     });
     form.addEventListener('keypress', (e) => {
@@ -2894,18 +3961,64 @@
       }
     });
 
+    const PERSONAL_FIELD_IDS = new Set(['input-full-name', 'input-phone', 'input-email', 'checkbox-privacy']);
+
     form.addEventListener('input', (e) => {
       if (e.target && (e.target.id === 'input-honey' || e.target.id === 'input-custom-section')) return;
+      renderProjectSheet();
+      if (e.target && PERSONAL_FIELD_IDS.has(e.target.id)) return;
       saveDraft();
     });
     form.addEventListener('change', (e) => {
       if (e.target && (e.target.id === 'input-honey' || e.target.id === 'input-custom-section')) return;
+      renderProjectSheet();
+      if (e.target && PERSONAL_FIELD_IDS.has(e.target.id)) return;
       saveDraft();
+    });
+
+    // Modifica rapida dalla Scheda Progetto (destra / tendina mobile)
+    if (projectSheetItems) {
+      projectSheetItems.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-edit-step]');
+        if (!btn) return;
+        startEditingStep(Number(btn.getAttribute('data-edit-step')));
+      });
+    }
+
+    if (projectSheetToggleBtn && projectSheet) {
+      projectSheetToggleBtn.addEventListener('click', () => {
+        const isOpen = projectSheet.classList.toggle('is-mobile-open');
+        projectSheetToggleBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    if (btnReturnFromEdit) {
+      btnReturnFromEdit.addEventListener('click', () => {
+        if (editingReturnStep !== null) {
+          const dest = editingReturnStep;
+          editingReturnStep = null;
+          goToStep(dest);
+        }
+      });
+    }
+
+    nextBtn.addEventListener('click', () => advanceFromStep(currentStep));
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        editingReturnStep = null;
+        goToStep(currentStep - 1);
+      }
+    });
+
+    document.querySelectorAll('[data-reset-wizard]').forEach(btn => {
+      btn.addEventListener('click', () => resetConfigurator());
     });
 
     function restoreDraft() {
       let restored = false;
       try {
+        // Rimuovi eventuale bozza legacy che poteva contenere dati personali
+        localStorage.removeItem(LEGACY_DRAFT_KEY);
         const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
         if (raw) {
           const draft = JSON.parse(raw);
@@ -2913,16 +4026,19 @@
             restored = true;
             userPickedPackage = Boolean(draft.userPickedPackage);
             packagePreselected = Boolean(draft.packagePreselected);
+            packageConfirmed = Boolean(draft.packageConfirmed);
+            sectionsConfirmed = Boolean(draft.sectionsConfirmed);
+            styleConfirmed = Boolean(draft.styleConfirmed);
+            timelineConfirmed = Boolean(draft.timelineConfirmed);
 
-            // Ripristina prima pacchetto e stile così il limite sezioni è subito coerente
-            ['selectedPackage', 'style'].forEach(name => {
+            // Ripristina prima pacchetto, stile e tempistica così il limite sezioni è subito coerente
+            ['selectedPackage', 'style', 'timeline'].forEach(name => {
               const val = draft[name];
-              if (typeof val !== 'string') return;
+              if (typeof val !== 'string' || !val) return;
               const radio = Array.from(form.querySelectorAll(`input[name="${name}"]`)).find(r => r.value === val);
               if (radio) radio.checked = true;
             });
 
-            // Ripristina i chip personalizzati creati dall'utente
             if (Array.isArray(draft.customSections)) {
               const seenCustom = new Set();
               customSections = draft.customSections
@@ -2960,16 +4076,14 @@
             extraSectionsOpen = Boolean(draft.extraSectionsOpen) || hasCheckedUniversal;
             updateExtraToggleUI();
 
+            // Ripristina solo i campi di configurazione progetto (Step 1–6);
+            // ignora sempre eventuali dati personali (fullName, phone, email) presenti in bozze precedenti.
             const textMap = {
               'input-business-name': draft.businessName,
               'input-business-address': draft.businessAddress,
-              'select-timeline': draft.timeline,
+              'input-custom-colors': draft.customColorNote,
               'input-social-or-site-link': draft.socialOrSiteLink,
-              'textarea-description': draft.description,
-              'textarea-additional-notes': draft.additionalNotes,
-              'input-full-name': draft.fullName,
-              'input-phone': draft.phone,
-              'input-email': draft.email
+              'textarea-description': draft.description
             };
             Object.entries(textMap).forEach(([id, val]) => {
               const el = document.getElementById(id);
@@ -2982,17 +4096,18 @@
               });
             }
 
-            if (packagePreselected) {
-              updatePackageBanner(getSelectedPackageId(), true);
-            }
-
             syncChoiceStates();
+            activeCategory = getSelectedCategory();
+            activePackageId = getSelectedPackageId();
             enforceSectionLimit({ showDowngradeNotice: false, clearDowngradeNotice: true });
 
-            ['input-business-name', 'select-timeline', 'textarea-description', 'input-full-name', 'input-phone', 'input-email'].forEach(id => {
-              const el = document.getElementById(id);
-              if (el && el.value.trim()) validateField(id, false);
-            });
+            const bizEl = document.getElementById('input-business-name');
+            if (bizEl && bizEl.value.trim()) validateField('input-business-name', false);
+
+            const savedFurthest = Number(draft.furthestStep) || 1;
+            const savedCurrent = Number(draft.currentStep) || 1;
+            furthestStep = Math.max(1, Math.min(TOTAL_STEPS, savedFurthest));
+            goToStep(Math.max(1, Math.min(TOTAL_STEPS, savedCurrent)));
           }
         }
       } catch {
@@ -3006,149 +4121,10 @@
         });
         updateExtraToggleUI();
         syncChoiceStates();
+        renderChatMessages();
+        renderProjectSheet();
       }
     }
-
-    function validateStep(step) {
-      errorBanner.classList.remove('is-visible');
-      let ok = true;
-      if (step === 1) {
-        const s1 = [
-          validateCategory(true),
-          validateField('input-business-name', true)
-        ];
-        ok = s1.every(Boolean);
-      } else if (step === 2) {
-        ok = validateSections(true);
-      } else if (step === 3) {
-        const s3 = [
-          validateField('select-timeline', true),
-          validateField('textarea-description', true)
-        ];
-        ok = s3.every(Boolean);
-      } else if (step === 4) {
-        const s4 = [
-          validateField('input-full-name', true),
-          validateField('input-phone', true),
-          validateField('input-email', true),
-          validateField('checkbox-privacy', true)
-        ];
-        ok = s4.every(Boolean);
-      }
-      return ok;
-    }
-
-    function goToStep(step) {
-      currentStep = step;
-      const meta = STEP_META[step] || STEP_META[1];
-      document.getElementById('wizard-progress-label').textContent = meta.label;
-      document.getElementById('wizard-progress-pct').textContent = `${meta.pct}%`;
-      document.getElementById('wizard-progress-fill').style.width = `${meta.pct}%`;
-      if (progressTrack) progressTrack.setAttribute('aria-valuenow', String(meta.pct));
-
-      document.querySelectorAll('[data-step-pane]').forEach(p => p.classList.toggle('is-active', Number(p.getAttribute('data-step-pane')) === step));
-      document.querySelectorAll('[data-step-indicator]').forEach(ind => {
-        const s = Number(ind.getAttribute('data-step-indicator'));
-        ind.classList.toggle('is-active', s === step);
-        ind.classList.toggle('is-completed', s < step);
-        const numEl = ind.querySelector('.step-pill__num');
-        if (numEl) numEl.textContent = s < step ? '✓' : String(s);
-      });
-      prevBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
-      nextBtn.style.display = step < 4 ? 'inline-flex' : 'none';
-      submitBtn.style.display = step === 4 ? 'inline-flex' : 'none';
-      if (reassuranceNote) reassuranceNote.classList.toggle('is-visible', step === 4);
-
-      if (step === 4) {
-        const businessType = getSelectedCategory() || 'Non indicata';
-        const safeBusinessType = escapeHtml(businessType);
-        const safeBusinessName = escapeHtml(document.getElementById('input-business-name').value.trim());
-        const safeBusinessAddress = escapeHtml(document.getElementById('input-business-address').value.trim() || 'Non indicato');
-        const pkgId = getSelectedPackageId();
-        const pkg = siteConfig.packages.find(p => p.id === pkgId);
-        const selectedSecs = getSelectedSectionValues();
-        const secs = selectedSecs.join(', ');
-        const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
-        const colors = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value).join(', ') || 'Da concordare';
-        const timeline = document.getElementById('select-timeline').value || 'Da concordare';
-        const rawSocialLink = document.getElementById('input-social-or-site-link').value.trim();
-        const rawDesc = document.getElementById('textarea-description').value.trim();
-        const safeDesc = escapeHtml(rawDesc.length > 140 ? rawDesc.slice(0, 140) + '…' : rawDesc);
-
-        const socialRow = rawSocialLink
-          ? `<div style="grid-column: 1 / -1;"><span class="summary-item-label">Sito / Social / Maps</span><span class="summary-item-val">${escapeHtml(rawSocialLink)}</span></div>`
-          : '';
-
-        document.getElementById('quote-summary-content').innerHTML = `
-          <div class="summary-block">
-            <div class="summary-block__top">
-              <span class="summary-block__title">La tua attività</span>
-              <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="1">Modifica</button>
-            </div>
-            <div class="summary-grid">
-              <div><span class="summary-item-label">Attività &amp; Categoria</span><span class="summary-item-val">${safeBusinessName} (${safeBusinessType})</span></div>
-              <div><span class="summary-item-label">Città / Indirizzo</span><span class="summary-item-val">${safeBusinessAddress}</span></div>
-            </div>
-          </div>
-
-          <div class="summary-block">
-            <div class="summary-block__top">
-              <span class="summary-block__title">Pacchetto e funzionalità</span>
-              <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="2">Modifica</button>
-            </div>
-            <div class="summary-grid">
-              <div><span class="summary-item-label">Pacchetto scelto</span><span class="summary-item-val" style="color:var(--accent-blue)">${escapeHtml(pkg ? pkg.name + ' (' + pkg.price + ' una tantum)' : pkgId)}</span></div>
-              <div><span class="summary-item-label">Funzionalità (${selectedSecs.length})</span><span class="summary-item-val">${escapeHtml(secs)}</span></div>
-            </div>
-          </div>
-
-          <div class="summary-block">
-            <div class="summary-block__top">
-              <span class="summary-block__title">Stile e riferimenti</span>
-              <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="3">Modifica</button>
-            </div>
-            <div class="summary-grid">
-              <div><span class="summary-item-label">Stile &amp; Colori</span><span class="summary-item-val">${escapeHtml(style)} · ${escapeHtml(colors)}</span></div>
-              <div><span class="summary-item-label">Tempistica</span><span class="summary-item-val">${escapeHtml(timeline)}</span></div>
-              ${socialRow}
-              <div style="grid-column: 1 / -1;"><span class="summary-item-label">Descrizione</span><span class="summary-item-val">${safeDesc}</span></div>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    document.getElementById('quote-summary-content').addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-edit-step]');
-      if (!btn) return;
-      const targetStep = Number(btn.getAttribute('data-edit-step'));
-      if (targetStep >= 1 && targetStep <= 4) {
-        goToStep(targetStep);
-      }
-    });
-
-    document.querySelectorAll('[data-step-indicator]').forEach(ind => {
-      ind.addEventListener('click', () => {
-        const targetStep = Number(ind.getAttribute('data-step-indicator'));
-        if (targetStep === currentStep) return;
-        if (targetStep < currentStep) {
-          goToStep(targetStep);
-        } else {
-          let canAdvance = true;
-          for (let s = currentStep; s < targetStep; s++) {
-            if (!validateStep(s)) {
-              goToStep(s);
-              canAdvance = false;
-              break;
-            }
-          }
-          if (canAdvance) goToStep(targetStep);
-        }
-      });
-    });
-
-    nextBtn.addEventListener('click', () => { if (validateStep(currentStep)) goToStep(currentStep + 1); });
-    prevBtn.addEventListener('click', () => { if (currentStep > 1) goToStep(currentStep - 1); });
 
     restoreDraft();
 
@@ -3161,14 +4137,16 @@
       ) {
         return;
       }
-      if (currentStep < 4) {
-        if (validateStep(currentStep)) goToStep(currentStep + 1);
+      if (currentStep < TOTAL_STEPS) {
+        advanceFromStep(currentStep);
         return;
       }
-      if (!validateStep(1)) { goToStep(1); return; }
-      if (!validateStep(2)) { goToStep(2); return; }
-      if (!validateStep(3)) { goToStep(3); return; }
-      if (!validateStep(4)) return;
+      for (let s = 1; s <= TOTAL_STEPS; s++) {
+        if (!validateStep(s)) {
+          if (s !== currentStep) goToStep(s);
+          return;
+        }
+      }
 
       const honeyValue = document.getElementById('input-honey')?.value || '';
       if (honeyValue.trim()) return;
@@ -3187,12 +4165,12 @@
       const pkg = siteConfig.packages.find(p => p.id === pkgId);
       const pkgLabel = pkg ? `${pkg.name} (${pkg.price} una tantum)` : pkgId;
       const sections = getSelectedSectionValues().join(', ');
-      const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
-      const colors = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value).join(', ') || 'Da concordare';
-      const timeline = document.getElementById('select-timeline').value;
+      const style = getSelectedStyle();
+      const colors = getCombinedColorsText() || 'Da concordare';
+      const timeline = getSelectedTimeline();
       const socialOrSiteLink = document.getElementById('input-social-or-site-link').value.trim();
-      const description = document.getElementById('textarea-description').value.trim();
-      const additionalNotes = document.getElementById('textarea-additional-notes').value.trim() || 'Nessuna';
+      const description = document.getElementById('textarea-description').value.trim() || 'Non indicata';
+      const additionalNotes = 'Nessuna';
       const fullName = document.getElementById('input-full-name').value.trim();
       const phone = document.getElementById('input-phone').value.trim();
       const email = document.getElementById('input-email').value.trim();
@@ -3300,8 +4278,7 @@
           waConfirmBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
         }
 
-        form.style.display = 'none';
-        packageBanner.classList.remove('is-visible');
+        if (configuratorLayout) configuratorLayout.style.display = 'none';
         confirmationScreen.classList.add('is-visible');
       } catch (err) {
         errorBanner.textContent = 'Si è verificato un problema di connessione. Riprova tra qualche istante o scrivici a ' + siteConfig.contact.email;
@@ -3310,29 +4287,6 @@
         submitBtn.disabled = false;
         submitBtn.textContent = origBtnText;
       }
-    });
-
-    document.getElementById('btn-reset-wizard').addEventListener('click', () => {
-      form.reset();
-      userPickedPackage = false;
-      packagePreselected = false;
-      customSections = [];
-      extraSectionsOpen = false;
-      if (customSectionInput) customSectionInput.value = '';
-      if (customSectionErr) customSectionErr.textContent = '';
-      clearDraft();
-      clearAllFieldStates();
-      selectPackage('plus', false, false);
-      applyCategorySmartUI('Altro', { autoSelectPkg: false, selectedSections: CATEGORY_SMART_CONFIG['Altro'].defaults });
-      updateExtraToggleUI();
-      syncChoiceStates();
-      errorBanner.classList.remove('is-visible');
-      packageBanner.classList.remove('is-visible');
-      packageBanner.textContent = '';
-      confirmationScreen.classList.remove('is-visible');
-      form.style.removeProperty('display');
-      clearDraft();
-      goToStep(1);
     });
 
     document.querySelectorAll('[data-faq-trigger]').forEach(trigger => {

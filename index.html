@@ -530,36 +530,59 @@
     }
 
     /* 3. MODULO MULTI-STEP CON BARRA DI PROGRESSO INTERATTIVA */
-    .wizard-wrapper { max-width: 820px; margin: 0 auto; background: #fff; border: 1px solid var(--border-subtle); border-radius: 22px; box-shadow: var(--shadow-lg); overflow: hidden; }
-    .wizard-header { background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); padding: 18px 24px; }
-    .wizard-progress-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); }
-    .wizard-progress-pct { color: var(--accent-blue); font-weight: 800; background: var(--accent-blue-soft); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
-    .wizard-progress-track { width: 100%; height: 7px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
-    .wizard-progress-fill { height: 100%; width: 25%; background: linear-gradient(90deg, #0052ff 0%, #0ea5e9 100%); border-radius: 999px; transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 10px rgba(0, 82, 255, 0.45); }
-    .wizard-steps-indicator { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .step-pill { display: flex; align-items: center; gap: 7px; padding: 9px 11px; border-radius: 10px; background: #fff; border: 1.5px solid var(--border-subtle); font-size: 0.76rem; font-weight: 700; color: var(--text-secondary); cursor: pointer; text-align: left; transition: all var(--transition-fast); }
+    .wizard-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid rgba(203, 213, 225, 0.72);
+      border-radius: 22px;
+      box-shadow: 0 22px 52px -16px rgba(10, 15, 29, 0.11), 0 8px 22px -10px rgba(10, 15, 29, 0.05);
+      overflow: hidden;
+    }
+    .wizard-header {
+      background: linear-gradient(180deg, #f8fafc 0%, #f4f7fb 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 22px 28px 20px;
+    }
+    .wizard-progress-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); }
+    .wizard-progress-pct { color: var(--accent-blue); font-weight: 800; background: var(--accent-blue-soft); border: 1px solid var(--accent-blue-subtle); padding: 3px 11px; border-radius: 999px; white-space: nowrap; }
+    .wizard-progress-track { width: 100%; height: 8px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-bottom: 16px; }
+    .wizard-progress-fill { height: 100%; width: 25%; background: linear-gradient(90deg, #0052ff 0%, #0ea5e9 100%); border-radius: 999px; transition: width 0.38s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 12px rgba(0, 82, 255, 0.35); }
+    .wizard-steps-indicator { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
+    .step-pill { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 14px; background: #ffffff; border: 1.5px solid var(--border-subtle); font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); cursor: pointer; text-align: left; transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease; }
     .step-pill:hover { border-color: var(--accent-blue); transform: translateY(-1px); }
-    .step-pill.is-active { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); box-shadow: 0 4px 12px rgba(0, 82, 255, 0.12); }
+    .step-pill.is-active { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); box-shadow: 0 6px 16px -8px rgba(0, 82, 255, 0.28); }
     .step-pill.is-completed { border-color: #86efac; background: #f0fdf4; color: var(--status-success); }
-    .step-pill__num { width: 22px; height: 22px; border-radius: 50%; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; transition: all var(--transition-fast); }
+    .step-pill__num { width: 24px; height: 24px; border-radius: 50%; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.72rem; flex-shrink: 0; transition: all 0.2s ease; }
     .step-pill.is-active .step-pill__num { background: var(--accent-blue); color: #fff; }
     .step-pill.is-completed .step-pill__num { background: var(--status-success); color: #fff; }
-    .wizard-body { padding: 28px 24px; }
+    .wizard-body { padding: 30px 28px 28px; }
     .wizard-step-pane { display: none; }
-    .wizard-step-pane.is-active { display: block; animation: fadeStep 0.25s ease-out; }
+    .wizard-step-pane.is-active { display: block; animation: fadeStep 0.24s cubic-bezier(0.22, 1, 0.36, 1); }
     @keyframes fadeStep { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-    .step-heading { font-size: 1.22rem; font-weight: 800; margin-bottom: 18px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .step-heading { font-size: 1.24rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .step-intro { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
     .form-group--full { grid-column: 1 / -1; }
-    .form-label { font-size: 0.84rem; font-weight: 700; }
+    .form-label { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
+    .form-hint { font-size: 0.76rem; color: var(--text-muted); font-weight: 500; }
     .form-required { color: var(--accent-blue); }
-    .form-input, .form-select, .form-textarea { width: 100%; padding: 11px 13px; border: 1.5px solid var(--border-subtle); border-radius: 9px; background: #fff; font-size: 0.92rem; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 3px var(--accent-blue-subtle); }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      background: #ffffff;
+      font-size: 0.93rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    .form-input:hover, .form-select:hover, .form-textarea:hover { border-color: var(--border-strong); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 4px rgba(0, 82, 255, 0.12); }
     .form-input.is-valid, .form-select.is-valid, .form-textarea.is-valid { border-color: #86efac; }
-    .form-input.is-valid:focus, .form-select.is-valid:focus, .form-textarea.is-valid:focus { border-color: #22c55e; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.16); }
+    .form-input.is-valid:focus, .form-select.is-valid:focus, .form-textarea.is-valid:focus { border-color: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15); }
     .form-input.is-invalid, .form-select.is-invalid, .form-textarea.is-invalid { border-color: #fca5a5; }
-    .form-input.is-invalid:focus, .form-select.is-invalid:focus, .form-textarea.is-invalid:focus { border-color: var(--status-error); box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.14); }
+    .form-input.is-invalid:focus, .form-select.is-invalid:focus, .form-textarea.is-invalid:focus { border-color: var(--status-error); box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.13); }
     .form-group.is-valid .form-label::after {
       content: '✓';
       display: inline-flex;
@@ -576,46 +599,219 @@
       font-weight: 800;
       vertical-align: middle;
     }
-    .form-textarea { min-height: 84px; resize: vertical; }
+    .form-textarea { min-height: 92px; resize: vertical; }
     .field-error-msg { font-size: 0.76rem; font-weight: 600; color: var(--status-error); min-height: 14px; }
     .choice-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .choice-cards-grid--styles { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-    .choice-card { position: relative; border: 1.5px solid var(--border-subtle); border-radius: 12px; padding: 14px; cursor: pointer; background: #fff; display: flex; flex-direction: column; gap: 3px; transition: all var(--transition-fast); }
-    .choice-card:hover { border-color: var(--border-strong); }
-    .choice-card.is-selected { border-color: var(--accent-blue); background: var(--accent-blue-soft); box-shadow: 0 4px 12px rgba(0, 82, 255, 0.1); }
-    .choice-card__title { font-weight: 800; font-size: 0.94rem; }
-    .choice-card__price { font-size: 1.25rem; font-weight: 800; color: var(--accent-blue); }
-    .choice-card__meta { font-size: 0.74rem; color: var(--text-secondary); }
+    .choice-cards-grid--categories { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .choice-cards-grid--styles { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
+    .choice-card {
+      position: relative;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 16px 15px;
+      cursor: pointer;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .choice-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px -12px rgba(10, 15, 29, 0.14);
+    }
+    .choice-card.is-selected {
+      border-color: var(--accent-blue);
+      background: var(--accent-blue-soft);
+      box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.11), 0 12px 24px -12px rgba(0, 82, 255, 0.3);
+    }
+    .choice-card.is-selected::after {
+      content: '✓';
+      position: absolute;
+      top: 11px;
+      right: 11px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 8px rgba(0, 82, 255, 0.28);
+    }
+    .choice-card--category { padding-right: 36px; }
+    .choice-card--style { padding: 14px 36px 14px 15px; }
+    .choice-card__icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .choice-card.is-selected .choice-card__icon {
+      background: #ffffff;
+      border-color: var(--accent-blue-subtle);
+    }
+    .choice-card__rec-badge {
+      display: none;
+      align-self: flex-start;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.015em;
+      color: var(--accent-blue);
+      background: var(--accent-blue-soft);
+      border: 1px solid var(--accent-blue-subtle);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+      max-width: calc(100% - 26px);
+      line-height: 1.3;
+    }
+    .choice-card.is-recommended .choice-card__rec-badge { display: inline-flex; }
+    .choice-card.is-recommended.is-selected .choice-card__rec-badge {
+      background: #ffffff;
+      border-color: rgba(0, 82, 255, 0.24);
+    }
+    .choice-card__title { font-weight: 800; font-size: 0.94rem; line-height: 1.25; color: var(--text-primary); }
+    .choice-card__price { font-size: 1.32rem; font-weight: 800; color: var(--accent-blue); line-height: 1.15; }
+    .choice-card__meta { font-size: 0.75rem; color: var(--text-secondary); }
+    .choice-card--package { padding: 18px 16px; justify-content: flex-start; gap: 0; }
+    .choice-card--package .choice-card__title { font-size: 0.88rem; letter-spacing: 0.015em; text-transform: uppercase; padding-right: 26px; margin-bottom: 6px; }
+    .choice-card__price-row { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+    .choice-card__billing { font-size: 0.74rem; font-weight: 600; color: var(--text-muted); }
+    .choice-card__desc { font-size: 0.76rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 11px; line-height: 1.35; }
+    .choice-card__features { list-style: none; border-top: 1px solid var(--border-subtle); padding-top: 11px; margin-top: 2px; display: flex; flex-direction: column; gap: 6px; }
+    .choice-card.is-selected .choice-card__features { border-top-color: rgba(0, 82, 255, 0.16); }
+    .choice-card__feature-item { display: flex; align-items: flex-start; gap: 7px; font-size: 0.77rem; line-height: 1.38; color: var(--text-secondary); font-weight: 500; }
+    .choice-card__check { width: 15px; height: 15px; border-radius: 50%; background: var(--accent-blue-soft); color: var(--accent-blue); font-size: 0.6rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .choice-card.is-selected .choice-card__check { background: #ffffff; }
+    .wizard-pkg-footnote { font-size: 0.73rem; color: var(--text-muted); line-height: 1.45; margin-top: 6px; }
+    .sections-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .sections-counter { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; font-weight: 800; color: var(--accent-blue); background: var(--accent-blue-soft); border: 1px solid var(--accent-blue-subtle); padding: 4px 11px; border-radius: 999px; white-space: nowrap; transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .sections-counter.is-at-limit { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
+    .sections-micro-notice { display: none; font-size: 0.8rem; font-weight: 600; line-height: 1.45; padding: 10px 13px; border-radius: 12px; margin-top: 8px; }
+    .sections-micro-notice.is-visible { display: block; }
+    .sections-micro-notice--limit { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+    .sections-micro-notice--downgrade { background: var(--accent-blue-soft); border: 1px solid var(--accent-blue-subtle); color: #1e40af; }
     .choice-card input, .chip-option input, .yesno-btn input { position: absolute; opacity: 0; pointer-events: none; }
-    .chips-grid { display: flex; flex-wrap: wrap; gap: 7px; }
-    .chip-option { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border: 1.5px solid var(--border-subtle); border-radius: 999px; font-size: 0.82rem; font-weight: 600; cursor: pointer; background: #fff; transition: all var(--transition-fast); }
-    .chip-option.is-selected { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
-    .color-swatch { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); }
+    .chips-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 15px;
+      min-height: 40px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #ffffff;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+    .chip-option:hover { border-color: var(--accent-blue); transform: translateY(-1px); }
+    .chip-option.is-selected {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #ffffff;
+      box-shadow: 0 6px 16px -8px rgba(0, 82, 255, 0.45);
+    }
+    .chip-option.is-disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+      background: var(--bg-secondary);
+      border-color: var(--border-subtle);
+      color: var(--text-muted);
+      box-shadow: none;
+    }
+    .chip-option.is-disabled:hover { border-color: var(--border-subtle); transform: none; }
+    .chip-option--custom { padding: 0 7px 0 0; gap: 4px; }
+    .chip-option__toggle { display: inline-flex; align-items: center; gap: 7px; padding: 9px 6px 9px 15px; min-height: 37px; cursor: pointer; min-width: 0; overflow-wrap: anywhere; }
+    .chip-option.is-disabled .chip-option__toggle { cursor: not-allowed; }
+    .chip-remove-btn { width: 24px; height: 24px; border-radius: 50%; border: none; background: rgba(255, 255, 255, 0.22); color: inherit; font-size: 0.95rem; font-weight: 800; line-height: 1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: background-color 0.15s ease, transform 0.15s ease; }
+    .chip-option:not(.is-selected) .chip-remove-btn { background: var(--bg-tertiary); color: var(--text-secondary); }
+    .chip-remove-btn:hover { background: rgba(255, 255, 255, 0.36); transform: scale(1.06); }
+    .chip-option:not(.is-selected) .chip-remove-btn:hover { background: #fee2e2; color: var(--status-error); }
+    .chip-remove-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; }
+    .custom-features-grid { margin-top: 8px; }
+    .custom-features-grid[hidden] { display: none; }
+    .extra-sections-toggle { align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; padding: 7px 14px; border-radius: 999px; border: 1.5px dashed var(--border-strong); background: var(--bg-secondary); color: var(--accent-blue); font-size: 0.81rem; font-weight: 700; cursor: pointer; transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease; }
+    .extra-sections-toggle:hover { border-color: var(--accent-blue); background: var(--accent-blue-soft); transform: translateY(-1px); }
+    .extra-sections-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .extra-sections-toggle__icon { font-size: 0.95rem; font-weight: 800; line-height: 1; }
+    .extra-sections-panel { margin-top: 10px; padding: 14px; border-radius: 16px; background: var(--bg-secondary); border: 1px solid var(--border-subtle); }
+    .extra-sections-panel[hidden] { display: none; }
+    .extra-sections-panel__hint { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; }
+    .custom-section-wrap { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-subtle); display: flex; flex-direction: column; gap: 6px; }
+    .custom-section-label { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); }
+    .custom-section-bar { display: flex; align-items: stretch; gap: 8px; min-width: 0; }
+    .custom-section-input { flex: 1 1 0; min-width: 0; padding: 10px 14px; font-size: 0.88rem; }
+    .custom-section-input:disabled { background: var(--bg-secondary); color: var(--text-muted); cursor: not-allowed; opacity: 0.65; }
+    .custom-section-btn { flex-shrink: 0; border-radius: 12px; padding: 0 15px; min-height: 44px; min-width: 44px; font-size: 0.85rem; font-weight: 700; }
+    .custom-section-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; pointer-events: none; }
+    .color-swatch { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); flex-shrink: 0; }
     .yesno-group { display: flex; gap: 8px; }
-    .yesno-btn { flex: 1; padding: 9px 12px; border: 1.5px solid var(--border-subtle); border-radius: 9px; font-size: 0.86rem; font-weight: 700; text-align: center; cursor: pointer; background: #fff; transition: all var(--transition-fast); }
+    .yesno-btn { flex: 1; padding: 10px 14px; border: 1.5px solid var(--border-subtle); border-radius: 12px; font-size: 0.86rem; font-weight: 700; text-align: center; cursor: pointer; background: #fff; transition: all 0.2s ease; }
     .yesno-btn.is-selected { border-color: var(--accent-blue); background: var(--accent-blue-soft); color: var(--accent-blue); }
     .choice-card:has(input:focus-visible), .chip-option:has(input:focus-visible), .yesno-btn:has(input:focus-visible) {
       outline: 2px solid var(--accent-blue);
       outline-offset: 2px;
     }
-    .summary-box { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; }
-    .summary-box__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border-subtle); }
-    .summary-box__title { font-weight: 800; font-size: 0.88rem; }
+    .summary-box { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 16px; }
+    .summary-box__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle); }
+    .summary-box__title { font-weight: 800; font-size: 0.9rem; }
     .summary-blocks { display: flex; flex-direction: column; gap: 10px; }
-    .summary-block { background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 10px; padding: 11px 12px; }
-    .summary-block__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 7px; padding-bottom: 5px; border-bottom: 1px solid var(--border-subtle); }
-    .summary-block__title { font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
-    .summary-edit-btn { font-size: 0.76rem; padding: 2px 4px; flex-shrink: 0; }
-    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; font-size: 0.82rem; }
+    .summary-block { background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 14px; padding: 12px 14px; }
+    .summary-block__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border-subtle); }
+    .summary-block__title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
+    .summary-edit-btn { font-size: 0.78rem; padding: 2px 6px; flex-shrink: 0; }
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; font-size: 0.83rem; }
     .summary-item-label { color: var(--text-muted); font-weight: 600; display: block; }
     .summary-item-val { font-weight: 700; overflow-wrap: anywhere; }
-    .privacy-consent-box { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1.5px solid var(--border-subtle); border-radius: 9px; }
+    .step4-contact-box {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .step4-contact-heading {
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .privacy-consent-box { display: flex; align-items: flex-start; gap: 10px; padding: 13px 14px; border: 1.5px solid var(--border-subtle); border-radius: 12px; background: #ffffff; }
     .privacy-link-btn { color: var(--accent-blue); text-decoration: underline; font-weight: 700; background: none; border: none; cursor: pointer; }
     .hp-field-wrap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-    .wizard-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--border-subtle); gap: 12px; }
-    .wizard-alert { padding: 10px 14px; border-radius: 9px; font-size: 0.85rem; font-weight: 600; margin-bottom: 14px; display: none; }
+    .wizard-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 22px; margin-top: 22px; border-top: 1px solid var(--border-subtle); gap: 12px; }
+    .wizard-footer .btn { border-radius: 14px; min-height: 46px; }
+    .wizard-reassurance {
+      display: none;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 12px;
+      line-height: 1.45;
+    }
+    .wizard-reassurance.is-visible { display: block; }
+    .wizard-alert { padding: 11px 15px; border-radius: 14px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; display: none; line-height: 1.4; }
     .wizard-alert.is-visible { display: block; }
     .wizard-alert--info { background: var(--accent-blue-soft); color: var(--accent-blue); border: 1px solid var(--accent-blue-subtle); }
+    .wizard-alert--info.is-visible { display: flex; align-items: center; gap: 9px; }
+    .wizard-alert__badge { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-blue); color: #ffffff; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .wizard-alert--error { background: var(--status-error-bg); color: var(--status-error); border: 1px solid #fecaca; }
     .wizard-confirmation { display: none; text-align: center; padding: 32px 16px; }
     .wizard-confirmation.is-visible { display: block; }
@@ -623,6 +819,7 @@
     .confirmation-title { font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; }
     .confirmation-text { font-size: 0.98rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 20px; }
     .confirmation-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+    .confirmation-actions .btn { border-radius: 14px; min-height: 46px; }
 
     /* BOX CONSULENZA WHATSAPP DOPO IL MODULO */
     .consultation-box {
@@ -876,6 +1073,7 @@
       .mobile-menu-toggle { display: inline-flex; }
       .wizard-steps-indicator { grid-template-columns: 1fr 1fr; }
       .form-grid, .choice-cards-grid, .summary-grid { grid-template-columns: 1fr; }
+      .choice-cards-grid--categories { grid-template-columns: 1fr 1fr; }
       .wizard-footer { flex-direction: column-reverse; align-items: stretch; }
       .wizard-footer .btn { width: 100%; }
       .confirmation-actions { flex-direction: column; align-items: stretch; }
@@ -892,9 +1090,18 @@
       .mockup-cards-grid { grid-template-columns: 1fr; }
       .pricing-card { padding: 24px 18px; }
       .pricing-card .btn { padding: 12px 16px; }
-      .wizard-header { padding: 16px; }
-      .wizard-body { padding: 22px 16px; }
+      .wizard-header { padding: 18px 16px 16px; }
+      .wizard-body { padding: 22px 16px 20px; }
+      .choice-cards-grid--categories { grid-template-columns: 1fr; }
+      .choice-card--package { padding: 16px 14px; }
+      .sections-counter { font-size: 0.73rem; padding: 4px 10px; }
+      .extra-sections-panel { padding: 12px; }
+      .custom-section-btn { padding: 0 13px; }
+      .wizard-footer .btn { white-space: normal; text-align: center; padding: 12px 16px; }
       .btn--lg { padding: 12px 18px; font-size: 0.92rem; }
+    }
+    @media (max-width: 420px) {
+      .custom-section-btn__label { display: none; }
     }
   </style>
 </head>
@@ -1164,10 +1371,10 @@
               <div class="wizard-progress-fill" id="wizard-progress-fill"></div>
             </div>
             <div class="wizard-steps-indicator">
-              <button type="button" class="step-pill is-active" data-step-indicator="1"><span class="step-pill__num">1</span><span>Cliente</span></button>
+              <button type="button" class="step-pill is-active" data-step-indicator="1"><span class="step-pill__num">1</span><span>Attività</span></button>
               <button type="button" class="step-pill" data-step-indicator="2"><span class="step-pill__num">2</span><span>Pacchetto</span></button>
-              <button type="button" class="step-pill" data-step-indicator="3"><span class="step-pill__num">3</span><span>Il tuo sito</span></button>
-              <button type="button" class="step-pill" data-step-indicator="4"><span class="step-pill__num">4</span><span>Invio</span></button>
+              <button type="button" class="step-pill" data-step-indicator="3"><span class="step-pill__num">3</span><span>Stile</span></button>
+              <button type="button" class="step-pill" data-step-indicator="4"><span class="step-pill__num">4</span><span>Contatti</span></button>
             </div>
           </div>
 
@@ -1180,100 +1387,197 @@
                 <input type="text" id="input-honey" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
               </div>
 
-              <!-- PASSAGGIO 1 -->
+              <!-- PASSAGGIO 1: LA TUA ATTIVITÀ (ZERO ATTRITO) -->
               <div class="wizard-step-pane is-active" data-step-pane="1">
-                <h3 class="step-heading">1. Informazioni cliente</h3>
+                <h3 class="step-heading">1. Parlaci della tua attività</h3>
+                <p class="step-intro">Nessun dato personale richiesto ora: scegli la tua categoria per personalizzare le funzionalità.</p>
                 <div class="form-grid">
-                  <div class="form-group">
-                    <label class="form-label" for="input-full-name">Nome e cognome <span class="form-required">*</span></label>
-                    <input type="text" id="input-full-name" class="form-input" placeholder="Es. Marco Rossi" required />
-                    <span class="field-error-msg" id="err-full-name"></span>
+                  <div class="form-group form-group--full">
+                    <span class="form-label">Categoria attività <span class="form-required">*</span></span>
+                    <div class="choice-cards-grid choice-cards-grid--categories">
+                      <label class="choice-card choice-card--category" data-category-card="Ristorante / Pizzeria / Bar">
+                        <input type="radio" name="businessType" value="Ristorante / Pizzeria / Bar" />
+                        <span class="choice-card__icon" aria-hidden="true">🍽️</span>
+                        <span class="choice-card__title">Ristorante / Pizzeria / Bar</span>
+                      </label>
+                      <label class="choice-card choice-card--category" data-category-card="Negozio / Attività locale">
+                        <input type="radio" name="businessType" value="Negozio / Attività locale" />
+                        <span class="choice-card__icon" aria-hidden="true">🛍️</span>
+                        <span class="choice-card__title">Negozio / Attività locale</span>
+                      </label>
+                      <label class="choice-card choice-card--category" data-category-card="Professionista / Studio">
+                        <input type="radio" name="businessType" value="Professionista / Studio" />
+                        <span class="choice-card__icon" aria-hidden="true">💼</span>
+                        <span class="choice-card__title">Professionista / Studio</span>
+                      </label>
+                      <label class="choice-card choice-card--category" data-category-card="Artigiano / Servizi">
+                        <input type="radio" name="businessType" value="Artigiano / Servizi" />
+                        <span class="choice-card__icon" aria-hidden="true">🛠️</span>
+                        <span class="choice-card__title">Artigiano / Servizi</span>
+                      </label>
+                      <label class="choice-card choice-card--category" data-category-card="Altro">
+                        <input type="radio" name="businessType" value="Altro" />
+                        <span class="choice-card__icon" aria-hidden="true">✨</span>
+                        <span class="choice-card__title">Altro</span>
+                      </label>
+                    </div>
+                    <span class="field-error-msg" id="err-business-type"></span>
                   </div>
+
                   <div class="form-group">
                     <label class="form-label" for="input-business-name">Nome dell’attività <span class="form-required">*</span></label>
                     <input type="text" id="input-business-name" class="form-input" placeholder="Es. Bar Centrale" required />
                     <span class="field-error-msg" id="err-business-name"></span>
                   </div>
                   <div class="form-group">
-                    <label class="form-label" for="input-email">Email <span class="form-required">*</span></label>
-                    <input type="email" id="input-email" class="form-input" placeholder="nome@email.it" required />
-                    <span class="field-error-msg" id="err-email"></span>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="input-phone">Telefono <span class="form-required">*</span></label>
-                    <input type="tel" id="input-phone" class="form-input" placeholder="Es. 333 123 4567" required />
-                    <span class="field-error-msg" id="err-phone"></span>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="select-business-type">Tipo di attività <span class="form-required">*</span></label>
-                    <select id="select-business-type" class="form-select" required>
-                      <option value="">Seleziona...</option>
-                      <option value="Ristorante">Ristorante</option>
-                      <option value="Bar">Bar</option>
-                      <option value="Negozio">Negozio</option>
-                      <option value="Azienda">Azienda</option>
-                      <option value="Parrucchiere">Parrucchiere</option>
-                      <option value="Altro">Altro</option>
-                    </select>
-                    <span class="field-error-msg" id="err-business-type"></span>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="input-business-address">Via / Indirizzo dell’attività</label>
+                    <label class="form-label" for="input-business-address">Città / Indirizzo <span class="form-hint">(opzionale)</span></label>
                     <input type="text" id="input-business-address" class="form-input" placeholder="Es. Via Roma 15, Piacenza" />
                     <span class="field-error-msg" id="err-business-address"></span>
                   </div>
                 </div>
               </div>
 
-              <!-- PASSAGGIO 2 -->
+              <!-- PASSAGGIO 2: PACCHETTO + FUNZIONALITÀ SMART -->
               <div class="wizard-step-pane" data-step-pane="2">
-                <h3 class="step-heading">2. Scegli il pacchetto</h3>
-                <div class="choice-cards-grid">
-                  <label class="choice-card" data-package-card="vetrina">
-                    <input type="radio" name="selectedPackage" value="vetrina" />
-                    <span class="choice-card__title">Vetrina</span>
-                    <span class="choice-card__price">359€</span>
-                    <span class="choice-card__meta">Una tantum</span>
-                  </label>
-                  <label class="choice-card is-selected" data-package-card="plus">
-                    <input type="radio" name="selectedPackage" value="plus" checked />
-                    <span class="choice-card__title">Plus</span>
-                    <span class="choice-card__price">459€</span>
-                    <span class="choice-card__meta">Una tantum</span>
-                  </label>
-                  <label class="choice-card" data-package-card="completo">
-                    <input type="radio" name="selectedPackage" value="completo" />
-                    <span class="choice-card__title">Completo</span>
-                    <span class="choice-card__price">600€</span>
-                    <span class="choice-card__meta">Una tantum</span>
-                  </label>
+                <h3 class="step-heading">2. Pacchetto e funzionalità</h3>
+                <p class="step-intro">Prezzi chiari una tantum: seleziona il pacchetto e le sezioni che ti servono davvero.</p>
+                <div class="form-grid">
+                  <div class="form-group form-group--full">
+                    <span class="form-label">Scegli il pacchetto <span class="form-required">*</span></span>
+                    <div class="choice-cards-grid">
+                      <label class="choice-card choice-card--package" data-package-card="vetrina">
+                        <input type="radio" name="selectedPackage" value="vetrina" />
+                        <span class="choice-card__rec-badge" data-rec-badge></span>
+                        <span class="choice-card__title">Pacchetto Vetrina</span>
+                        <span class="choice-card__price-row">
+                          <span class="choice-card__price">359€</span>
+                          <span class="choice-card__billing">una tantum</span>
+                        </span>
+                        <span class="choice-card__desc">Presenza online essenziale · Fino a 5 sezioni</span>
+                        <span class="choice-card__features" role="list">
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Sito web professionale</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Design personalizzato</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Fino a 5 sezioni</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Ottimizzazione smartphone e tablet</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Modulo contatti</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Collegamento WhatsApp</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Pubblicazione online</span></span>
+                        </span>
+                      </label>
+                      <label class="choice-card choice-card--package is-selected is-recommended" data-package-card="plus">
+                        <input type="radio" name="selectedPackage" value="plus" checked />
+                        <span class="choice-card__rec-badge" data-rec-badge>Più scelto</span>
+                        <span class="choice-card__title">Pacchetto Plus</span>
+                        <span class="choice-card__price-row">
+                          <span class="choice-card__price">459€</span>
+                          <span class="choice-card__billing">una tantum</span>
+                        </span>
+                        <span class="choice-card__desc">Più spazio e personalizzazione · Fino a 8 sezioni</span>
+                        <span class="choice-card__features" role="list">
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Tutto quello incluso nel pacchetto Vetrina</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Design più personalizzato</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Fino a 8 sezioni</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Tre interventi di manutenzione inclusi su richiesta</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Supporto per piccoli aggiornamenti</span></span>
+                        </span>
+                      </label>
+                      <label class="choice-card choice-card--package" data-package-card="completo">
+                        <input type="radio" name="selectedPackage" value="completo" />
+                        <span class="choice-card__rec-badge" data-rec-badge></span>
+                        <span class="choice-card__title">Pacchetto Completo</span>
+                        <span class="choice-card__price-row">
+                          <span class="choice-card__price">600€</span>
+                          <span class="choice-card__billing">una tantum</span>
+                        </span>
+                        <span class="choice-card__desc">Su misura con assistenza 12 mesi · Fino a 12 sezioni</span>
+                        <span class="choice-card__features" role="list">
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Tutto quello incluso nel pacchetto Plus</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Sito web completamente personalizzato</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Fino a 12 sezioni</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Manutenzioni e aggiornamenti inclusi per 12 mesi*</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Supporto prioritario</span></span>
+                          <span class="choice-card__feature-item" role="listitem"><span class="choice-card__check" aria-hidden="true">✓</span><span>Aggiornamenti e modifiche ai contenuti</span></span>
+                        </span>
+                      </label>
+                    </div>
+                    <p class="wizard-pkg-footnote">*Prezzi una tantum (dominio, hosting e servizi esterni da concordare separatamente). Manutenzioni soggette a politica di utilizzo concordata.</p>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <div class="sections-header">
+                      <span class="form-label" id="dynamic-features-label">Funzionalità e sezioni consigliate <span class="form-required">*</span></span>
+                      <span class="sections-counter" id="sections-counter" aria-live="polite">Sezioni selezionate: 3 / 8</span>
+                    </div>
+                    <div class="chips-grid" id="dynamic-features-grid">
+                      <label class="chip-option is-selected" data-section-chip="Chi siamo"><input type="checkbox" name="sections" value="Chi siamo" checked /><span>Chi siamo</span></label>
+                      <label class="chip-option is-selected" data-section-chip="Servizi"><input type="checkbox" name="sections" value="Servizi" checked /><span>Servizi</span></label>
+                      <label class="chip-option" data-section-chip="Galleria foto"><input type="checkbox" name="sections" value="Galleria foto" /><span>Galleria foto</span></label>
+                      <label class="chip-option" data-section-chip="Listino/Catalogo"><input type="checkbox" name="sections" value="Listino/Catalogo" /><span>Listino/Catalogo</span></label>
+                      <label class="chip-option is-selected" data-section-chip="Contatti e mappa"><input type="checkbox" name="sections" value="Contatti e mappa" checked /><span>Contatti e mappa</span></label>
+                      <label class="chip-option" data-section-chip="FAQ"><input type="checkbox" name="sections" value="FAQ" /><span>FAQ</span></label>
+                    </div>
+                    <div class="chips-grid custom-features-grid" id="custom-features-grid" hidden></div>
+
+                    <div class="sections-micro-notice sections-micro-notice--downgrade" id="sections-downgrade-notice" role="status" aria-live="polite"></div>
+                    <div class="sections-micro-notice sections-micro-notice--limit" id="sections-limit-notice" role="status" aria-live="polite"></div>
+
+                    <button type="button" class="extra-sections-toggle" id="btn-toggle-extra-sections" aria-expanded="false" aria-controls="extra-sections-panel">
+                      <span class="extra-sections-toggle__icon" id="extra-sections-toggle-icon" aria-hidden="true">+</span>
+                      <span id="extra-sections-toggle-text">Mostra altre sezioni</span>
+                    </button>
+                    <div class="extra-sections-panel" id="extra-sections-panel" hidden>
+                      <p class="extra-sections-panel__hint">Sezioni extra universali compatibili con ogni attività:</p>
+                      <div class="chips-grid" id="extra-features-grid"></div>
+                    </div>
+
+                    <div class="custom-section-wrap">
+                      <label class="custom-section-label" for="input-custom-section">+ Aggiungi sezione personalizzata</label>
+                      <div class="custom-section-bar" id="custom-section-bar">
+                        <input
+                          type="text"
+                          id="input-custom-section"
+                          class="form-input custom-section-input"
+                          maxlength="48"
+                          placeholder="Es. Area clienti, Booking, Portfolio..."
+                          autocomplete="off"
+                        />
+                        <button type="button" id="btn-add-custom-section" class="btn btn--secondary custom-section-btn" aria-label="Aggiungi sezione personalizzata">
+                          +<span class="custom-section-btn__label"> Aggiungi</span>
+                        </button>
+                      </div>
+                      <span class="field-error-msg" id="err-custom-section"></span>
+                    </div>
+
+                    <span class="field-error-msg" id="err-sections"></span>
+                  </div>
                 </div>
               </div>
 
-              <!-- PASSAGGIO 3 -->
+              <!-- PASSAGGIO 3: STILE E RIFERIMENTI -->
               <div class="wizard-step-pane" data-step-pane="3">
-                <h3 class="step-heading">3. Come vuoi il tuo sito?</h3>
+                <h3 class="step-heading">3. Stile e riferimenti</h3>
+                <p class="step-intro">Indicaci l’estetica che preferisci, eventuali link utili e le tempistiche ideali.</p>
                 <div class="form-grid">
                   <div class="form-group form-group--full">
-                    <span class="form-label">Stile desiderato <span class="form-required">*</span></span>
+                    <span class="form-label">Stile visivo desiderato <span class="form-required">*</span></span>
                     <div class="choice-cards-grid choice-cards-grid--styles">
-                      <label class="choice-card is-selected" data-style-card="Moderno">
+                      <label class="choice-card choice-card--style is-selected" data-style-card="Moderno">
                         <input type="radio" name="style" value="Moderno" checked />
                         <span class="choice-card__title">Moderno</span>
                       </label>
-                      <label class="choice-card" data-style-card="Elegante">
+                      <label class="choice-card choice-card--style" data-style-card="Elegante">
                         <input type="radio" name="style" value="Elegante" />
                         <span class="choice-card__title">Elegante</span>
                       </label>
-                      <label class="choice-card" data-style-card="Minimal">
+                      <label class="choice-card choice-card--style" data-style-card="Minimal">
                         <input type="radio" name="style" value="Minimal" />
                         <span class="choice-card__title">Minimal</span>
                       </label>
-                      <label class="choice-card" data-style-card="Creativo">
+                      <label class="choice-card choice-card--style" data-style-card="Creativo">
                         <input type="radio" name="style" value="Creativo" />
                         <span class="choice-card__title">Creativo</span>
                       </label>
-                      <label class="choice-card" data-style-card="Classico">
+                      <label class="choice-card choice-card--style" data-style-card="Classico">
                         <input type="radio" name="style" value="Classico" />
                         <span class="choice-card__title">Classico</span>
                       </label>
@@ -1281,7 +1585,7 @@
                   </div>
 
                   <div class="form-group form-group--full">
-                    <span class="form-label">Colori principali (anche più di uno)</span>
+                    <span class="form-label">Colori principali <span class="form-hint">(anche più di uno)</span></span>
                     <div class="chips-grid">
                       <label class="chip-option" data-color-chip="Blu Elettrico">
                         <input type="checkbox" name="colors" value="Blu Elettrico" />
@@ -1317,57 +1621,7 @@
                   </div>
 
                   <div class="form-group">
-                    <span class="form-label">Pulsante WhatsApp?</span>
-                    <div class="yesno-group">
-                      <label class="yesno-btn is-selected" data-radio-btn="wantsWhatsapp"><input type="radio" name="wantsWhatsapp" value="Sì" checked /> Sì</label>
-                      <label class="yesno-btn" data-radio-btn="wantsWhatsapp"><input type="radio" name="wantsWhatsapp" value="No" /> No</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <span class="form-label">Mostrare prodotti o servizi?</span>
-                    <div class="yesno-group">
-                      <label class="yesno-btn is-selected" data-radio-btn="wantsCatalog"><input type="radio" name="wantsCatalog" value="Sì" checked /> Sì</label>
-                      <label class="yesno-btn" data-radio-btn="wantsCatalog"><input type="radio" name="wantsCatalog" value="No" /> No</label>
-                    </div>
-                  </div>
-
-                  <div class="form-group form-group--full">
-                    <span class="form-label">Sezioni da inserire <span class="form-required">*</span></span>
-                    <div class="chips-grid">
-                      <label class="chip-option is-selected" data-section-chip="Home"><input type="checkbox" name="sections" value="Home" checked /><span>Home</span></label>
-                      <label class="chip-option is-selected" data-section-chip="Chi siamo"><input type="checkbox" name="sections" value="Chi siamo" checked /><span>Chi siamo</span></label>
-                      <label class="chip-option is-selected" data-section-chip="Servizi"><input type="checkbox" name="sections" value="Servizi" checked /><span>Servizi</span></label>
-                      <label class="chip-option" data-section-chip="Menu"><input type="checkbox" name="sections" value="Menu" /><span>Menu</span></label>
-                      <label class="chip-option" data-section-chip="Prodotti"><input type="checkbox" name="sections" value="Prodotti" /><span>Prodotti</span></label>
-                      <label class="chip-option" data-section-chip="Galleria fotografica"><input type="checkbox" name="sections" value="Galleria fotografica" /><span>Galleria fotografica</span></label>
-                      <label class="chip-option is-selected" data-section-chip="Contatti"><input type="checkbox" name="sections" value="Contatti" checked /><span>Contatti</span></label>
-                      <label class="chip-option" data-section-chip="Recensioni"><input type="checkbox" name="sections" value="Recensioni" /><span>Recensioni</span></label>
-                      <label class="chip-option" data-section-chip="Prezzi"><input type="checkbox" name="sections" value="Prezzi" /><span>Prezzi</span></label>
-                      <label class="chip-option" data-section-chip="Altro"><input type="checkbox" name="sections" value="Altro" /><span>Altro</span></label>
-                    </div>
-                    <span class="field-error-msg" id="err-sections"></span>
-                  </div>
-
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="textarea-description">Descrivi brevemente come immagini il tuo sito <span class="form-required">*</span></label>
-                    <textarea id="textarea-description" class="form-textarea" placeholder="Raccontaci la tua idea..."></textarea>
-                    <span class="field-error-msg" id="err-description"></span>
-                  </div>
-
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="input-reference-links">Siti di riferimento che ti piacciono (opzionale)</label>
-                    <input type="text" id="input-reference-links" class="form-input" placeholder="Es. www.esempio.it" />
-                  </div>
-                </div>
-              </div>
-
-              <!-- PASSAGGIO 4 -->
-              <div class="wizard-step-pane" data-step-pane="4">
-                <h3 class="step-heading">4. Dettagli finali e invio</h3>
-                <div class="form-grid">
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="select-timeline">Quando vorresti avere il sito pronto? <span class="form-required">*</span></label>
+                    <label class="form-label" for="select-timeline">Quando vorresti il sito pronto? <span class="form-required">*</span></label>
                     <select id="select-timeline" class="form-select" required>
                       <option value="">Seleziona...</option>
                       <option value="Il prima possibile (1-2 settimane)">Il prima possibile (1-2 settimane)</option>
@@ -1378,11 +1632,29 @@
                     <span class="field-error-msg" id="err-timeline"></span>
                   </div>
 
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="textarea-additional-notes">Altre richieste o informazioni (opzionale)</label>
-                    <textarea id="textarea-additional-notes" class="form-textarea" style="min-height:68px;" placeholder="Eventuali note..."></textarea>
+                  <div class="form-group">
+                    <label class="form-label" for="input-social-or-site-link">Link sito attuale, Instagram o Google Maps <span class="form-hint">(opzionale)</span></label>
+                    <input type="text" id="input-social-or-site-link" name="social_or_site_link" class="form-input" placeholder="es. instagram.com/tuaattivita o sito attuale" />
                   </div>
 
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="textarea-description">Descrivi brevemente come immagini il tuo sito <span class="form-required">*</span></label>
+                    <textarea id="textarea-description" class="form-textarea" placeholder="Raccontaci la tua idea, i punti di forza del tuo locale o cosa vuoi mettere in evidenza..."></textarea>
+                    <span class="field-error-msg" id="err-description"></span>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="textarea-additional-notes">Altre note o siti di riferimento <span class="form-hint">(opzionale)</span></label>
+                    <textarea id="textarea-additional-notes" class="form-textarea" style="min-height:68px;" placeholder="Eventuali richieste particolari o siti che ti piacciono..."></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PASSAGGIO 4: RIEPILOGO + DATI DI CONTATTO -->
+              <div class="wizard-step-pane" data-step-pane="4">
+                <h3 class="step-heading">4. Riepilogo e contatti</h3>
+                <p class="step-intro">Controlla le tue scelte e lasciaci i recapiti per ricevere la proposta gratuita.</p>
+                <div class="form-grid">
                   <div class="form-group form-group--full">
                     <div class="summary-box">
                       <div class="summary-box__header">
@@ -1391,15 +1663,35 @@
                       <div class="summary-blocks" id="quote-summary-content"></div>
                     </div>
                   </div>
+                </div>
 
-                  <div class="form-group form-group--full">
-                    <div class="privacy-consent-box">
-                      <input type="checkbox" id="checkbox-privacy" required />
-                      <span style="font-size:0.84rem; color:var(--text-secondary);">
-                        <label for="checkbox-privacy">Acconsento al trattamento dei dati personali secondo l’</label><button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button><label for="checkbox-privacy">. <span class="form-required">*</span></label>
-                      </span>
+                <div class="step4-contact-box">
+                  <h4 class="step4-contact-heading">Dove ti inviamo la proposta gratuita?</h4>
+                  <div class="form-grid">
+                    <div class="form-group form-group--full">
+                      <label class="form-label" for="input-full-name">Nome e Cognome <span class="form-required">*</span></label>
+                      <input type="text" id="input-full-name" class="form-input" placeholder="Es. Marco Rossi" required />
+                      <span class="field-error-msg" id="err-full-name"></span>
                     </div>
-                    <span class="field-error-msg" id="err-privacy"></span>
+                    <div class="form-group">
+                      <label class="form-label" for="input-phone">Telefono / WhatsApp <span class="form-required">*</span></label>
+                      <input type="tel" id="input-phone" class="form-input" placeholder="Es. 333 123 4567" required />
+                      <span class="field-error-msg" id="err-phone"></span>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="input-email">Email <span class="form-required">*</span></label>
+                      <input type="email" id="input-email" class="form-input" placeholder="nome@email.it" required />
+                      <span class="field-error-msg" id="err-email"></span>
+                    </div>
+                    <div class="form-group form-group--full">
+                      <div class="privacy-consent-box">
+                        <input type="checkbox" id="checkbox-privacy" required />
+                        <span style="font-size:0.84rem; color:var(--text-secondary);">
+                          <label for="checkbox-privacy">Acconsento al trattamento dei dati personali secondo l’</label><button type="button" class="privacy-link-btn" data-open-modal="privacy-modal">Informativa Privacy</button><label for="checkbox-privacy">. <span class="form-required">*</span></label>
+                        </span>
+                      </div>
+                      <span class="field-error-msg" id="err-privacy"></span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1407,8 +1699,9 @@
               <div class="wizard-footer">
                 <button type="button" class="btn btn--secondary" id="btn-wizard-prev" style="visibility:hidden;">← Indietro</button>
                 <button type="button" class="btn btn--primary" id="btn-wizard-next">Avanti →</button>
-                <button type="submit" class="btn btn--primary btn--lg" id="btn-submit-quote" style="display:none;">Invia richiesta</button>
+                <button type="submit" class="btn btn--primary btn--lg" id="btn-submit-quote" style="display:none;">Ricevi la mia proposta gratuita →</button>
               </div>
+              <p class="wizard-reassurance" id="wizard-reassurance">Ti rispondiamo entro 24h · Nessun impegno · Studio locale a Piacenza</p>
             </form>
 
             <div class="wizard-confirmation" id="wizard-confirmation-screen">
@@ -1735,19 +2028,22 @@
           id: 'vetrina',
           name: 'PACCHETTO VETRINA',
           shortName: 'Vetrina',
-          price: '359€'
+          price: '359€',
+          maxSections: 5
         },
         {
           id: 'plus',
           name: 'PACCHETTO PLUS',
           shortName: 'Plus',
-          price: '459€'
+          price: '459€',
+          maxSections: 8
         },
         {
           id: 'completo',
           name: 'PACCHETTO COMPLETO',
           shortName: 'Completo',
-          price: '600€'
+          price: '600€',
+          maxSections: 12
         }
       ]
     };
@@ -1878,7 +2174,12 @@
     });
 
     let currentStep = 1;
-    const DRAFT_STORAGE_KEY = 'mgd_quote_draft_v1';
+    let userPickedPackage = false;
+    let packagePreselected = false;
+    let customSections = [];
+    let extraSectionsOpen = false;
+    let suppressSubmitUntil = 0;
+    const DRAFT_STORAGE_KEY = 'mgd_quote_draft_v2';
     const SUBMIT_COOLDOWN_KEY = 'mgd_quote_last_submit_ts';
     const SUBMIT_COOLDOWN_MS = 45000;
     const STEP_META = {
@@ -1888,6 +2189,55 @@
       4: { label: 'Step 4 di 4 · Quasi fatto', pct: 100 }
     };
 
+    const CATEGORY_SMART_CONFIG = {
+      'Ristorante / Pizzeria / Bar': {
+        recommendedPkg: 'plus',
+        badge: 'Consigliato per ristoranti',
+        features: ['Menu digitale QR', 'Prenotazione tavoli', 'Ordini WhatsApp', 'Galleria piatti', 'Mappa e orari', 'Recensioni'],
+        defaults: ['Menu digitale QR', 'Prenotazione tavoli', 'Mappa e orari']
+      },
+      'Negozio / Attività locale': {
+        recommendedPkg: 'plus',
+        badge: 'Più scelto dai negozi',
+        features: ['Vetrina prodotti', 'Offerte in evidenza', 'Contatto rapido WhatsApp', 'Orari e mappa', 'Galleria negozio', 'Recensioni'],
+        defaults: ['Vetrina prodotti', 'Contatto rapido WhatsApp', 'Orari e mappa']
+      },
+      'Professionista / Studio': {
+        recommendedPkg: 'vetrina',
+        badge: 'Ideale per professionisti',
+        features: ['Schede servizi', 'Prenotazione consulenza', 'Chi siamo / Team', 'Casi studio', 'FAQ', 'Modulo contatti'],
+        defaults: ['Schede servizi', 'Prenotazione consulenza', 'Modulo contatti']
+      },
+      'Artigiano / Servizi': {
+        recommendedPkg: 'vetrina',
+        badge: 'Ideale per artigiani',
+        features: ['Elenco lavori/servizi', 'Galleria prima/dopo', 'Richiesta sopralluogo', 'Zone servite', 'WhatsApp rapido', 'Recensioni'],
+        defaults: ['Elenco lavori/servizi', 'Galleria prima/dopo', 'WhatsApp rapido']
+      },
+      'Altro': {
+        recommendedPkg: 'plus',
+        badge: 'Più scelto',
+        features: ['Chi siamo', 'Servizi', 'Galleria foto', 'Listino/Catalogo', 'Contatti e mappa', 'FAQ'],
+        defaults: ['Chi siamo', 'Servizi', 'Contatti e mappa']
+      }
+    };
+
+    const UNIVERSAL_EXTRA_SECTIONS = [
+      { label: 'Chi siamo / Storia', overlaps: ['Chi siamo', 'Chi siamo / Team'] },
+      { label: 'Listino prezzi', overlaps: ['Listino/Catalogo'] },
+      { label: 'Blog / News', overlaps: [] },
+      { label: 'Multilingua', overlaps: [] },
+      { label: 'Area Download / PDF', overlaps: [] },
+      { label: 'Newsletter', overlaps: [] },
+      { label: 'Video presentazione', overlaps: [] },
+      { label: 'Domande frequenti (FAQ)', overlaps: ['FAQ'] },
+      { label: 'Recensioni Google', overlaps: ['Recensioni'] },
+      { label: 'Partner / Certificazioni', overlaps: [] },
+      { label: 'Preventivo online', overlaps: ['Richiesta sopralluogo'] },
+      { label: 'Feed Instagram / Social', overlaps: [] },
+      { label: 'Eventi e promozioni', overlaps: ['Offerte in evidenza'] }
+    ];
+
     const form = document.getElementById('quote-multi-step-form');
     const prevBtn = document.getElementById('btn-wizard-prev');
     const nextBtn = document.getElementById('btn-wizard-next');
@@ -1896,33 +2246,357 @@
     const errorBanner = document.getElementById('wizard-error-banner');
     const confirmationScreen = document.getElementById('wizard-confirmation-screen');
     const progressTrack = document.getElementById('wizard-progress-track');
+    const reassuranceNote = document.getElementById('wizard-reassurance');
+    const dynamicFeaturesGrid = document.getElementById('dynamic-features-grid');
+    const extraFeaturesGrid = document.getElementById('extra-features-grid');
+    const customFeaturesGrid = document.getElementById('custom-features-grid');
+    const sectionsCounter = document.getElementById('sections-counter');
+    const sectionsLimitNotice = document.getElementById('sections-limit-notice');
+    const sectionsDowngradeNotice = document.getElementById('sections-downgrade-notice');
+    const extraSectionsToggleBtn = document.getElementById('btn-toggle-extra-sections');
+    const extraSectionsToggleIcon = document.getElementById('extra-sections-toggle-icon');
+    const extraSectionsToggleText = document.getElementById('extra-sections-toggle-text');
+    const extraSectionsPanel = document.getElementById('extra-sections-panel');
+    const customSectionInput = document.getElementById('input-custom-section');
+    const customSectionAddBtn = document.getElementById('btn-add-custom-section');
+    const customSectionErr = document.getElementById('err-custom-section');
+
+    function getSelectedCategory() {
+      return form.querySelector('input[name="businessType"]:checked')?.value || '';
+    }
+
+    function getSelectedPackageId() {
+      return form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
+    }
+
+    function getSelectedPackage() {
+      const pkgId = getSelectedPackageId();
+      return siteConfig.packages.find(p => p.id === pkgId) || siteConfig.packages[1] || siteConfig.packages[0];
+    }
+
+    function getPackageMaxSections(pkgOrId) {
+      const pkg = typeof pkgOrId === 'string'
+        ? siteConfig.packages.find(p => p.id === pkgOrId)
+        : pkgOrId;
+      if (!pkg) return null;
+      if (pkg.maxSections === null || pkg.maxSections === undefined || pkg.maxSections === Infinity) {
+        return null;
+      }
+      const n = Number(pkg.maxSections);
+      return Number.isFinite(n) && n > 0 ? n : null;
+    }
+
+    function getUniversalSectionsForCategory(category) {
+      const cfg = CATEGORY_SMART_CONFIG[category] || CATEGORY_SMART_CONFIG['Altro'];
+      const catLower = new Set(cfg.features.map(f => f.toLowerCase()));
+      return UNIVERSAL_EXTRA_SECTIONS
+        .filter(item => {
+          if (catLower.has(item.label.toLowerCase())) return false;
+          return !(item.overlaps || []).some(ov => catLower.has(ov.toLowerCase()));
+        })
+        .map(item => item.label);
+    }
+
+    function getAllSectionInputs() {
+      return Array.from(form.querySelectorAll('input[name="sections"]'));
+    }
+
+    function getSelectedSectionValues() {
+      const seen = new Set();
+      const result = [];
+      getAllSectionInputs().forEach(cb => {
+        if (cb.checked) {
+          const key = cb.value.toLowerCase();
+          if (!seen.has(key)) {
+            seen.add(key);
+            result.push(cb.value);
+          }
+        }
+      });
+      return result;
+    }
+
+    function updateExtraToggleUI() {
+      if (extraSectionsPanel) extraSectionsPanel.hidden = !extraSectionsOpen;
+      if (extraSectionsToggleBtn) extraSectionsToggleBtn.setAttribute('aria-expanded', String(extraSectionsOpen));
+      if (extraSectionsToggleIcon) extraSectionsToggleIcon.textContent = extraSectionsOpen ? '−' : '+';
+      if (extraSectionsToggleText) {
+        const extraCheckedCount = extraFeaturesGrid
+          ? extraFeaturesGrid.querySelectorAll('input[name="sections"]:checked').length
+          : 0;
+        if (extraSectionsOpen) {
+          extraSectionsToggleText.textContent = 'Nascondi altre sezioni';
+        } else if (extraCheckedCount > 0) {
+          extraSectionsToggleText.textContent = extraCheckedCount === 1
+            ? 'Mostra altre sezioni (1 selezionata)'
+            : `Mostra altre sezioni (${extraCheckedCount} selezionate)`;
+        } else {
+          extraSectionsToggleText.textContent = 'Mostra altre sezioni';
+        }
+      }
+    }
+
+    function renderCustomChips(selectedSet) {
+      if (!customFeaturesGrid) return;
+      if (customSections.length === 0) {
+        customFeaturesGrid.hidden = true;
+        customFeaturesGrid.innerHTML = '';
+        return;
+      }
+      customFeaturesGrid.hidden = false;
+      customFeaturesGrid.innerHTML = customSections.map((label, idx) => {
+        const isChecked = selectedSet.has(label);
+        const safe = escapeHtml(label);
+        return `<div class="chip-option chip-option--custom ${isChecked ? 'is-selected' : ''}" data-section-chip="${safe}" data-custom-chip="true"><label class="chip-option__toggle"><input type="checkbox" name="sections" value="${safe}" ${isChecked ? 'checked' : ''} /><span>${safe}</span></label><button type="button" class="chip-remove-btn" data-remove-custom-index="${idx}" aria-label="Rimuovi sezione ${safe}">×</button></div>`;
+      }).join('');
+    }
+
+    function enforceSectionLimit(options = {}) {
+      const { showDowngradeNotice = false, clearDowngradeNotice = false } = options;
+      const pkg = getSelectedPackage();
+      const max = getPackageMaxSections(pkg);
+      const allInputs = getAllSectionInputs();
+      let checkedInputs = allInputs.filter(cb => cb.checked);
+      const removedLabels = [];
+
+      if (max !== null && checkedInputs.length > max) {
+        const excess = checkedInputs.slice(max);
+        excess.forEach(cb => {
+          cb.checked = false;
+          removedLabels.push(cb.value);
+        });
+        checkedInputs = allInputs.filter(cb => cb.checked);
+      }
+
+      if (sectionsDowngradeNotice) {
+        if (removedLabels.length > 0 && showDowngradeNotice) {
+          const countTxt = removedLabels.length === 1
+            ? 'è stata deselezionata automaticamente 1 sezione in eccesso'
+            : `sono state deselezionate automaticamente ${removedLabels.length} sezioni in eccesso`;
+          sectionsDowngradeNotice.textContent = `Passando al pacchetto ${pkg.shortName} (max ${max} sezioni) ${countTxt}: ${removedLabels.join(', ')}.`;
+          sectionsDowngradeNotice.classList.add('is-visible');
+        } else if (clearDowngradeNotice) {
+          sectionsDowngradeNotice.textContent = '';
+          sectionsDowngradeNotice.classList.remove('is-visible');
+        }
+      }
+
+      const count = checkedInputs.length;
+      const atLimit = max !== null && count >= max;
+
+      if (sectionsCounter) {
+        sectionsCounter.textContent = max !== null
+          ? `Sezioni selezionate: ${count} / ${max}`
+          : `Sezioni selezionate: ${count} (senza limite)`;
+        sectionsCounter.classList.toggle('is-at-limit', atLimit);
+      }
+
+      allInputs.forEach(cb => {
+        const shouldDisable = atLimit && !cb.checked;
+        cb.disabled = shouldDisable;
+        const chip = cb.closest('[data-section-chip]');
+        if (chip) {
+          chip.classList.toggle('is-selected', cb.checked);
+          chip.classList.toggle('is-disabled', shouldDisable);
+          if (shouldDisable) chip.setAttribute('aria-disabled', 'true');
+          else chip.removeAttribute('aria-disabled');
+        }
+      });
+
+      if (customSectionInput) customSectionInput.disabled = atLimit;
+      if (customSectionAddBtn) customSectionAddBtn.disabled = atLimit;
+
+      if (sectionsLimitNotice) {
+        if (atLimit) {
+          const hasHigherTier = siteConfig.packages.some(p => {
+            const pMax = getPackageMaxSections(p);
+            return pMax === null || pMax > max;
+          });
+          sectionsLimitNotice.textContent = hasHigherTier
+            ? `Hai raggiunto il limite di ${max} sezioni del pacchetto ${pkg.shortName}. Passa a un pacchetto superiore per aggiungerne altre.`
+            : `Hai raggiunto il limite massimo di ${max} sezioni incluse nel pacchetto ${pkg.shortName}. Per richieste particolari puoi indicarle nelle note allo Step 3.`;
+          sectionsLimitNotice.classList.add('is-visible');
+        } else {
+          sectionsLimitNotice.textContent = '';
+          sectionsLimitNotice.classList.remove('is-visible');
+        }
+      }
+
+      updateExtraToggleUI();
+      return { count, max, removedLabels };
+    }
+
+    function updatePackageBanner(pkgId, forceShow = false) {
+      const pkg = siteConfig.packages.find(p => p.id === pkgId);
+      if (!pkg || !packageBanner) return;
+      if (forceShow) packagePreselected = true;
+      if (!packagePreselected) return;
+      const max = getPackageMaxSections(pkg);
+      const limitPart = max !== null ? `fino a ${max} sezioni` : 'sezioni illimitate';
+      packageBanner.innerHTML = `<span class="wizard-alert__badge" aria-hidden="true">✓</span><span>Pacchetto preselezionato: <strong>${escapeHtml(pkg.name)}</strong> (${escapeHtml(pkg.price)} una tantum · ${escapeHtml(limitPart)})</span>`;
+      packageBanner.classList.add('is-visible');
+    }
 
     function syncChoiceStates() {
-      document.querySelectorAll('[data-package-card], [data-style-card], [data-color-chip], [data-section-chip], [data-radio-btn]').forEach(el => {
+      document.querySelectorAll('[data-category-card], [data-package-card], [data-style-card], [data-color-chip], [data-section-chip]').forEach(el => {
         const inp = el.querySelector('input');
         if (inp) el.classList.toggle('is-selected', inp.checked);
       });
     }
 
+    function applyCategorySmartUI(category, options = {}) {
+      const { autoSelectPkg = false, selectedSections = null, isCategorySwitch = false, isRestore = false } = options;
+      const cfg = CATEGORY_SMART_CONFIG[category] || CATEGORY_SMART_CONFIG['Altro'];
+      const universalList = getUniversalSectionsForCategory(category);
+
+      // Aggiorna badge pacchetto consigliato
+      document.querySelectorAll('[data-package-card]').forEach(card => {
+        const pkgId = card.getAttribute('data-package-card');
+        const isRec = pkgId === cfg.recommendedPkg;
+        card.classList.toggle('is-recommended', isRec);
+        const badgeEl = card.querySelector('[data-rec-badge]');
+        if (badgeEl) badgeEl.textContent = isRec ? cfg.badge : '';
+      });
+
+      if (autoSelectPkg && !userPickedPackage) {
+        selectPackage(cfg.recommendedPkg, false, false);
+      }
+
+      const max = getPackageMaxSections(getSelectedPackage());
+      const stdLower = new Set([...cfg.features, ...universalList].map(s => s.toLowerCase()));
+
+      let selectedSet;
+      if (isRestore && Array.isArray(selectedSections)) {
+        // Deduplica customSections rispetto ai chip standard
+        customSections = customSections.filter(lbl => !stdLower.has(lbl.toLowerCase()));
+        selectedSet = new Set(selectedSections);
+      } else if (isCategorySwitch) {
+        // Cambio categoria allo Step 1: rimuovi i vecchi chip specifici della categoria precedente,
+        // mantieni eventuali sezioni universali e personalizzate ancora valide
+        const prevUniversalChecked = extraFeaturesGrid
+          ? Array.from(extraFeaturesGrid.querySelectorAll('input[name="sections"]:checked')).map(x => x.value)
+          : [];
+        const prevCustomChecked = customFeaturesGrid
+          ? Array.from(customFeaturesGrid.querySelectorAll('input[name="sections"]:checked')).map(x => x.value)
+          : [];
+
+        const validUniversalSet = new Set(universalList);
+        const keptUniversal = prevUniversalChecked.filter(v => validUniversalSet.has(v));
+        const keptCustomChecked = prevCustomChecked.filter(v => !stdLower.has(v.toLowerCase()));
+        customSections = customSections.filter(lbl => !stdLower.has(lbl.toLowerCase()));
+
+        selectedSet = new Set([...keptUniversal, ...keptCustomChecked]);
+        cfg.defaults.forEach(def => {
+          if (max === null || selectedSet.size < max) {
+            selectedSet.add(def);
+          }
+        });
+        if (selectedSet.size === 0 && cfg.defaults.length > 0) {
+          selectedSet.add(cfg.defaults[0]);
+        }
+      } else {
+        const baseList = Array.isArray(selectedSections) ? selectedSections : cfg.defaults;
+        selectedSet = new Set(baseList);
+      }
+
+      // Renderizza i 6 chip consigliati per la categoria corrente
+      if (dynamicFeaturesGrid) {
+        dynamicFeaturesGrid.innerHTML = cfg.features.map(feat => {
+          const isChecked = selectedSet.has(feat);
+          const safeFeat = escapeHtml(feat);
+          return `<label class="chip-option ${isChecked ? 'is-selected' : ''}" data-section-chip="${safeFeat}"><input type="checkbox" name="sections" value="${safeFeat}" ${isChecked ? 'checked' : ''} /><span>${safeFeat}</span></label>`;
+        }).join('');
+      }
+
+      // Renderizza le sezioni extra universali (almeno 10, senza duplicati con i 6 consigliati)
+      if (extraFeaturesGrid) {
+        extraFeaturesGrid.innerHTML = universalList.map(feat => {
+          const isChecked = selectedSet.has(feat);
+          const safeFeat = escapeHtml(feat);
+          return `<label class="chip-option ${isChecked ? 'is-selected' : ''}" data-section-chip="${safeFeat}"><input type="checkbox" name="sections" value="${safeFeat}" ${isChecked ? 'checked' : ''} /><span>${safeFeat}</span></label>`;
+        }).join('');
+      }
+
+      // Renderizza eventuali chip personalizzati
+      renderCustomChips(selectedSet);
+
+      enforceSectionLimit({ showDowngradeNotice: false, clearDowngradeNotice: true });
+    }
+
+    function addCustomSection() {
+      if (!customSectionInput) return;
+      const raw = customSectionInput.value.trim().replace(/\s+/g, ' ');
+      if (customSectionErr) customSectionErr.textContent = '';
+      if (!raw) return;
+
+      const pkg = getSelectedPackage();
+      const max = getPackageMaxSections(pkg);
+      const currentSelected = getSelectedSectionValues();
+      if (max !== null && currentSelected.length >= max) {
+        enforceSectionLimit();
+        return;
+      }
+
+      const lower = raw.toLowerCase();
+      const existingInput = getAllSectionInputs().find(cb => cb.value.toLowerCase() === lower);
+      if (existingInput) {
+        if (existingInput.checked) {
+          if (customSectionErr) customSectionErr.textContent = 'Questa sezione è già stata selezionata.';
+          return;
+        }
+        existingInput.checked = true;
+        if (extraFeaturesGrid && extraFeaturesGrid.contains(existingInput) && !extraSectionsOpen) {
+          extraSectionsOpen = true;
+        }
+        customSectionInput.value = '';
+        enforceSectionLimit({ clearDowngradeNotice: true });
+        validateSections(true);
+        saveDraft();
+        return;
+      }
+
+      customSections.push(raw);
+      const selectedSet = new Set([...currentSelected, raw]);
+      renderCustomChips(selectedSet);
+      customSectionInput.value = '';
+      enforceSectionLimit({ clearDowngradeNotice: true });
+      validateSections(true);
+      saveDraft();
+    }
+
+    function removeCustomSectionByIndex(idx) {
+      if (!Number.isInteger(idx) || idx < 0 || idx >= customSections.length) return;
+      const removedLabel = customSections[idx];
+      customSections.splice(idx, 1);
+      const selectedSet = new Set(getSelectedSectionValues().filter(v => v !== removedLabel));
+      renderCustomChips(selectedSet);
+      if (customSectionErr) customSectionErr.textContent = '';
+      enforceSectionLimit({ clearDowngradeNotice: true });
+      validateSections(true);
+      saveDraft();
+    }
+
     function saveDraft() {
       try {
         const draft = {
-          fullName: document.getElementById('input-full-name').value,
+          businessType: getSelectedCategory(),
           businessName: document.getElementById('input-business-name').value,
           businessAddress: document.getElementById('input-business-address').value,
-          email: document.getElementById('input-email').value,
-          phone: document.getElementById('input-phone').value,
-          businessType: document.getElementById('select-business-type').value,
-          selectedPackage: form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus',
+          selectedPackage: getSelectedPackageId(),
+          userPickedPackage,
+          packagePreselected,
+          sections: getSelectedSectionValues(),
+          customSections: [...customSections],
+          extraSectionsOpen,
           style: form.querySelector('input[name="style"]:checked')?.value || 'Moderno',
           colors: Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value),
-          wantsWhatsapp: form.querySelector('input[name="wantsWhatsapp"]:checked')?.value || 'Sì',
-          wantsCatalog: form.querySelector('input[name="wantsCatalog"]:checked')?.value || 'Sì',
-          sections: Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value),
-          description: document.getElementById('textarea-description').value,
-          referenceLinks: document.getElementById('input-reference-links').value,
           timeline: document.getElementById('select-timeline').value,
-          additionalNotes: document.getElementById('textarea-additional-notes').value
+          socialOrSiteLink: document.getElementById('input-social-or-site-link').value,
+          description: document.getElementById('textarea-description').value,
+          additionalNotes: document.getElementById('textarea-additional-notes').value,
+          fullName: document.getElementById('input-full-name').value,
+          phone: document.getElementById('input-phone').value,
+          email: document.getElementById('input-email').value
         };
         localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
       } catch {
@@ -1965,40 +2639,35 @@
     }
 
     const FIELD_RULES = {
-      'input-full-name': {
-        errId: 'err-full-name',
-        check: el => el.value.trim().length >= 2,
-        msg: 'Inserisci nome e cognome.'
-      },
       'input-business-name': {
         errId: 'err-business-name',
         check: el => el.value.trim().length >= 2,
-        msg: 'Inserisci il nome attività.'
+        msg: 'Inserisci il nome dell’attività.'
       },
-      'input-email': {
-        errId: 'err-email',
-        check: el => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim()),
-        msg: 'Inserisci un indirizzo email valido.'
-      },
-      'input-phone': {
-        errId: 'err-phone',
-        check: el => isValidPhone(el.value),
-        msg: 'Inserisci un numero di telefono valido.'
-      },
-      'select-business-type': {
-        errId: 'err-business-type',
+      'select-timeline': {
+        errId: 'err-timeline',
         check: el => Boolean(el.value),
-        msg: 'Seleziona il tipo di attività.'
+        msg: 'Seleziona una tempistica.'
       },
       'textarea-description': {
         errId: 'err-description',
         check: el => el.value.trim().length >= 10,
         msg: 'Inserisci una breve descrizione (min. 10 caratteri).'
       },
-      'select-timeline': {
-        errId: 'err-timeline',
-        check: el => Boolean(el.value),
-        msg: 'Seleziona una tempistica.'
+      'input-full-name': {
+        errId: 'err-full-name',
+        check: el => el.value.trim().length >= 2,
+        msg: 'Inserisci nome e cognome.'
+      },
+      'input-phone': {
+        errId: 'err-phone',
+        check: el => isValidPhone(el.value),
+        msg: 'Inserisci un numero di telefono valido.'
+      },
+      'input-email': {
+        errId: 'err-email',
+        check: el => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim()),
+        msg: 'Inserisci un indirizzo email valido.'
       },
       'checkbox-privacy': {
         errId: 'err-privacy',
@@ -2046,11 +2715,19 @@
       return ok;
     }
 
+    function validateCategory(showError) {
+      const ok = Boolean(getSelectedCategory());
+      const errEl = document.getElementById('err-business-type');
+      if (errEl) errEl.textContent = !ok && showError ? 'Seleziona la categoria della tua attività.' : '';
+      return ok;
+    }
+
     function validateSections(showError) {
-      const secs = form.querySelectorAll('input[name="sections"]:checked');
+      enforceSectionLimit();
+      const secs = getSelectedSectionValues();
       const errEl = document.getElementById('err-sections');
       const ok = secs.length > 0;
-      if (errEl) errEl.textContent = !ok && showError ? 'Seleziona almeno una sezione.' : '';
+      if (errEl) errEl.textContent = !ok && showError ? 'Seleziona almeno una funzionalità o sezione.' : '';
       return ok;
     }
 
@@ -2078,28 +2755,44 @@
       }
     });
 
-    function selectPackage(pkgId, showNotice) {
+    function selectPackage(pkgId, showNotice, isManual = true) {
+      if (isManual) userPickedPackage = true;
       document.querySelectorAll('[data-package-card]').forEach(card => {
         const match = card.getAttribute('data-package-card') === pkgId;
         card.classList.toggle('is-selected', match);
         card.querySelector('input').checked = match;
       });
       if (showNotice) {
-        const pkg = siteConfig.packages.find(p => p.id === pkgId);
-        if (pkg) {
-          packageBanner.textContent = `Hai selezionato il ${pkg.name} (${pkg.price} una tantum).`;
-          packageBanner.classList.add('is-visible');
-        }
+        updatePackageBanner(pkgId, true);
+      } else if (packagePreselected) {
+        updatePackageBanner(pkgId, false);
       }
+      enforceSectionLimit({ showDowngradeNotice: isManual, clearDowngradeNotice: true });
+      validateSections(false);
       saveDraft();
       if (currentStep === 4) {
         goToStep(4);
       }
     }
 
+    document.querySelectorAll('[data-category-card]').forEach(c => {
+      const rd = c.querySelector('input');
+      if (rd) {
+        rd.addEventListener('change', () => {
+          document.querySelectorAll('[data-category-card]').forEach(x => x.classList.remove('is-selected'));
+          if (rd.checked) {
+            c.classList.add('is-selected');
+            validateCategory(true);
+            applyCategorySmartUI(rd.value, { autoSelectPkg: true, isCategorySwitch: true });
+            saveDraft();
+          }
+        });
+      }
+    });
+
     document.querySelectorAll('[data-package-card]').forEach(c => {
       const rd = c.querySelector('input');
-      if (rd) rd.addEventListener('change', () => selectPackage(c.getAttribute('data-package-card'), false));
+      if (rd) rd.addEventListener('change', () => selectPackage(c.getAttribute('data-package-card'), false, true));
     });
     document.querySelectorAll('[data-select-package]').forEach(b => b.addEventListener('click', () => {
       if (confirmationScreen.classList.contains('is-visible')) {
@@ -2109,7 +2802,7 @@
         clearAllFieldStates();
         goToStep(1);
       }
-      selectPackage(b.getAttribute('data-select-package'), true);
+      selectPackage(b.getAttribute('data-select-package'), true, true);
       document.getElementById('richiedi-sito').scrollIntoView({ behavior: 'smooth' });
     }));
 
@@ -2123,82 +2816,196 @@
       }
     });
 
-    document.querySelectorAll('[data-color-chip], [data-section-chip]').forEach(chip => {
+    document.querySelectorAll('[data-color-chip]').forEach(chip => {
       const cb = chip.querySelector('input');
-      cb.addEventListener('change', () => {
-        chip.classList.toggle('is-selected', cb.checked);
-        if (cb.name === 'sections') validateSections(true);
+      cb.addEventListener('change', () => chip.classList.toggle('is-selected', cb.checked));
+    });
+
+    // Event delegation sui chip funzionalità (consigliati, extra universali e personalizzati)
+    [dynamicFeaturesGrid, extraFeaturesGrid, customFeaturesGrid].forEach(grid => {
+      if (!grid) return;
+      grid.addEventListener('change', (e) => {
+        const cb = e.target;
+        if (!cb || cb.name !== 'sections') return;
+        enforceSectionLimit({ clearDowngradeNotice: true });
+        validateSections(true);
+        saveDraft();
       });
     });
 
-    document.querySelectorAll('[data-radio-btn]').forEach(lbl => {
-      const grp = lbl.getAttribute('data-radio-btn');
-      const rd = lbl.querySelector('input');
-      rd.addEventListener('change', () => {
-        document.querySelectorAll(`[data-radio-btn="${grp}"]`).forEach(x => x.classList.remove('is-selected'));
-        if (rd.checked) lbl.classList.add('is-selected');
+    if (customFeaturesGrid) {
+      customFeaturesGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-remove-custom-index]');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const idx = Number(btn.getAttribute('data-remove-custom-index'));
+        removeCustomSectionByIndex(idx);
       });
+    }
+
+    if (extraSectionsToggleBtn) {
+      extraSectionsToggleBtn.addEventListener('click', () => {
+        extraSectionsOpen = !extraSectionsOpen;
+        updateExtraToggleUI();
+        saveDraft();
+      });
+    }
+
+    if (customSectionAddBtn) {
+      customSectionAddBtn.addEventListener('click', () => addCustomSection());
+    }
+
+    if (customSectionInput) {
+      customSectionInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          e.preventDefault();
+          e.stopPropagation();
+          suppressSubmitUntil = Date.now() + 400;
+          addCustomSection();
+        }
+      });
+      customSectionInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          e.preventDefault();
+          e.stopPropagation();
+          suppressSubmitUntil = Date.now() + 400;
+        }
+      });
+      customSectionInput.addEventListener('input', () => {
+        if (customSectionErr) customSectionErr.textContent = '';
+      });
+    }
+
+    form.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.keyCode !== 13) return;
+      const target = e.target;
+      if (!target) return;
+      if (target.tagName === 'TEXTAREA') return;
+      if (target.id === 'input-custom-section') {
+        e.preventDefault();
+        suppressSubmitUntil = Date.now() + 400;
+      }
+    });
+    form.addEventListener('keypress', (e) => {
+      if ((e.key === 'Enter' || e.keyCode === 13) && e.target && e.target.id === 'input-custom-section') {
+        e.preventDefault();
+        suppressSubmitUntil = Date.now() + 400;
+      }
     });
 
     form.addEventListener('input', (e) => {
-      if (e.target && e.target.id === 'input-honey') return;
+      if (e.target && (e.target.id === 'input-honey' || e.target.id === 'input-custom-section')) return;
       saveDraft();
     });
     form.addEventListener('change', (e) => {
-      if (e.target && e.target.id === 'input-honey') return;
+      if (e.target && (e.target.id === 'input-honey' || e.target.id === 'input-custom-section')) return;
       saveDraft();
     });
 
     function restoreDraft() {
+      let restored = false;
       try {
         const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
-        if (!raw) return;
-        const draft = JSON.parse(raw);
-        if (!draft || typeof draft !== 'object') return;
+        if (raw) {
+          const draft = JSON.parse(raw);
+          if (draft && typeof draft === 'object') {
+            restored = true;
+            userPickedPackage = Boolean(draft.userPickedPackage);
+            packagePreselected = Boolean(draft.packagePreselected);
 
-        const textMap = {
-          'input-full-name': draft.fullName,
-          'input-business-name': draft.businessName,
-          'input-business-address': draft.businessAddress,
-          'input-email': draft.email,
-          'input-phone': draft.phone,
-          'select-business-type': draft.businessType,
-          'textarea-description': draft.description,
-          'input-reference-links': draft.referenceLinks,
-          'select-timeline': draft.timeline,
-          'textarea-additional-notes': draft.additionalNotes
-        };
-        Object.entries(textMap).forEach(([id, val]) => {
-          const el = document.getElementById(id);
-          if (el && typeof val === 'string') el.value = val;
-        });
+            // Ripristina prima pacchetto e stile così il limite sezioni è subito coerente
+            ['selectedPackage', 'style'].forEach(name => {
+              const val = draft[name];
+              if (typeof val !== 'string') return;
+              const radio = Array.from(form.querySelectorAll(`input[name="${name}"]`)).find(r => r.value === val);
+              if (radio) radio.checked = true;
+            });
 
-        ['selectedPackage', 'style', 'wantsWhatsapp', 'wantsCatalog'].forEach(name => {
-          const val = draft[name];
-          if (typeof val !== 'string') return;
-          const radio = Array.from(form.querySelectorAll(`input[name="${name}"]`)).find(r => r.value === val);
-          if (radio) radio.checked = true;
-        });
+            // Ripristina i chip personalizzati creati dall'utente
+            if (Array.isArray(draft.customSections)) {
+              const seenCustom = new Set();
+              customSections = draft.customSections
+                .filter(v => typeof v === 'string')
+                .map(v => v.trim().replace(/\s+/g, ' '))
+                .filter(v => {
+                  if (!v) return false;
+                  const low = v.toLowerCase();
+                  if (seenCustom.has(low)) return false;
+                  seenCustom.add(low);
+                  return true;
+                });
+            } else {
+              customSections = [];
+            }
 
-        if (Array.isArray(draft.colors)) {
-          form.querySelectorAll('input[name="colors"]').forEach(cb => {
-            cb.checked = draft.colors.includes(cb.value);
-          });
+            let restoredCategory = 'Altro';
+            if (typeof draft.businessType === 'string' && draft.businessType) {
+              const catRadio = Array.from(form.querySelectorAll('input[name="businessType"]')).find(r => r.value === draft.businessType);
+              if (catRadio) {
+                catRadio.checked = true;
+                restoredCategory = draft.businessType;
+              }
+            }
+
+            applyCategorySmartUI(restoredCategory, {
+              autoSelectPkg: false,
+              selectedSections: Array.isArray(draft.sections) ? draft.sections : null,
+              isRestore: true
+            });
+
+            const hasCheckedUniversal = extraFeaturesGrid
+              ? extraFeaturesGrid.querySelectorAll('input[name="sections"]:checked').length > 0
+              : false;
+            extraSectionsOpen = Boolean(draft.extraSectionsOpen) || hasCheckedUniversal;
+            updateExtraToggleUI();
+
+            const textMap = {
+              'input-business-name': draft.businessName,
+              'input-business-address': draft.businessAddress,
+              'select-timeline': draft.timeline,
+              'input-social-or-site-link': draft.socialOrSiteLink,
+              'textarea-description': draft.description,
+              'textarea-additional-notes': draft.additionalNotes,
+              'input-full-name': draft.fullName,
+              'input-phone': draft.phone,
+              'input-email': draft.email
+            };
+            Object.entries(textMap).forEach(([id, val]) => {
+              const el = document.getElementById(id);
+              if (el && typeof val === 'string') el.value = val;
+            });
+
+            if (Array.isArray(draft.colors)) {
+              form.querySelectorAll('input[name="colors"]').forEach(cb => {
+                cb.checked = draft.colors.includes(cb.value);
+              });
+            }
+
+            if (packagePreselected) {
+              updatePackageBanner(getSelectedPackageId(), true);
+            }
+
+            syncChoiceStates();
+            enforceSectionLimit({ showDowngradeNotice: false, clearDowngradeNotice: true });
+
+            ['input-business-name', 'select-timeline', 'textarea-description', 'input-full-name', 'input-phone', 'input-email'].forEach(id => {
+              const el = document.getElementById(id);
+              if (el && el.value.trim()) validateField(id, false);
+            });
+          }
         }
-        if (Array.isArray(draft.sections)) {
-          form.querySelectorAll('input[name="sections"]').forEach(cb => {
-            cb.checked = draft.sections.includes(cb.value);
-          });
-        }
-
-        syncChoiceStates();
-
-        ['input-full-name', 'input-business-name', 'input-email', 'input-phone', 'select-business-type', 'textarea-description', 'select-timeline'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el && el.value.trim()) validateField(id, false);
-        });
       } catch {
         // Bozza corrotta o localStorage non accessibile
+      }
+
+      if (!restored) {
+        applyCategorySmartUI('Altro', {
+          autoSelectPkg: false,
+          selectedSections: CATEGORY_SMART_CONFIG['Altro'].defaults
+        });
+        updateExtraToggleUI();
+        syncChoiceStates();
       }
     }
 
@@ -2207,22 +3014,23 @@
       let ok = true;
       if (step === 1) {
         const s1 = [
-          validateField('input-full-name', true),
-          validateField('input-business-name', true),
-          validateField('input-email', true),
-          validateField('input-phone', true),
-          validateField('select-business-type', true)
+          validateCategory(true),
+          validateField('input-business-name', true)
         ];
         ok = s1.every(Boolean);
+      } else if (step === 2) {
+        ok = validateSections(true);
       } else if (step === 3) {
         const s3 = [
-          validateSections(true),
+          validateField('select-timeline', true),
           validateField('textarea-description', true)
         ];
         ok = s3.every(Boolean);
       } else if (step === 4) {
         const s4 = [
-          validateField('select-timeline', true),
+          validateField('input-full-name', true),
+          validateField('input-phone', true),
+          validateField('input-email', true),
           validateField('checkbox-privacy', true)
         ];
         ok = s4.every(Boolean);
@@ -2249,53 +3057,60 @@
       prevBtn.style.visibility = step > 1 ? 'visible' : 'hidden';
       nextBtn.style.display = step < 4 ? 'inline-flex' : 'none';
       submitBtn.style.display = step === 4 ? 'inline-flex' : 'none';
+      if (reassuranceNote) reassuranceNote.classList.toggle('is-visible', step === 4);
 
       if (step === 4) {
-        const pkgId = form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
+        const businessType = getSelectedCategory() || 'Non indicata';
+        const safeBusinessType = escapeHtml(businessType);
+        const safeBusinessName = escapeHtml(document.getElementById('input-business-name').value.trim());
+        const safeBusinessAddress = escapeHtml(document.getElementById('input-business-address').value.trim() || 'Non indicato');
+        const pkgId = getSelectedPackageId();
         const pkg = siteConfig.packages.find(p => p.id === pkgId);
+        const selectedSecs = getSelectedSectionValues();
+        const secs = selectedSecs.join(', ');
         const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
         const colors = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value).join(', ') || 'Da concordare';
-        const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
-        const safeFullName = escapeHtml(document.getElementById('input-full-name').value.trim());
-        const safeBusinessName = escapeHtml(document.getElementById('input-business-name').value.trim());
-        const safeBusinessType = escapeHtml(document.getElementById('select-business-type').value);
-        const safeBusinessAddress = escapeHtml(document.getElementById('input-business-address').value.trim() || 'Non indicato');
-        const safeEmail = escapeHtml(document.getElementById('input-email').value.trim());
-        const safePhone = escapeHtml(document.getElementById('input-phone').value.trim());
+        const timeline = document.getElementById('select-timeline').value || 'Da concordare';
+        const rawSocialLink = document.getElementById('input-social-or-site-link').value.trim();
         const rawDesc = document.getElementById('textarea-description').value.trim();
         const safeDesc = escapeHtml(rawDesc.length > 140 ? rawDesc.slice(0, 140) + '…' : rawDesc);
+
+        const socialRow = rawSocialLink
+          ? `<div style="grid-column: 1 / -1;"><span class="summary-item-label">Sito / Social / Maps</span><span class="summary-item-val">${escapeHtml(rawSocialLink)}</span></div>`
+          : '';
 
         document.getElementById('quote-summary-content').innerHTML = `
           <div class="summary-block">
             <div class="summary-block__top">
-              <span class="summary-block__title">Dati attività e contatto</span>
+              <span class="summary-block__title">La tua attività</span>
               <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="1">Modifica</button>
             </div>
             <div class="summary-grid">
-              <div><span class="summary-item-label">Cliente &amp; Attività</span><span class="summary-item-val">${safeFullName} · ${safeBusinessName} (${safeBusinessType})</span></div>
-              <div><span class="summary-item-label">Indirizzo attività</span><span class="summary-item-val">${safeBusinessAddress}</span></div>
-              <div style="grid-column: 1 / -1;"><span class="summary-item-label">Contatti</span><span class="summary-item-val">${safeEmail} · ${safePhone}</span></div>
+              <div><span class="summary-item-label">Attività &amp; Categoria</span><span class="summary-item-val">${safeBusinessName} (${safeBusinessType})</span></div>
+              <div><span class="summary-item-label">Città / Indirizzo</span><span class="summary-item-val">${safeBusinessAddress}</span></div>
             </div>
           </div>
 
           <div class="summary-block">
             <div class="summary-block__top">
-              <span class="summary-block__title">Pacchetto scelto</span>
+              <span class="summary-block__title">Pacchetto e funzionalità</span>
               <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="2">Modifica</button>
             </div>
             <div class="summary-grid">
-              <div style="grid-column: 1 / -1;"><span class="summary-item-label">Pacchetto</span><span class="summary-item-val" style="color:var(--accent-blue)">${escapeHtml(pkg ? pkg.name + ' (' + pkg.price + ' una tantum)' : pkgId)}</span></div>
+              <div><span class="summary-item-label">Pacchetto scelto</span><span class="summary-item-val" style="color:var(--accent-blue)">${escapeHtml(pkg ? pkg.name + ' (' + pkg.price + ' una tantum)' : pkgId)}</span></div>
+              <div><span class="summary-item-label">Funzionalità (${selectedSecs.length})</span><span class="summary-item-val">${escapeHtml(secs)}</span></div>
             </div>
           </div>
 
           <div class="summary-block">
             <div class="summary-block__top">
-              <span class="summary-block__title">Stile e dettagli del sito</span>
+              <span class="summary-block__title">Stile e riferimenti</span>
               <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="3">Modifica</button>
             </div>
             <div class="summary-grid">
               <div><span class="summary-item-label">Stile &amp; Colori</span><span class="summary-item-val">${escapeHtml(style)} · ${escapeHtml(colors)}</span></div>
-              <div><span class="summary-item-label">Sezioni</span><span class="summary-item-val">${escapeHtml(secs)}</span></div>
+              <div><span class="summary-item-label">Tempistica</span><span class="summary-item-val">${escapeHtml(timeline)}</span></div>
+              ${socialRow}
               <div style="grid-column: 1 / -1;"><span class="summary-item-label">Descrizione</span><span class="summary-item-val">${safeDesc}</span></div>
             </div>
           </div>
@@ -2339,11 +3154,19 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (
+        Date.now() < suppressSubmitUntil ||
+        document.activeElement === customSectionInput ||
+        (e.submitter && e.submitter.id === 'btn-add-custom-section')
+      ) {
+        return;
+      }
       if (currentStep < 4) {
         if (validateStep(currentStep)) goToStep(currentStep + 1);
         return;
       }
       if (!validateStep(1)) { goToStep(1); return; }
+      if (!validateStep(2)) { goToStep(2); return; }
       if (!validateStep(3)) { goToStep(3); return; }
       if (!validateStep(4)) return;
 
@@ -2357,24 +3180,22 @@
         return;
       }
 
-      const fullName = document.getElementById('input-full-name').value.trim();
+      const businessType = getSelectedCategory();
       const businessName = document.getElementById('input-business-name').value.trim();
       const businessAddress = document.getElementById('input-business-address').value.trim() || 'Non indicato';
-      const email = document.getElementById('input-email').value.trim();
-      const phone = document.getElementById('input-phone').value.trim();
-      const businessType = document.getElementById('select-business-type').value;
-      const pkgId = form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
+      const pkgId = getSelectedPackageId();
       const pkg = siteConfig.packages.find(p => p.id === pkgId);
       const pkgLabel = pkg ? `${pkg.name} (${pkg.price} una tantum)` : pkgId;
+      const sections = getSelectedSectionValues().join(', ');
       const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
       const colors = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value).join(', ') || 'Da concordare';
-      const wantsWhatsapp = form.querySelector('input[name="wantsWhatsapp"]:checked')?.value || 'Sì';
-      const wantsShowcase = form.querySelector('input[name="wantsCatalog"]:checked')?.value || 'Sì';
-      const sections = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
-      const description = document.getElementById('textarea-description').value.trim();
-      const referenceLinks = document.getElementById('input-reference-links').value.trim() || 'Nessuno';
       const timeline = document.getElementById('select-timeline').value;
+      const socialOrSiteLink = document.getElementById('input-social-or-site-link').value.trim();
+      const description = document.getElementById('textarea-description').value.trim();
       const additionalNotes = document.getElementById('textarea-additional-notes').value.trim() || 'Nessuna';
+      const fullName = document.getElementById('input-full-name').value.trim();
+      const phone = document.getElementById('input-phone').value.trim();
+      const email = document.getElementById('input-email').value.trim();
 
       const origBtnText = submitBtn.textContent;
       submitBtn.disabled = true;
@@ -2395,22 +3216,20 @@
             _replyto: email,
             _honey: honeyValue,
             _autoresponse: 'Grazie per aver contattato MGD Studio! Abbiamo ricevuto la tua richiesta di preventivo e ti risponderemo entro 24 ore lavorative.',
-            '1. Nome e Cognome': fullName,
-            '2. Nome Attività': businessName,
-            '3. Tipo di Attività': businessType,
-            '4. Via / Indirizzo Attività': businessAddress,
-            '5. Email Cliente': email,
-            '6. Telefono Cliente': phone,
-            '7. Pacchetto Scelto': pkgLabel,
-            '8. Stile Desiderato': style,
-            '9. Colori Principali': colors,
-            '10. Pulsante WhatsApp': wantsWhatsapp,
-            '11. Vetrina Prodotti/Servizi': wantsShowcase,
-            '12. Sezioni da Includere': sections,
-            '13. Descrizione Progetto': description,
-            '14. Siti di Riferimento': referenceLinks,
-            '15. Tempistica Desiderata': timeline,
-            '16. Note Aggiuntive': additionalNotes
+            '1. Nome Attività': businessName,
+            '2. Categoria Attività': businessType,
+            '3. Città / Indirizzo': businessAddress,
+            '4. Pacchetto Scelto': pkgLabel,
+            '5. Funzionalità e Sezioni': sections,
+            '6. Stile Desiderato': style,
+            '7. Colori Principali': colors,
+            '8. Tempistica Desiderata': timeline,
+            '9. Sito / Social / Maps': socialOrSiteLink || 'Non indicato',
+            '10. Descrizione Progetto': description,
+            '11. Note Aggiuntive': additionalNotes,
+            '12. Nome e Cognome': fullName,
+            '13. Telefono / WhatsApp': phone,
+            '14. Email Cliente': email
           })
         });
 
@@ -2455,11 +3274,9 @@
                 pkgLabel,
                 style,
                 colors,
-                wantsWhatsapp,
-                wantsShowcase,
                 sections,
+                social_or_site_link: socialOrSiteLink,
                 description,
-                referenceLinks,
                 timeline,
                 additionalNotes
               })
@@ -2473,6 +3290,7 @@
 
         clearDraft();
         markSubmittedNow();
+        packagePreselected = false;
 
         const waNumber = siteConfig.contact.whatsappNumber || '393926500185';
         const waPkgName = pkg ? pkg.shortName : pkgId;
@@ -2496,14 +3314,23 @@
 
     document.getElementById('btn-reset-wizard').addEventListener('click', () => {
       form.reset();
+      userPickedPackage = false;
+      packagePreselected = false;
+      customSections = [];
+      extraSectionsOpen = false;
+      if (customSectionInput) customSectionInput.value = '';
+      if (customSectionErr) customSectionErr.textContent = '';
       clearDraft();
       clearAllFieldStates();
+      selectPackage('plus', false, false);
+      applyCategorySmartUI('Altro', { autoSelectPkg: false, selectedSections: CATEGORY_SMART_CONFIG['Altro'].defaults });
+      updateExtraToggleUI();
       syncChoiceStates();
       errorBanner.classList.remove('is-visible');
       packageBanner.classList.remove('is-visible');
+      packageBanner.textContent = '';
       confirmationScreen.classList.remove('is-visible');
       form.style.removeProperty('display');
-      selectPackage('plus', false);
       clearDraft();
       goToStep(1);
     });

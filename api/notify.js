@@ -96,6 +96,10 @@ module.exports = async function handler(req, res) {
   };
 
   const packageText = val(data.pkgLabel, '') || val(data.package);
+  const socialLink = val(data.social_or_site_link, '');
+  const wantsWhatsapp = val(data.wantsWhatsapp, '');
+  const wantsShowcase = val(data.wantsShowcase, '');
+  const referenceLinks = val(data.referenceLinks, '');
 
   const lines = [
     '📩 Nuova richiesta preventivo — MGD Studio',
@@ -110,16 +114,21 @@ module.exports = async function handler(req, res) {
     `📦 Pacchetto: ${packageText}`,
     `🎨 Stile: ${val(data.style)}`,
     `🌈 Colori: ${val(data.colors, 'Da concordare')}`,
-    `🧩 Sezioni: ${val(data.sections)}`,
-    `💬 Pulsante WhatsApp: ${val(data.wantsWhatsapp)}`,
-    `🛍️ Vetrina Prodotti/Servizi: ${val(data.wantsShowcase)}`,
-    `🔗 Siti di riferimento: ${val(data.referenceLinks, 'Nessuno')}`,
+    `🧩 Sezioni: ${val(data.sections)}`
+  ];
+
+  if (socialLink) lines.push(`🌐 Sito / Social / Maps: ${socialLink}`);
+  if (wantsWhatsapp) lines.push(`💬 Pulsante WhatsApp: ${wantsWhatsapp}`);
+  if (wantsShowcase) lines.push(`🛍️ Vetrina Prodotti/Servizi: ${wantsShowcase}`);
+  if (referenceLinks && referenceLinks !== 'Nessuno') lines.push(`🔗 Siti di riferimento: ${referenceLinks}`);
+
+  lines.push(
     `⏱️ Tempistica: ${val(data.timeline)}`,
     '',
     `📝 Descrizione:\n${val(data.description)}`,
     '',
     `🗒️ Note:\n${val(data.additionalNotes, 'Nessuna')}`
-  ];
+  );
 
   const text = lines.join('\n').slice(0, 4096);
 

@@ -467,11 +467,73 @@
     }
     .pricing-card--featured .pricing-check { background: var(--accent-blue); color: #ffffff; }
 
+    /* SEZIONE RECENSIONI (PREDISPOSTA, SPENTA DI DEFAULT) */
+    .reviews-section[hidden] { display: none; }
+    .reviews-section { border-top: 1px solid var(--border-subtle); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .review-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+      box-shadow: var(--shadow-xs);
+      transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-md);
+    }
+    .review-stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      color: #f59e0b;
+      font-size: 0.96rem;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .review-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+    .review-meta {
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .review-author {
+      font-family: var(--font-display);
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .review-business {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+    }
+
     /* 3. MODULO MULTI-STEP CON BARRA DI PROGRESSO INTERATTIVA */
     .wizard-wrapper { max-width: 820px; margin: 0 auto; background: #fff; border: 1px solid var(--border-subtle); border-radius: 22px; box-shadow: var(--shadow-lg); overflow: hidden; }
     .wizard-header { background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); padding: 18px 24px; }
-    .wizard-progress-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); }
-    .wizard-progress-pct { color: var(--accent-blue); font-weight: 800; background: var(--accent-blue-soft); padding: 2px 9px; border-radius: 999px; }
+    .wizard-progress-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); }
+    .wizard-progress-pct { color: var(--accent-blue); font-weight: 800; background: var(--accent-blue-soft); padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
     .wizard-progress-track { width: 100%; height: 7px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
     .wizard-progress-fill { height: 100%; width: 25%; background: linear-gradient(90deg, #0052ff 0%, #0ea5e9 100%); border-radius: 999px; transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 0 10px rgba(0, 82, 255, 0.45); }
     .wizard-steps-indicator { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -494,6 +556,26 @@
     .form-required { color: var(--accent-blue); }
     .form-input, .form-select, .form-textarea { width: 100%; padding: 11px 13px; border: 1.5px solid var(--border-subtle); border-radius: 9px; background: #fff; font-size: 0.92rem; transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
     .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 3px var(--accent-blue-subtle); }
+    .form-input.is-valid, .form-select.is-valid, .form-textarea.is-valid { border-color: #86efac; }
+    .form-input.is-valid:focus, .form-select.is-valid:focus, .form-textarea.is-valid:focus { border-color: #22c55e; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.16); }
+    .form-input.is-invalid, .form-select.is-invalid, .form-textarea.is-invalid { border-color: #fca5a5; }
+    .form-input.is-invalid:focus, .form-select.is-invalid:focus, .form-textarea.is-invalid:focus { border-color: var(--status-error); box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.14); }
+    .form-group.is-valid .form-label::after {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      margin-left: 6px;
+      border-radius: 50%;
+      background: var(--status-success-bg);
+      color: var(--status-success);
+      border: 1px solid #bbf7d0;
+      font-size: 0.66rem;
+      font-weight: 800;
+      vertical-align: middle;
+    }
     .form-textarea { min-height: 84px; resize: vertical; }
     .field-error-msg { font-size: 0.76rem; font-weight: 600; color: var(--status-error); min-height: 14px; }
     .choice-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -519,6 +601,11 @@
     .summary-box { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px; }
     .summary-box__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border-subtle); }
     .summary-box__title { font-weight: 800; font-size: 0.88rem; }
+    .summary-blocks { display: flex; flex-direction: column; gap: 10px; }
+    .summary-block { background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 10px; padding: 11px 12px; }
+    .summary-block__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 7px; padding-bottom: 5px; border-bottom: 1px solid var(--border-subtle); }
+    .summary-block__title { font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
+    .summary-edit-btn { font-size: 0.76rem; padding: 2px 4px; flex-shrink: 0; }
     .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; font-size: 0.82rem; }
     .summary-item-label { color: var(--text-muted); font-weight: 600; display: block; }
     .summary-item-val { font-weight: 700; overflow-wrap: anywhere; }
@@ -534,7 +621,8 @@
     .wizard-confirmation.is-visible { display: block; }
     .confirmation-icon { width: 60px; height: 60px; border-radius: 50%; background: var(--status-success-bg); color: var(--status-success); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 1.5rem; font-weight: 800; }
     .confirmation-title { font-size: 1.45rem; font-weight: 800; margin-bottom: 8px; }
-    .confirmation-text { font-size: 0.98rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 18px; }
+    .confirmation-text { font-size: 0.98rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 20px; }
+    .confirmation-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
 
     /* BOX CONSULENZA WHATSAPP DOPO IL MODULO */
     .consultation-box {
@@ -781,7 +869,7 @@
     }
 
     @media (max-width: 900px) {
-      .hero__grid, .pricing-grid, .steps-strip__grid, .team-grid { grid-template-columns: 1fr; }
+      .hero__grid, .pricing-grid, .steps-strip__grid, .team-grid, .reviews-grid { grid-template-columns: 1fr; }
       .pricing-card--featured { transform: none; }
       .pricing-card--featured:hover { transform: translateY(-5px); }
       .nav-links, .nav-actions .btn { display: none; }
@@ -790,6 +878,8 @@
       .form-grid, .choice-cards-grid, .summary-grid { grid-template-columns: 1fr; }
       .wizard-footer { flex-direction: column-reverse; align-items: stretch; }
       .wizard-footer .btn { width: 100%; }
+      .confirmation-actions { flex-direction: column; align-items: stretch; }
+      .confirmation-actions .btn { width: 100%; }
       .consultation-box { flex-direction: column; align-items: stretch; text-align: center; padding: 18px; }
       .consultation-box .btn { width: 100%; }
       .faq-trigger { padding: 18px 16px; min-height: 56px; font-size: 0.96rem; gap: 12px; }
@@ -802,6 +892,8 @@
       .mockup-cards-grid { grid-template-columns: 1fr; }
       .pricing-card { padding: 24px 18px; }
       .pricing-card .btn { padding: 12px 16px; }
+      .wizard-header { padding: 16px; }
+      .wizard-body { padding: 22px 16px; }
       .btn--lg { padding: 12px 18px; font-size: 0.92rem; }
     }
   </style>
@@ -1041,6 +1133,18 @@
       </div>
     </section>
 
+    <!-- SEZIONE RECENSIONI (PREDISPOSTA, NASCOSTA DI DEFAULT) -->
+    <section class="section reviews-section" id="recensioni" hidden>
+      <div class="container">
+        <div class="section-header--center reveal">
+          <span class="section-eyebrow">Recensioni Clienti</span>
+          <h2 class="section-title">Cosa dicono le attività che ci hanno scelto</h2>
+          <p class="section-subtitle">Esperienze reali di aziende e attività che hanno realizzato il proprio sito web con <strong>MGD Studio</strong>.</p>
+        </div>
+        <div class="reviews-grid" id="reviews-grid"></div>
+      </div>
+    </section>
+
     <!-- 3. IL MODULO DA COMPILARE -->
     <section class="section section--alt" id="richiedi-sito">
       <div class="container">
@@ -1053,10 +1157,10 @@
         <div class="wizard-wrapper reveal">
           <div class="wizard-header">
             <div class="wizard-progress-top">
-              <span id="wizard-progress-label">Passaggio 1 di 4</span>
-              <span class="wizard-progress-pct" id="wizard-progress-pct">25% completato</span>
+              <span id="wizard-progress-label">Step 1 di 4 · ~1 minuto</span>
+              <span class="wizard-progress-pct" id="wizard-progress-pct">25%</span>
             </div>
-            <div class="wizard-progress-track">
+            <div class="wizard-progress-track" id="wizard-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" aria-label="Avanzamento modulo preventivo">
               <div class="wizard-progress-fill" id="wizard-progress-fill"></div>
             </div>
             <div class="wizard-steps-indicator">
@@ -1073,7 +1177,7 @@
 
             <form id="quote-multi-step-form" novalidate>
               <div class="hp-field-wrap" aria-hidden="true">
-                <input type="text" id="input-website-hp" name="website_hp" tabindex="-1" autocomplete="off" />
+                <input type="text" id="input-honey" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
               </div>
 
               <!-- PASSAGGIO 1 -->
@@ -1283,9 +1387,8 @@
                     <div class="summary-box">
                       <div class="summary-box__header">
                         <span class="summary-box__title">Riepilogo richiesta</span>
-                        <button type="button" class="privacy-link-btn" id="btn-summary-edit-step1" style="font-size:0.78rem;">Modifica</button>
                       </div>
-                      <div class="summary-grid" id="quote-summary-content"></div>
+                      <div class="summary-blocks" id="quote-summary-content"></div>
                     </div>
                   </div>
 
@@ -1312,7 +1415,20 @@
               <div class="confirmation-icon">✓</div>
               <h3 class="confirmation-title">Richiesta inviata!</h3>
               <p class="confirmation-text">Grazie per averci contattato! Abbiamo ricevuto la tua richiesta e ti ricontatteremo al più presto.</p>
-              <button type="button" class="btn btn--secondary" id="btn-reset-wizard">Invia un’altra richiesta</button>
+              <div class="confirmation-actions">
+                <a
+                  id="btn-confirmation-whatsapp"
+                  href="https://wa.me/393926500185"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn--whatsapp"
+                  data-va-whatsapp="post_submit"
+                >
+                  <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.004 3C8.832 3 3 8.832 3 16.004c0 2.293.6 4.53 1.74 6.501L3 29l6.68-1.752a12.94 12.94 0 0 0 6.324 1.656h.005C23.178 28.904 29 23.072 29 15.9 29 8.832 23.176 3 16.004 3zm7.59 18.42c-.32.9-1.87 1.72-2.59 1.83-.66.1-1.5.14-2.42-.15-.56-.18-1.28-.42-2.2-.82-3.87-1.67-6.4-5.58-6.6-5.84-.19-.26-1.58-2.1-1.58-4.01 0-1.91 1-2.85 1.35-3.24.35-.39.77-.49 1.03-.49.26 0 .52 0 .74.01.24.01.56-.09.87.67.32.77 1.09 2.66 1.19 2.85.1.19.16.42.03.68-.13.26-.19.42-.39.65-.19.23-.41.51-.58.68-.19.19-.39.4-.17.78.23.39 1.01 1.66 2.16 2.69 1.49 1.33 2.74 1.74 3.13 1.93.39.19.61.16.84-.1.23-.26.97-1.13 1.23-1.52.26-.39.52-.32.87-.19.35.13 2.26 1.07 2.65 1.26.39.19.65.29.74.45.1.16.1.94-.22 1.84z"/></svg>
+                  <span>Scrivici subito su WhatsApp</span>
+                </a>
+                <button type="button" class="btn btn--secondary" id="btn-reset-wizard">Invia un’altra richiesta</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1545,10 +1661,18 @@
     const siteConfig = {
       agencyName: 'MGD Studio',
       contact: {
-        email: 'gdesimone092@gmail.com'
+        email: 'gdesimone092@gmail.com',
+        whatsappNumber: '393926500185'
       },
       notifications: {
         endpoint: '/api/notify'
+      },
+      reviews: {
+        enabled: false,
+        items: [
+          // Esempio struttura pronta per quando ci saranno recensioni reali:
+          // { author: 'Nome Cognome', business: 'Attività, Piacenza', rating: 5, text: '...' }
+        ]
       },
       showcaseProjects: [
         {
@@ -1627,6 +1751,46 @@
         }
       ]
     };
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderReviews() {
+      const section = document.getElementById('recensioni');
+      const grid = document.getElementById('reviews-grid');
+      if (!section || !grid) return;
+      const cfg = siteConfig.reviews;
+      if (!cfg || !cfg.enabled || !Array.isArray(cfg.items) || cfg.items.length === 0) {
+        section.hidden = true;
+        grid.innerHTML = '';
+        return;
+      }
+      grid.innerHTML = cfg.items.map(item => {
+        const rating = Math.max(1, Math.min(5, Math.round(Number(item.rating) || 5)));
+        const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+        return `
+          <article class="review-card reveal">
+            <div>
+              <div class="review-stars" aria-label="${rating} su 5 stelle">${stars}</div>
+              <p class="review-text" style="margin-top:10px;">“${escapeHtml(item.text || '')}”</p>
+            </div>
+            <div class="review-meta">
+              <span class="review-author">${escapeHtml(item.author || '')}</span>
+              <span class="review-business">${escapeHtml(item.business || '')}</span>
+            </div>
+          </article>
+        `;
+      }).join('');
+      section.hidden = false;
+    }
+
+    renderReviews();
 
     function renderMockupInner(project) {
       return `
@@ -1714,6 +1878,16 @@
     });
 
     let currentStep = 1;
+    const DRAFT_STORAGE_KEY = 'mgd_quote_draft_v1';
+    const SUBMIT_COOLDOWN_KEY = 'mgd_quote_last_submit_ts';
+    const SUBMIT_COOLDOWN_MS = 45000;
+    const STEP_META = {
+      1: { label: 'Step 1 di 4 · ~1 minuto', pct: 25 },
+      2: { label: 'Step 2 di 4 · ~45 secondi', pct: 50 },
+      3: { label: 'Step 3 di 4 · ~30 secondi', pct: 75 },
+      4: { label: 'Step 4 di 4 · Quasi fatto', pct: 100 }
+    };
+
     const form = document.getElementById('quote-multi-step-form');
     const prevBtn = document.getElementById('btn-wizard-prev');
     const nextBtn = document.getElementById('btn-wizard-next');
@@ -1721,6 +1895,188 @@
     const packageBanner = document.getElementById('wizard-package-banner');
     const errorBanner = document.getElementById('wizard-error-banner');
     const confirmationScreen = document.getElementById('wizard-confirmation-screen');
+    const progressTrack = document.getElementById('wizard-progress-track');
+
+    function syncChoiceStates() {
+      document.querySelectorAll('[data-package-card], [data-style-card], [data-color-chip], [data-section-chip], [data-radio-btn]').forEach(el => {
+        const inp = el.querySelector('input');
+        if (inp) el.classList.toggle('is-selected', inp.checked);
+      });
+    }
+
+    function saveDraft() {
+      try {
+        const draft = {
+          fullName: document.getElementById('input-full-name').value,
+          businessName: document.getElementById('input-business-name').value,
+          businessAddress: document.getElementById('input-business-address').value,
+          email: document.getElementById('input-email').value,
+          phone: document.getElementById('input-phone').value,
+          businessType: document.getElementById('select-business-type').value,
+          selectedPackage: form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus',
+          style: form.querySelector('input[name="style"]:checked')?.value || 'Moderno',
+          colors: Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value),
+          wantsWhatsapp: form.querySelector('input[name="wantsWhatsapp"]:checked')?.value || 'Sì',
+          wantsCatalog: form.querySelector('input[name="wantsCatalog"]:checked')?.value || 'Sì',
+          sections: Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value),
+          description: document.getElementById('textarea-description').value,
+          referenceLinks: document.getElementById('input-reference-links').value,
+          timeline: document.getElementById('select-timeline').value,
+          additionalNotes: document.getElementById('textarea-additional-notes').value
+        };
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+      } catch {
+        // localStorage non disponibile (es. navigazione privata restrittiva)
+      }
+    }
+
+    function clearDraft() {
+      try {
+        localStorage.removeItem(DRAFT_STORAGE_KEY);
+      } catch {
+        // Ignora errori localStorage
+      }
+    }
+
+    function getRemainingCooldownSeconds() {
+      try {
+        const lastTs = Number(localStorage.getItem(SUBMIT_COOLDOWN_KEY) || 0);
+        if (!lastTs) return 0;
+        const diff = SUBMIT_COOLDOWN_MS - (Date.now() - lastTs);
+        return diff > 0 ? Math.ceil(diff / 1000) : 0;
+      } catch {
+        return 0;
+      }
+    }
+
+    function markSubmittedNow() {
+      try {
+        localStorage.setItem(SUBMIT_COOLDOWN_KEY, String(Date.now()));
+      } catch {
+        // Ignora errori localStorage
+      }
+    }
+
+    function isValidPhone(val) {
+      const trimmed = val.trim();
+      if (!/^[+\d\s().-]+$/.test(trimmed)) return false;
+      const digits = trimmed.replace(/\D/g, '');
+      return digits.length >= 7 && digits.length <= 15;
+    }
+
+    const FIELD_RULES = {
+      'input-full-name': {
+        errId: 'err-full-name',
+        check: el => el.value.trim().length >= 2,
+        msg: 'Inserisci nome e cognome.'
+      },
+      'input-business-name': {
+        errId: 'err-business-name',
+        check: el => el.value.trim().length >= 2,
+        msg: 'Inserisci il nome attività.'
+      },
+      'input-email': {
+        errId: 'err-email',
+        check: el => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim()),
+        msg: 'Inserisci un indirizzo email valido.'
+      },
+      'input-phone': {
+        errId: 'err-phone',
+        check: el => isValidPhone(el.value),
+        msg: 'Inserisci un numero di telefono valido.'
+      },
+      'select-business-type': {
+        errId: 'err-business-type',
+        check: el => Boolean(el.value),
+        msg: 'Seleziona il tipo di attività.'
+      },
+      'textarea-description': {
+        errId: 'err-description',
+        check: el => el.value.trim().length >= 10,
+        msg: 'Inserisci una breve descrizione (min. 10 caratteri).'
+      },
+      'select-timeline': {
+        errId: 'err-timeline',
+        check: el => Boolean(el.value),
+        msg: 'Seleziona una tempistica.'
+      },
+      'checkbox-privacy': {
+        errId: 'err-privacy',
+        check: el => el.checked,
+        msg: 'Consenso obbligatorio.',
+        isCheckbox: true
+      }
+    };
+
+    function validateField(fieldId, showError) {
+      const rule = FIELD_RULES[fieldId];
+      const el = document.getElementById(fieldId);
+      if (!rule || !el) return true;
+      const errEl = document.getElementById(rule.errId);
+      const group = el.closest('.form-group');
+      const ok = rule.check(el);
+
+      if (ok) {
+        if (errEl) errEl.textContent = '';
+        if (!rule.isCheckbox) {
+          el.classList.remove('is-invalid');
+          el.classList.add('is-valid');
+          el.removeAttribute('aria-invalid');
+          if (group) group.classList.add('is-valid');
+        }
+      } else {
+        if (!rule.isCheckbox) {
+          el.classList.remove('is-valid');
+          if (group) group.classList.remove('is-valid');
+        }
+        if (showError) {
+          if (errEl) errEl.textContent = rule.msg;
+          if (!rule.isCheckbox) {
+            el.classList.add('is-invalid');
+            el.setAttribute('aria-invalid', 'true');
+          }
+        } else {
+          if (errEl) errEl.textContent = '';
+          if (!rule.isCheckbox) {
+            el.classList.remove('is-invalid');
+            el.removeAttribute('aria-invalid');
+          }
+        }
+      }
+      return ok;
+    }
+
+    function validateSections(showError) {
+      const secs = form.querySelectorAll('input[name="sections"]:checked');
+      const errEl = document.getElementById('err-sections');
+      const ok = secs.length > 0;
+      if (errEl) errEl.textContent = !ok && showError ? 'Seleziona almeno una sezione.' : '';
+      return ok;
+    }
+
+    function clearAllFieldStates() {
+      form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
+      form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+        el.classList.remove('is-valid', 'is-invalid');
+        el.removeAttribute('aria-invalid');
+      });
+    }
+
+    Object.keys(FIELD_RULES).forEach(fieldId => {
+      const el = document.getElementById(fieldId);
+      const rule = FIELD_RULES[fieldId];
+      if (!el) return;
+      if (el.tagName === 'SELECT' || rule.isCheckbox) {
+        el.addEventListener('change', () => validateField(fieldId, true));
+        el.addEventListener('blur', () => validateField(fieldId, true));
+      } else {
+        el.addEventListener('blur', () => validateField(fieldId, true));
+        el.addEventListener('input', () => {
+          const hasError = el.classList.contains('is-invalid') || Boolean(document.getElementById(rule.errId)?.textContent);
+          validateField(fieldId, hasError);
+        });
+      }
+    });
 
     function selectPackage(pkgId, showNotice) {
       document.querySelectorAll('[data-package-card]').forEach(card => {
@@ -1735,6 +2091,7 @@
           packageBanner.classList.add('is-visible');
         }
       }
+      saveDraft();
       if (currentStep === 4) {
         goToStep(4);
       }
@@ -1749,7 +2106,7 @@
         confirmationScreen.classList.remove('is-visible');
         form.style.removeProperty('display');
         errorBanner.classList.remove('is-visible');
-        form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
+        clearAllFieldStates();
         goToStep(1);
       }
       selectPackage(b.getAttribute('data-select-package'), true);
@@ -1768,7 +2125,10 @@
 
     document.querySelectorAll('[data-color-chip], [data-section-chip]').forEach(chip => {
       const cb = chip.querySelector('input');
-      cb.addEventListener('change', () => chip.classList.toggle('is-selected', cb.checked));
+      cb.addEventListener('change', () => {
+        chip.classList.toggle('is-selected', cb.checked);
+        if (cb.name === 'sections') validateSections(true);
+      });
     });
 
     document.querySelectorAll('[data-radio-btn]').forEach(lbl => {
@@ -1780,42 +2140,103 @@
       });
     });
 
+    form.addEventListener('input', (e) => {
+      if (e.target && e.target.id === 'input-honey') return;
+      saveDraft();
+    });
+    form.addEventListener('change', (e) => {
+      if (e.target && e.target.id === 'input-honey') return;
+      saveDraft();
+    });
+
+    function restoreDraft() {
+      try {
+        const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+        if (!raw) return;
+        const draft = JSON.parse(raw);
+        if (!draft || typeof draft !== 'object') return;
+
+        const textMap = {
+          'input-full-name': draft.fullName,
+          'input-business-name': draft.businessName,
+          'input-business-address': draft.businessAddress,
+          'input-email': draft.email,
+          'input-phone': draft.phone,
+          'select-business-type': draft.businessType,
+          'textarea-description': draft.description,
+          'input-reference-links': draft.referenceLinks,
+          'select-timeline': draft.timeline,
+          'textarea-additional-notes': draft.additionalNotes
+        };
+        Object.entries(textMap).forEach(([id, val]) => {
+          const el = document.getElementById(id);
+          if (el && typeof val === 'string') el.value = val;
+        });
+
+        ['selectedPackage', 'style', 'wantsWhatsapp', 'wantsCatalog'].forEach(name => {
+          const val = draft[name];
+          if (typeof val !== 'string') return;
+          const radio = Array.from(form.querySelectorAll(`input[name="${name}"]`)).find(r => r.value === val);
+          if (radio) radio.checked = true;
+        });
+
+        if (Array.isArray(draft.colors)) {
+          form.querySelectorAll('input[name="colors"]').forEach(cb => {
+            cb.checked = draft.colors.includes(cb.value);
+          });
+        }
+        if (Array.isArray(draft.sections)) {
+          form.querySelectorAll('input[name="sections"]').forEach(cb => {
+            cb.checked = draft.sections.includes(cb.value);
+          });
+        }
+
+        syncChoiceStates();
+
+        ['input-full-name', 'input-business-name', 'input-email', 'input-phone', 'select-business-type', 'textarea-description', 'select-timeline'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el && el.value.trim()) validateField(id, false);
+        });
+      } catch {
+        // Bozza corrotta o localStorage non accessibile
+      }
+    }
+
     function validateStep(step) {
       errorBanner.classList.remove('is-visible');
-      form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
       let ok = true;
       if (step === 1) {
-        if (document.getElementById('input-full-name').value.trim().length < 2) { document.getElementById('err-full-name').textContent = 'Inserisci nome e cognome.'; ok = false; }
-        if (document.getElementById('input-business-name').value.trim().length < 2) { document.getElementById('err-business-name').textContent = 'Inserisci il nome attività.'; ok = false; }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(document.getElementById('input-email').value.trim())) { document.getElementById('err-email').textContent = 'Email non valida.'; ok = false; }
-        if (document.getElementById('input-phone').value.trim().length < 6) { document.getElementById('err-phone').textContent = 'Telefono non valido.'; ok = false; }
-        if (!document.getElementById('select-business-type').value) { document.getElementById('err-business-type').textContent = 'Seleziona il tipo di attività.'; ok = false; }
+        const s1 = [
+          validateField('input-full-name', true),
+          validateField('input-business-name', true),
+          validateField('input-email', true),
+          validateField('input-phone', true),
+          validateField('select-business-type', true)
+        ];
+        ok = s1.every(Boolean);
       } else if (step === 3) {
-        const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked'));
-        if (secs.length === 0) { document.getElementById('err-sections').textContent = 'Seleziona almeno una sezione.'; ok = false; }
-        if (document.getElementById('textarea-description').value.trim().length < 10) { document.getElementById('err-description').textContent = 'Inserisci una breve descrizione (min. 10 caratteri).'; ok = false; }
+        const s3 = [
+          validateSections(true),
+          validateField('textarea-description', true)
+        ];
+        ok = s3.every(Boolean);
       } else if (step === 4) {
-        if (!document.getElementById('select-timeline').value) { document.getElementById('err-timeline').textContent = 'Seleziona una tempistica.'; ok = false; }
-        if (!document.getElementById('checkbox-privacy').checked) { document.getElementById('err-privacy').textContent = 'Consenso obbligatorio.'; ok = false; }
+        const s4 = [
+          validateField('select-timeline', true),
+          validateField('checkbox-privacy', true)
+        ];
+        ok = s4.every(Boolean);
       }
       return ok;
     }
 
-    function escapeHtml(str) {
-      return String(str ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
     function goToStep(step) {
       currentStep = step;
-      const pct = step * 25;
-      document.getElementById('wizard-progress-label').textContent = `Passaggio ${step} di 4`;
-      document.getElementById('wizard-progress-pct').textContent = `${pct}% completato`;
-      document.getElementById('wizard-progress-fill').style.width = `${pct}%`;
+      const meta = STEP_META[step] || STEP_META[1];
+      document.getElementById('wizard-progress-label').textContent = meta.label;
+      document.getElementById('wizard-progress-pct').textContent = `${meta.pct}%`;
+      document.getElementById('wizard-progress-fill').style.width = `${meta.pct}%`;
+      if (progressTrack) progressTrack.setAttribute('aria-valuenow', String(meta.pct));
 
       document.querySelectorAll('[data-step-pane]').forEach(p => p.classList.toggle('is-active', Number(p.getAttribute('data-step-pane')) === step));
       document.querySelectorAll('[data-step-indicator]').forEach(ind => {
@@ -1833,21 +2254,63 @@
         const pkgId = form.querySelector('input[name="selectedPackage"]:checked')?.value || 'plus';
         const pkg = siteConfig.packages.find(p => p.id === pkgId);
         const style = form.querySelector('input[name="style"]:checked')?.value || 'Moderno';
+        const colors = Array.from(form.querySelectorAll('input[name="colors"]:checked')).map(x => x.value).join(', ') || 'Da concordare';
         const secs = Array.from(form.querySelectorAll('input[name="sections"]:checked')).map(x => x.value).join(', ');
         const safeFullName = escapeHtml(document.getElementById('input-full-name').value.trim());
         const safeBusinessName = escapeHtml(document.getElementById('input-business-name').value.trim());
+        const safeBusinessType = escapeHtml(document.getElementById('select-business-type').value);
         const safeBusinessAddress = escapeHtml(document.getElementById('input-business-address').value.trim() || 'Non indicato');
         const safeEmail = escapeHtml(document.getElementById('input-email').value.trim());
         const safePhone = escapeHtml(document.getElementById('input-phone').value.trim());
+        const rawDesc = document.getElementById('textarea-description').value.trim();
+        const safeDesc = escapeHtml(rawDesc.length > 140 ? rawDesc.slice(0, 140) + '…' : rawDesc);
+
         document.getElementById('quote-summary-content').innerHTML = `
-          <div><span class="summary-item-label">Cliente</span><span class="summary-item-val">${safeFullName} (${safeBusinessName})</span></div>
-          <div><span class="summary-item-label">Indirizzo attività</span><span class="summary-item-val">${safeBusinessAddress}</span></div>
-          <div><span class="summary-item-label">Contatti</span><span class="summary-item-val">${safeEmail} · ${safePhone}</span></div>
-          <div><span class="summary-item-label">Pacchetto</span><span class="summary-item-val" style="color:var(--accent-blue)">${escapeHtml(pkg ? pkg.name + ' (' + pkg.price + ')' : pkgId)}</span></div>
-          <div style="grid-column: 1 / -1;"><span class="summary-item-label">Stile & Sezioni</span><span class="summary-item-val">${escapeHtml(style)} · ${escapeHtml(secs)}</span></div>
+          <div class="summary-block">
+            <div class="summary-block__top">
+              <span class="summary-block__title">Dati attività e contatto</span>
+              <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="1">Modifica</button>
+            </div>
+            <div class="summary-grid">
+              <div><span class="summary-item-label">Cliente &amp; Attività</span><span class="summary-item-val">${safeFullName} · ${safeBusinessName} (${safeBusinessType})</span></div>
+              <div><span class="summary-item-label">Indirizzo attività</span><span class="summary-item-val">${safeBusinessAddress}</span></div>
+              <div style="grid-column: 1 / -1;"><span class="summary-item-label">Contatti</span><span class="summary-item-val">${safeEmail} · ${safePhone}</span></div>
+            </div>
+          </div>
+
+          <div class="summary-block">
+            <div class="summary-block__top">
+              <span class="summary-block__title">Pacchetto scelto</span>
+              <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="2">Modifica</button>
+            </div>
+            <div class="summary-grid">
+              <div style="grid-column: 1 / -1;"><span class="summary-item-label">Pacchetto</span><span class="summary-item-val" style="color:var(--accent-blue)">${escapeHtml(pkg ? pkg.name + ' (' + pkg.price + ' una tantum)' : pkgId)}</span></div>
+            </div>
+          </div>
+
+          <div class="summary-block">
+            <div class="summary-block__top">
+              <span class="summary-block__title">Stile e dettagli del sito</span>
+              <button type="button" class="privacy-link-btn summary-edit-btn" data-edit-step="3">Modifica</button>
+            </div>
+            <div class="summary-grid">
+              <div><span class="summary-item-label">Stile &amp; Colori</span><span class="summary-item-val">${escapeHtml(style)} · ${escapeHtml(colors)}</span></div>
+              <div><span class="summary-item-label">Sezioni</span><span class="summary-item-val">${escapeHtml(secs)}</span></div>
+              <div style="grid-column: 1 / -1;"><span class="summary-item-label">Descrizione</span><span class="summary-item-val">${safeDesc}</span></div>
+            </div>
+          </div>
         `;
       }
     }
+
+    document.getElementById('quote-summary-content').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-edit-step]');
+      if (!btn) return;
+      const targetStep = Number(btn.getAttribute('data-edit-step'));
+      if (targetStep >= 1 && targetStep <= 4) {
+        goToStep(targetStep);
+      }
+    });
 
     document.querySelectorAll('[data-step-indicator]').forEach(ind => {
       ind.addEventListener('click', () => {
@@ -1871,7 +2334,8 @@
 
     nextBtn.addEventListener('click', () => { if (validateStep(currentStep)) goToStep(currentStep + 1); });
     prevBtn.addEventListener('click', () => { if (currentStep > 1) goToStep(currentStep - 1); });
-    document.getElementById('btn-summary-edit-step1').addEventListener('click', () => goToStep(1));
+
+    restoreDraft();
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1882,7 +2346,16 @@
       if (!validateStep(1)) { goToStep(1); return; }
       if (!validateStep(3)) { goToStep(3); return; }
       if (!validateStep(4)) return;
-      if (document.getElementById('input-website-hp').value) return;
+
+      const honeyValue = document.getElementById('input-honey')?.value || '';
+      if (honeyValue.trim()) return;
+
+      const remainingSec = getRemainingCooldownSeconds();
+      if (remainingSec > 0) {
+        errorBanner.textContent = `Hai già inviato una richiesta pochi istanti fa. Attendi ${remainingSec} secondi prima di inviarne un'altra, oppure scrivici su WhatsApp.`;
+        errorBanner.classList.add('is-visible');
+        return;
+      }
 
       const fullName = document.getElementById('input-full-name').value.trim();
       const businessName = document.getElementById('input-business-name').value.trim();
@@ -1920,6 +2393,8 @@
             _template: 'table',
             _captcha: 'false',
             _replyto: email,
+            _honey: honeyValue,
+            _autoresponse: 'Grazie per aver contattato MGD Studio! Abbiamo ricevuto la tua richiesta di preventivo e ti risponderemo entro 24 ore lavorative.',
             '1. Nome e Cognome': fullName,
             '2. Nome Attività': businessName,
             '3. Tipo di Attività': businessType,
@@ -1969,6 +2444,7 @@
               },
               signal: notifyCtrl ? notifyCtrl.signal : undefined,
               body: JSON.stringify({
+                _honey: honeyValue,
                 fullName,
                 businessName,
                 businessType,
@@ -1995,6 +2471,17 @@
           }
         }
 
+        clearDraft();
+        markSubmittedNow();
+
+        const waNumber = siteConfig.contact.whatsappNumber || '393926500185';
+        const waPkgName = pkg ? pkg.shortName : pkgId;
+        const waText = `Ciao MGD Studio, ho appena inviato una richiesta dal sito per ${businessName} (pacchetto ${waPkgName}).`;
+        const waConfirmBtn = document.getElementById('btn-confirmation-whatsapp');
+        if (waConfirmBtn) {
+          waConfirmBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
+        }
+
         form.style.display = 'none';
         packageBanner.classList.remove('is-visible');
         confirmationScreen.classList.add('is-visible');
@@ -2009,16 +2496,15 @@
 
     document.getElementById('btn-reset-wizard').addEventListener('click', () => {
       form.reset();
-      document.querySelectorAll('[data-style-card], [data-color-chip], [data-section-chip], [data-radio-btn]').forEach(el => {
-        const inp = el.querySelector('input');
-        if (inp) el.classList.toggle('is-selected', inp.checked);
-      });
+      clearDraft();
+      clearAllFieldStates();
+      syncChoiceStates();
       errorBanner.classList.remove('is-visible');
       packageBanner.classList.remove('is-visible');
-      form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
       confirmationScreen.classList.remove('is-visible');
       form.style.removeProperty('display');
       selectPackage('plus', false);
+      clearDraft();
       goToStep(1);
     });
 

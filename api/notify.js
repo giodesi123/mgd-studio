@@ -1,14 +1,54 @@
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const rateLimitStore = new Map();
+
+function getClientIp(req) {
+  const xff = req.headers && (req.headers['x-forwarded-for'] || req.headers['X-Forwarded-For']);
+  if (typeof xff === 'string' && xff.trim()) {
+    return xff.split(',')[0].trim();
+  }
+  if (Array.isArray(xff) && xff.length > 0) {
+    return String(xff[0]).split(',')[0].trim();
+  }
+  const realIp = req.headers && req.headers['x-real-ip'];
+  if (typeof realIp === 'string' && realIp.trim()) {
+    return realIp.trim();
+  }
+  return (req.socket && req.socket.remoteAddress) || 'unknown';
+}
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  if (rateLimitStore.size > 500) {
+    for (const [key, timestamps] of rateLimitStore.entries()) {
+      const active = timestamps.filter(ts => now - ts < RATE_LIMIT_WINDOW_MS);
+      if (active.length === 0) rateLimitStore.delete(key);
+      else rateLimitStore.set(key, active);
+    }
+  }
+  const recent = (rateLimitStore.get(ip) || []).filter(ts => now - ts < RATE_LIMIT_WINDOW_MS);
+  if (recent.length >= RATE_LIMIT_MAX) {
+    const oldest = recent[0];
+    const retryAfterSec = Math.max(1, Math.ceil((RATE_LIMIT_WINDOW_MS - (now - oldest)) / 1000));
+    rateLimitStore.set(ip, recent);
+    return { allowed: false, retryAfterSec };
+  }
+  recent.push(now);
+  rateLimitStore.set(ip, recent);
+  return { allowed: true, retryAfterSec: 0 };
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ ok: false, error: 'Method Not Allowed' });
   }
 
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  if (!botToken || !chatId) {
-    return res.status(500).json({ ok: false, error: 'Missing Telegram env vars' });
+  const clientIp = getClientIp(req);
+  const limit = checkRateLimit(clientIp);
+  if (!limit.allowed) {
+    res.setHeader('Retry-After', String(limit.retryAfterSec));
+    return res.status(429).json({ ok: false, error: 'Too Many Requests' });
   }
 
   let data;
@@ -26,6 +66,18 @@ module.exports = async function handler(req, res) {
 
   if (!data || typeof data !== 'object' || Array.isArray(data)) {
     return res.status(400).json({ ok: false, error: 'Invalid JSON body' });
+  }
+
+  // Honeypot anti-spam: se valorizzato, risponde 200 silenziosamente senza inviare a Telegram
+  if (typeof data._honey === 'string' && data._honey.trim().length > 0) {
+    return res.status(200).json({ ok: true });
+  }
+
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    return res.status(500).json({ ok: false, error: 'Missing Telegram env vars' });
   }
 
   const val = (v, fallback = 'Non indicato') => {

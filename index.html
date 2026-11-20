@@ -1529,6 +1529,9 @@
       contact: {
         email: 'gdesimone092@gmail.com'
       },
+      notifications: {
+        endpoint: '/api/notify'
+      },
       showcaseProjects: [
         {
           id: 'ristorante',
@@ -1901,6 +1904,39 @@
           }
         });
 
+        if (siteConfig.notifications?.endpoint) {
+          try {
+            await fetch(siteConfig.notifications.endpoint, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                fullName,
+                businessName,
+                businessType,
+                businessAddress,
+                email,
+                phone,
+                package: pkgId,
+                pkgLabel,
+                style,
+                colors,
+                wantsWhatsapp,
+                wantsShowcase,
+                sections,
+                description,
+                referenceLinks,
+                timeline,
+                additionalNotes
+              })
+            });
+          } catch (notifyErr) {
+            // Notifica lato server non bloccante per la conferma utente
+          }
+        }
+
         form.style.display = 'none';
         packageBanner.classList.remove('is-visible');
         confirmationScreen.classList.add('is-visible');
@@ -1919,8 +1955,11 @@
         const inp = el.querySelector('input');
         if (inp) el.classList.toggle('is-selected', inp.checked);
       });
+      errorBanner.classList.remove('is-visible');
+      packageBanner.classList.remove('is-visible');
+      form.querySelectorAll('.field-error-msg').forEach(e => e.textContent = '');
       confirmationScreen.classList.remove('is-visible');
-      form.style.display = 'block';
+      form.style.removeProperty('display');
       selectPackage('plus', false);
       goToStep(1);
     });
